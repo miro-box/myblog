@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <sitemap>
+    <loc>//localhost:1313/en/sitemap.xml</loc>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>//localhost:1313/zh/sitemap.xml</loc>
+    
+      <lastmod>2026-10-22T20:04:11+08:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>//localhost:1313/zh-hant-tw/sitemap.xml</loc>
+    
+      <lastmod>2026-01-26T00:00:00+00:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>//localhost:1313/ja/sitemap.xml</loc>
+    
+      <lastmod>2026-01-26T00:00:00+00:00</lastmod>
+    
+  </sitemap>
+  
+</sitemapindex>
