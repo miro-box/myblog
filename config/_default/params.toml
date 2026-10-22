@@ -1,6 +1,6 @@
 mainSections   = ["post"]
 rssFullContent = true
-favicon        = "img/avatar.png"
+favicon        = "img/avatar.jpg"
 
 [footer]
     since = 2020
@@ -8,7 +8,7 @@ favicon        = "img/avatar.png"
 [sidebar]
     emoji    = "✏️"
     subtitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    avatar   = "img/avatar.png"
+    avatar   = "img/miro.jpg"
 
 [article]
     [article.license]
@@ -18,9 +18,9 @@ favicon        = "img/avatar.png"
 [widgets]
     homepage = [
         { type = "search" },
-        { type = "archives", params = { limit = 5 } },
         { type = "categories", params = { limit = 10 } },
         { type = "tag-cloud", params = { limit = 10 } },
+        { type = "archives", params = { limit = 5 } },
     ]
     page     = [{ type = "toc" }]
 

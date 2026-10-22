@@ -8,11 +8,11 @@
 
 [zh]
     label  = "简体中文"
-    title  = "Hugo 主题 Stack"
+    title  = "寻 Mi 处"
     weight = 2
 
     [zh.params.sidebar]
-        subtitle = "为博客设计的卡片式 Hugo 主题"
+        subtitle = "寻觅文字、代码与感兴趣的一切"
 
 [zh-hant-tw]
     label  = "正體中文"

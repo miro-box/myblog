@@ -5,7 +5,7 @@ date: 2026-10-22
 license: CC BY-NC-SA 4.0
 menu:
     main:
-        weight: -90
+        weight: -50
         params:
             icon: user
 
