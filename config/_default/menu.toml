@@ -1,15 +1,60 @@
+# ==========================================
+# 1. 侧边栏主菜单（唯一生效的菜单源）
+# ==========================================
+[[main]]
+    identifier = "home"
+    name       = "首页"
+    url        = "https://blog.mibase.top/"  # 点击直接跳转外链，绝无过渡页！
+    weight     = -120
+    [main.params]
+        icon   = "home"
+
+[[main]]
+    identifier = "archives"
+    name       = "归档"
+    url        = "/archives/"
+    weight     = -100
+    [main.params]
+        icon   = "archives"
+
+[[main]]
+    identifier = "search"
+    name       = "搜索"
+    url        = "/search/"
+    weight     = -80
+    [main.params]
+        icon   = "search"
+
+[[main]]
+    identifier = "about"
+    name       = "关于"
+    url        = "/about/"
+    weight     = -60
+    [main.params]
+        icon   = "user"
+
+[[main]]
+    identifier = "links"
+    name       = "链接"
+    url        = "/links/"
+    weight     = -40
+    [main.params]
+        icon   = "link"
+
+
+# ==========================================
+# 2. 头像下方的社交图标
+# ==========================================
 [[social]]
     identifier = "github"
     name       = "GitHub"
     url        = "https://github.com/miro-box"
-
     [social.params]
-        icon = "brand-github"
+        icon   = "brand-github"
 
 [[social]]
     identifier = "mail"
     name       = "Mail"
-    url        = "https://qij50172@gmail.com"
-
+    url        = "mailto:qij50172@gmail.com"
     [social.params]
-        icon = "mail"
+        icon   = "mail"

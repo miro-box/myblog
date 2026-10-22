@@ -9,11 +9,6 @@ links:
     description: TypeScript 是 JavaScript 的一个超集，它可以编译成纯 JavaScript。
     website: https://www.typescriptlang.org
     image: ts-logo-128.jpg
-menu:
-    main: 
-        weight: -30
-        params:
-            icon: link
 comments: false
 ---
 
