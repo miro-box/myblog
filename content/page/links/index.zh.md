@@ -1,5 +1,7 @@
 ---
 title: "链接"
+slug: "links"
+url: "/links/"
 links:
   - title: GitHub
     description: GitHub 是世界上最大的软件开发平台。
