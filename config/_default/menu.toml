@@ -41,6 +41,14 @@
     [main.params]
         icon   = "link"
 
+[[main]]
+    identifier = "photo"
+    name       = "图库"
+    url        = "/photo/"
+    weight     = -20
+    [main.params]
+        icon   = "photo"
+
 
 # ==========================================
 # 2. 社交图标

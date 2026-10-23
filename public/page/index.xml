@@ -18,6 +18,12 @@
             <guid>http://localhost:1313/about/</guid>
             <description>&lt;h2 id=&#34;-关于寻-mi-处&#34;&gt;✦ 关于“寻 Mi 处”&#xD;&#xA;&lt;/h2&gt;&#xD;&#xA;    &lt;blockquote&gt;&#xD;&#xA;        &lt;p&gt;&lt;strong&gt;寻 Mi 处&lt;/strong&gt;，取自“寻觅”之意。&lt;br&gt;&#xA;这里是我在互联网上的一方小天地，用来记录自己在文字、代码以及感兴趣领域里的探索轨迹。&lt;/p&gt;&#xA;&#xD;&#xA;    &lt;/blockquote&gt;&#xD;&#xA;&lt;p&gt;本站内容主要涵盖：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;技术折腾与笔记&lt;/strong&gt;：博客搭建、嵌入式/MCU、网络安全与练习、开源工具使用心得。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;日常与随笔&lt;/strong&gt;：灵感片段、音乐影音分享与生活记录。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-关于博主&#34;&gt;✦ 关于博主&#xD;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;ID&lt;/strong&gt;：Mi (miro)&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;属性&lt;/strong&gt;：硬件与嵌入式折腾玩家 / Web安全初学者 / 极客工具党&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;当前状态&lt;/strong&gt;：正在持续建造这个站点，试图把感兴趣的一切都装进这里。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&#xD;&#xA;    &lt;blockquote&gt;&#xD;&#xA;        &lt;p&gt;“在代码与文字的边界，寻觅感动与自由。”&lt;/p&gt;&#xA;&#xD;&#xA;    &lt;/blockquote&gt;&#xD;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-常用设备与工具&#34;&gt;✦ 常用设备与工具&#xD;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;博客框架&lt;/strong&gt;：Hugo + Stack 主题&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;开发工具&lt;/strong&gt;：VS Code, C / Linux Command&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;硬件与折腾&lt;/strong&gt;：C51 / STM32 开发板, 焊台与电子 DIY 装备&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-找到我-contact&#34;&gt;✦ 找到我 (Contact)&#xD;&#xA;&lt;/h2&gt;&lt;p&gt;如果你对本站的内容感兴趣，欢迎通过以下方式联系我：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://github.com/miro-box&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;&#xD;&#xA;    &gt;miro-box&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Email&lt;/strong&gt;：&lt;code&gt;qij50172@gmail.com&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;RSS 订阅&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;http://localhost:1313/index.xml&#34; &gt;订阅本站&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;</description>
         </item><item>
+            <title></title>
+            <link>http://localhost:1313/photo/</link>
+            <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+            <guid>http://localhost:1313/photo/</guid>
+            <description></description>
+        </item><item>
             <title>归档</title>
             <link>http://localhost:1313/archives/</link>
             <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

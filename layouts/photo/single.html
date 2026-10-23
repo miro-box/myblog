@@ -1,0 +1,68 @@
+{{ define "main" }}
+<article class="main-article photo-gallery-content">
+    <header class="article-header">
+        <h1 class="article-title">{{ .Title }}</h1>
+        {{ if .Description }}
+        <h2 class="article-subtitle">{{ .Description }}</h2>
+        {{ end }}
+    </header>
+
+    {{/* 1. 自动读取 assets/waifus 目录下的所有图片 */}}
+    {{- $imgs := resources.Match "waifus/*.{jpg,jpeg,png,webp}" -}}
+
+    {{/* 2. 三列自适应瀑布流网格 */}}
+    <div class="gallery photo-masonry">
+        {{- range $i, $img := $imgs -}}
+            {{/* 动态生成 640x900 高清缩略图，大幅提升首屏加载速度 */}}
+            {{- $thumb := $img.Fit "640x900 q82" -}}
+            <figure class="gallery-image photo-tile" style="margin-bottom: 16px; break-inside: avoid;">
+                <a href="{{ $img.RelPermalink }}" target="_blank" rel="noopener">
+                    <img
+                        src="{{ $thumb.RelPermalink }}"
+                        data-thumb="{{ $thumb.RelPermalink }}"
+                        width="{{ $img.Width }}"
+                        height="{{ $img.Height }}"
+                        loading="lazy"
+                        alt="图库图片 {{ add $i 1 }}">
+                </a>
+            </figure>
+        {{- end -}}
+    </div>
+</article>
+
+{{/* 3. 瀑布流响应式 CSS 样式（电脑 3 列，平板 2 列，手机 1 列） */}}
+<style>
+.photo-gallery-content .gallery.photo-masonry {
+    display: block;
+    column-count: 3;
+    column-gap: 16px;
+}
+
+.photo-gallery-content .gallery.photo-masonry img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: var(--shadow-l1);
+    transition: transform 0.2s ease;
+}
+
+.photo-gallery-content .gallery.photo-masonry img:hover {
+    transform: translateY(-2px);
+}
+
+/* 平板端 (≤ 900px) 2 列 */
+@media (max-width: 900px) {
+    .photo-gallery-content .gallery.photo-masonry {
+        column-count: 2;
+    }
+}
+
+/* 手机端 (≤ 520px) 1 列 */
+@media (max-width: 520px) {
+    .photo-gallery-content .gallery.photo-masonry {
+        column-count: 1;
+    }
+}
+</style>
+{{ end }}
