@@ -1,0 +1,93 @@
+<!-- 页面加载动画 -->
+<div id="loading-mask">
+    <div class="loader"></div>
+    <div class="loading-text">寻 Mi 处载入中...</div>
+</div>
+
+<style>
+    #icp-badge a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    #icp-badge a:hover {
+        color: var(--accent-color);
+    }
+</style>
+
+<script>
+    (() => {
+        const ICP_TEXT = '萌ICP备20260690号';
+        const ICP_URL = 'https://icp.gov.moe/?keyword=20260690';
+
+        /* 隐藏加载动画 */
+        const removeLoadingMask = () => {
+            document.body.classList.add('loaded');
+            const mask = document.getElementById('loading-mask');
+            if (mask) setTimeout(() => mask.remove(), 400);
+        };
+
+        /* 找到「使用 Hugo 构建」所在的文字块，作为样式参照 */
+        const findReference = (footer) => {
+            const walker = document.createTreeWalker(footer, NodeFilter.SHOW_TEXT);
+            while (walker.nextNode()) {
+                if (walker.currentNode.nodeValue.includes('Hugo')) {
+                    let el = walker.currentNode.parentElement;
+                    // Hugo 通常包在链接/加粗标签里，取其外层块以获得正文样式
+                    while (el && el !== footer && ['A', 'B', 'STRONG', 'SPAN'].includes(el.tagName)) {
+                        el = el.parentElement;
+                    }
+                    return el;
+                }
+            }
+            return null;
+        };
+
+        /* 在页脚最底部插入备案号，并复制参照元素的实际样式 */
+        const insertICP = () => {
+            if (document.getElementById('icp-badge')) return;
+
+            const footer = document.querySelector('.site-footer');
+            if (!footer) return;
+
+            const icp = document.createElement('section');
+            icp.id = 'icp-badge';
+
+            const ref = findReference(footer);
+            if (ref) {
+                const s = getComputedStyle(ref);
+                Object.assign(icp.style, {
+                    fontSize: s.fontSize,
+                    lineHeight: s.lineHeight,
+                    color: s.color,
+                    fontFamily: s.fontFamily,
+                    fontWeight: s.fontWeight,
+                    letterSpacing: s.letterSpacing,
+                });
+            }
+
+            const link = document.createElement('a');
+            link.href = ICP_URL;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = ICP_TEXT;
+
+            icp.appendChild(link);
+            footer.appendChild(icp);
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', insertICP, { once: true });
+        } else {
+            insertICP();
+        }
+
+        if (document.readyState === 'complete') {
+            removeLoadingMask();
+        } else {
+            window.addEventListener('load', removeLoadingMask, { once: true });
+            setTimeout(removeLoadingMask, 2500);
+        }
+    })();
+</script>

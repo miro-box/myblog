@@ -16,7 +16,7 @@
 <meta property='og:description' content="寻觅文字、代码与感兴趣的一切">
 <meta property='og:url' content='http://localhost:1313/post/'>
 <meta property='og:site_name' content='寻 Mi 处'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2026-10-23T00:00:00&#43;00:00 '/>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2026-10-23T13:13:38&#43;08:00 '/>
 <meta name="twitter:title" content="Posts">
 <meta name="twitter:description" content="寻觅文字、代码与感兴趣的一切"><link rel="alternate" type="application/rss&#43;xml" href="http://localhost:1313/post/index.xml">
     <link rel="shortcut icon" href="/img/avatar.jpg" />
@@ -83,6 +83,77 @@ body, html {
  
 a, button, [role="button"], .menu a, .sidebar a, .article-title a {
     cursor: url('/img/pixel-pointer.ani'), pointer !important;
+}
+</style>
+
+<style>
+ 
+#loading-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;  
+    background-color: var(--body-background, #ffffff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+ 
+.loader {
+  display: block;
+  --height-of-loader: 4px;
+   
+  --loader-color: var(--accent-color, #0071e2);
+  width: 140px;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+   
+  background-color: rgba(128, 128, 128, 0.25);
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  background: var(--loader-color);
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+}
+
+@keyframes moving {
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
+  }
+}
+
+ 
+.loading-text {
+    font-size: 0.85rem;
+    color: var(--secondary-text-color, #666);
+    font-family: inherit;
+    letter-spacing: 2px;
+}
+
+ 
+body.loaded #loading-mask {
+    opacity: 0;
+    visibility: hidden;
 }
 </style>
     </head>
@@ -330,11 +401,21 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
     </div>
     <h2 class="widget-title section-title">
         
-            分类
+            <a href="/categories/">
+                分类
+            </a>
         
     </h2>
 
     <div class="tagCloud-tags">
+        
+            <a href="/categories/hugo/">
+                Hugo
+            </a>
+        
+            <a href="/categories/%E6%8A%98%E8%85%BE%E6%89%8B%E8%AE%B0/">
+                折腾手记
+            </a>
         
     </div>
 </section>
@@ -356,11 +437,29 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
     </div>
     <h2 class="widget-title section-title">
         
-            标签云
+            <a href="/tags/">
+                标签云
+            </a>
         
     </h2>
 
     <div class="tagCloud-tags">
+        
+            <a href="/tags/css/">
+                CSS
+            </a>
+        
+            <a href="/tags/hugo/">
+                Hugo
+            </a>
+        
+            <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                前端
+            </a>
+        
+            <a href="/tags/%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96/">
+                博客美化
+            </a>
         
     </div>
 </section>
@@ -392,15 +491,7 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
                     <a href="/archives/#2026">
                         
                             <span class="year">2026</span>
-                            <span class="count">1</span>
-                        
-                    </a> 
-                </div>
-            <div class="archives-year">
-                    <a href="/archives/#0001">
-                        
-                            <span class="year">0001</span>
-                            <span class="count">1</span>
+                            <span class="count">2</span>
                         
                     </a> 
                 </div>
@@ -433,6 +524,15 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
         <section class="article-list--compact">
             
                 <article>
+    <a href="/p/blog-building-and-customization-log/">
+        <div class="article-details">
+            <h2 class="article-title">博客美化</h2>
+                <footer class="article-meta"><time datetime="2026-10-23T13:13:38&#43;08:00">2026年10月23日星期五</time>
+                </footer></div>
+    </a>
+</article>
+            
+                <article>
     <a href="/p/%E5%9B%BE%E5%BA%8A%E6%B5%8B%E8%AF%95/">
         <div class="article-details">
             <h2 class="article-title">图床测试</h2>
@@ -441,19 +541,12 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
     </a>
 </article>
             
-                <article>
-    <a href="/p/">
-        <div class="article-details">
-            <h2 class="article-title"></h2></div>
-    </a>
-</article>
-            
         </section>
     <footer class="site-footer">
     <section class="copyright">
         &copy; 
         
-            2020 - 
+            2023 - 
         
         2026 寻 Mi 处
     </section>
@@ -470,6 +563,98 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
         
 <script type="text/javascript" src="/ts/main.b5cb6fe2fa550a9d8dfc7918a257365414ea9740b12d65e4704f9981d6ee6da1.js" defer></script>
 
+<div id="loading-mask">
+    <div class="loader"></div>
+    <div class="loading-text">寻 Mi 处载入中...</div>
+</div>
+
+<style>
+    #icp-badge a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    #icp-badge a:hover {
+        color: var(--accent-color);
+    }
+</style>
+
+<script>
+    (() => {
+        const ICP_TEXT = '萌ICP备20260690号';
+        const ICP_URL = 'https://icp.gov.moe/?keyword=20260690';
+
+         
+        const removeLoadingMask = () => {
+            document.body.classList.add('loaded');
+            const mask = document.getElementById('loading-mask');
+            if (mask) setTimeout(() => mask.remove(), 400);
+        };
+
+         
+        const findReference = (footer) => {
+            const walker = document.createTreeWalker(footer, NodeFilter.SHOW_TEXT);
+            while (walker.nextNode()) {
+                if (walker.currentNode.nodeValue.includes('Hugo')) {
+                    let el = walker.currentNode.parentElement;
+                    
+                    while (el && el !== footer && ['A', 'B', 'STRONG', 'SPAN'].includes(el.tagName)) {
+                        el = el.parentElement;
+                    }
+                    return el;
+                }
+            }
+            return null;
+        };
+
+         
+        const insertICP = () => {
+            if (document.getElementById('icp-badge')) return;
+
+            const footer = document.querySelector('.site-footer');
+            if (!footer) return;
+
+            const icp = document.createElement('section');
+            icp.id = 'icp-badge';
+
+            const ref = findReference(footer);
+            if (ref) {
+                const s = getComputedStyle(ref);
+                Object.assign(icp.style, {
+                    fontSize: s.fontSize,
+                    lineHeight: s.lineHeight,
+                    color: s.color,
+                    fontFamily: s.fontFamily,
+                    fontWeight: s.fontWeight,
+                    letterSpacing: s.letterSpacing,
+                });
+            }
+
+            const link = document.createElement('a');
+            link.href = ICP_URL;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = ICP_TEXT;
+
+            icp.appendChild(link);
+            footer.appendChild(icp);
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', insertICP, { once: true });
+        } else {
+            insertICP();
+        }
+
+        if (document.readyState === 'complete') {
+            removeLoadingMask();
+        } else {
+            window.addEventListener('load', removeLoadingMask, { once: true });
+            setTimeout(removeLoadingMask, 2500);
+        }
+    })();
+</script>
 
     </body>
 </html>

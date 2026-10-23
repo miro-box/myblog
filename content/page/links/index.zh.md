@@ -15,6 +15,32 @@ links:
     description: "分享科技与技术与实践"
     website: "https://blog.wudarensheng.top"
     image: "https://blog.wudarensheng.top/avatar.jpg"
+
+  - title: "UpXuu's blog"
+    description: "逐光而上"
+    website: "https://upxuu.com"
+    image: "https://upxuu.com/images/me.jpg"
+
+  - title: "柯希兔"
+    description: "平凡亦有诗意"
+    website: "https://kexitu.com"
+    image: "https://img.kexitu.com/p1/kexitu.png"
+
+  - title: "流欺の博客"
+    description: "嗯对就是个博客"
+    website: "https://blog.lqay.cn"
+    image: "https://q2.qlogo.cn/headimg_dl?dst_uin=1458619045&spec=0"
+
+  - title: "HZH"
+    description: "Welcome to HZH"
+    website: "https://clannad.top"
+    image: "https://clannad.top/favicon.png"
+
+  - title: "OnlyFont"
+    description: "Han Chan"
+    website: "https://hanchan.vip"
+    image: "https://hanchan.vip/avatar.webp"
+
 ---
 
 > *“在这个数字荒原中，每一个独立博客都是一座赛博孤岛，而友链接通了我们的航线。”*

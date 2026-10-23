@@ -85,6 +85,77 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
     cursor: url('/img/pixel-pointer.ani'), pointer !important;
 }
 </style>
+
+<style>
+ 
+#loading-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;  
+    background-color: var(--body-background, #ffffff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+ 
+.loader {
+  display: block;
+  --height-of-loader: 4px;
+   
+  --loader-color: var(--accent-color, #0071e2);
+  width: 140px;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+   
+  background-color: rgba(128, 128, 128, 0.25);
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  background: var(--loader-color);
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+}
+
+@keyframes moving {
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
+  }
+}
+
+ 
+.loading-text {
+    font-size: 0.85rem;
+    color: var(--secondary-text-color, #666);
+    font-family: inherit;
+    letter-spacing: 2px;
+}
+
+ 
+body.loaded #loading-mask {
+    opacity: 0;
+    visibility: hidden;
+}
+</style>
     </head>
     <body class="
     article-page
@@ -515,6 +586,91 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
             </a>
         </article>
     
+        <article>
+            <a href="https://upxuu.com" target="_blank" rel="noopener">
+                <div class="article-details">
+                    <h2 class="article-title">UpXuu&#39;s blog</h2>
+                    <footer class="article-meta">
+                        
+                            逐光而上
+                        
+                    </footer>
+                </div><div class="article-image">
+                       <img alt="UpXuu's blog" height="60" loading="lazy" src="/me_3635745714302338877_hu_41bf609f5f11e63b.jpg" srcset="/me_3635745714302338877_hu_41bf609f5f11e63b.jpg 1x, /me_3635745714302338877_hu_c847f8e7cd07f00b.jpg 2x" width="60">
+
+                    </div>
+                
+            </a>
+        </article>
+    
+        <article>
+            <a href="https://kexitu.com" target="_blank" rel="noopener">
+                <div class="article-details">
+                    <h2 class="article-title">柯希兔</h2>
+                    <footer class="article-meta">
+                        
+                            平凡亦有诗意
+                        
+                    </footer>
+                </div><div class="article-image">
+                       <img alt="柯希兔" height="60" loading="lazy" src="/kexitu_4285345439876588954_hu_ac0e9be442d9d915.png" srcset="/kexitu_4285345439876588954_hu_ac0e9be442d9d915.png 1x, /kexitu_4285345439876588954_hu_913d9d2b2182aac.png 2x" width="60">
+
+                    </div>
+                
+            </a>
+        </article>
+    
+        <article>
+            <a href="https://blog.lqay.cn" target="_blank" rel="noopener">
+                <div class="article-details">
+                    <h2 class="article-title">流欺の博客</h2>
+                    <footer class="article-meta">
+                        
+                            嗯对就是个博客
+                        
+                    </footer>
+                </div><div class="article-image">
+                       <img alt="流欺の博客" height="60" loading="lazy" src="/headimg_dl_3971031862905710987_hu_8065857acb9c9ca6.jpg" srcset="/headimg_dl_3971031862905710987_hu_8065857acb9c9ca6.jpg 1x, /headimg_dl_3971031862905710987_hu_770aac1a25657d7a.jpg 2x" width="60">
+
+                    </div>
+                
+            </a>
+        </article>
+    
+        <article>
+            <a href="https://clannad.top" target="_blank" rel="noopener">
+                <div class="article-details">
+                    <h2 class="article-title">HZH</h2>
+                    <footer class="article-meta">
+                        
+                            Welcome to HZH
+                        
+                    </footer>
+                </div><div class="article-image">
+                       <img alt="HZH" height="60" loading="lazy" src="/favicon_6153044581048510315_hu_8c38ac78566ca10c.png" srcset="/favicon_6153044581048510315_hu_8c38ac78566ca10c.png 1x" width="60">
+
+                    </div>
+                
+            </a>
+        </article>
+    
+        <article>
+            <a href="https://hanchan.vip" target="_blank" rel="noopener">
+                <div class="article-details">
+                    <h2 class="article-title">OnlyFont</h2>
+                    <footer class="article-meta">
+                        
+                            Han Chan
+                        
+                    </footer>
+                </div><div class="article-image">
+                       <img alt="OnlyFont" height="60" loading="lazy" src="/avatar_10624592810448880001_hu_e5214935034a63dd.webp" srcset="/avatar_10624592810448880001_hu_e5214935034a63dd.webp 1x, /avatar_10624592810448880001_hu_d0ac8d622deeb0cf.webp 2x" width="60">
+
+                    </div>
+                
+            </a>
+        </article>
+    
 </div>
     
 
@@ -572,7 +728,7 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
     <section class="copyright">
         &copy; 
         
-            2020 - 
+            2023 - 
         
         2026 寻 Mi 处
     </section>
@@ -621,6 +777,98 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
         
 <script type="text/javascript" src="/ts/main.b5cb6fe2fa550a9d8dfc7918a257365414ea9740b12d65e4704f9981d6ee6da1.js" defer></script>
 
+<div id="loading-mask">
+    <div class="loader"></div>
+    <div class="loading-text">寻 Mi 处载入中...</div>
+</div>
+
+<style>
+    #icp-badge a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    #icp-badge a:hover {
+        color: var(--accent-color);
+    }
+</style>
+
+<script>
+    (() => {
+        const ICP_TEXT = '萌ICP备20260690号';
+        const ICP_URL = 'https://icp.gov.moe/?keyword=20260690';
+
+         
+        const removeLoadingMask = () => {
+            document.body.classList.add('loaded');
+            const mask = document.getElementById('loading-mask');
+            if (mask) setTimeout(() => mask.remove(), 400);
+        };
+
+         
+        const findReference = (footer) => {
+            const walker = document.createTreeWalker(footer, NodeFilter.SHOW_TEXT);
+            while (walker.nextNode()) {
+                if (walker.currentNode.nodeValue.includes('Hugo')) {
+                    let el = walker.currentNode.parentElement;
+                    
+                    while (el && el !== footer && ['A', 'B', 'STRONG', 'SPAN'].includes(el.tagName)) {
+                        el = el.parentElement;
+                    }
+                    return el;
+                }
+            }
+            return null;
+        };
+
+         
+        const insertICP = () => {
+            if (document.getElementById('icp-badge')) return;
+
+            const footer = document.querySelector('.site-footer');
+            if (!footer) return;
+
+            const icp = document.createElement('section');
+            icp.id = 'icp-badge';
+
+            const ref = findReference(footer);
+            if (ref) {
+                const s = getComputedStyle(ref);
+                Object.assign(icp.style, {
+                    fontSize: s.fontSize,
+                    lineHeight: s.lineHeight,
+                    color: s.color,
+                    fontFamily: s.fontFamily,
+                    fontWeight: s.fontWeight,
+                    letterSpacing: s.letterSpacing,
+                });
+            }
+
+            const link = document.createElement('a');
+            link.href = ICP_URL;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = ICP_TEXT;
+
+            icp.appendChild(link);
+            footer.appendChild(icp);
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', insertICP, { once: true });
+        } else {
+            insertICP();
+        }
+
+        if (document.readyState === 'complete') {
+            removeLoadingMask();
+        } else {
+            window.addEventListener('load', removeLoadingMask, { once: true });
+            setTimeout(removeLoadingMask, 2500);
+        }
+    })();
+</script>
 
     </body>
 </html>
