@@ -394,12 +394,6 @@ body.loaded #loading-mask {
     <li><a href="#四小提示">四、小提示</a></li>
   </ol>
 
-  <ol>
-    <li><a href="#一怎么配">一、怎么配</a></li>
-    <li><a href="#三总结-1">三、总结</a></li>
-    <li><a href="#三几个踩坑提醒">三、几个踩坑提醒</a></li>
-  </ol>
-
             </nav>
         </div>
     </section>
@@ -478,7 +472,7 @@ body.loaded #loading-mask {
 
 
                     <time class="article-time--reading">
-                        阅读时长: 5 分钟
+                        阅读时长: 3 分钟
                     </time>
                 
             </div>
@@ -509,12 +503,6 @@ body.loaded #loading-mask {
     <li><a href="#二编写模板文件">二、编写模板文件</a></li>
     <li><a href="#三总结">三、总结</a></li>
     <li><a href="#四小提示">四、小提示</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#一怎么配">一、怎么配</a></li>
-    <li><a href="#三总结-1">三、总结</a></li>
-    <li><a href="#三几个踩坑提醒">三、几个踩坑提醒</a></li>
   </ol>
 
             </nav>
@@ -681,159 +669,6 @@ body.loaded #loading-mask {
 <li>注释可以根据自己习惯删减，不用的配置项直接删掉，模板会更干净</li>
 </ol>
 <p>以后写博客，不用再到处复制头部配置，专注写内容就好，再也不会因为 YAML 格式问题编译报错。</p>
-<p>如果你想要，我还可以再出一个<strong>纯 Frontmatter 无正文骨架的精简模板版本</strong>。</p>
-<p>今天 21:45</p>
-<p>不要像 ai</p>
-<h1 id="告别复制-frontmatterhugo-原型模板一次配好">告别复制 Frontmatter，Hugo 原型模板一次配好
-</h1><p>写 Hugo 博客，码字本身还好，最烦的就是每次新建文章，都去扒之前的文章复制头部配置。</p>
-<p>改标题、填简介、分类标签、封面、目录开关，一堆东西。YAML 缩进稍微错一点，冒号漏半个，本地一跑 <code>hugo server</code> 直接红字报错，找问题要半天。</p>
-<p>Hugo 自带 archetypes，也就是原型模板，配一次，后面新建文章直接自动生成模板，不用来回复制，也不容易格式翻车。</p>
-<h2 id="一怎么配">一、怎么配
-</h2><p>博客根目录有个 <code>archetypes</code> 文件夹，没有就自己建。 我们要的就是里面的 <code>post.md</code>，<code>hugo new</code> 新建博文的时候，会拿这个文件当模板生成新文章。</p>
-<p>打开或者新建 <code>archetypes/post.md</code>，直接贴下面这段，保存就行。语法我调好了，注释写得直白，自带文章框架。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c"># 必填</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ replace .Name &#34;</span>-<span class="s2">&#34; &#34;</span><span class="w"> </span><span class="s2">&#34; | title }}&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nt">date</span><span class="p">:</span><span class="w"> </span>{{<span class="w"> </span><span class="l">.Date }}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c"># 尽量填上</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nt">slug</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nt">categories</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;折腾手记&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nt">tags</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;Hugo&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c"># 封面图，二选一，不用就注释掉</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c"># image: &#34;cover.jpg&#34;       # 推荐，Page Bundle，图跟文章放一起</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c"># image: &#34;/images/cover.jpg&#34; # 图放在 static/images 里面</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c"># 可选开关，没用的行直接删掉</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nt">toc</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c"># math: true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c"># license: &#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c"># lastmod:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c"># weight: 1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nt">comments</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="l">&gt; 💡 导读：写一小段摘要，首页卡片和 RSS 会读到这里</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c">## 一、前言</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="l">说说为啥写这篇、背景是什么。</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c">## 二、正文</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c">### 1. 小标题</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="l">内容写在这里。</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="l">```c</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="l">// 代码示例</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c">#include &lt;stdio.h&gt;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="l">int main() {</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">printf(&#34;Hello Hugo\n&#34;);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">return 0;</span><span class="w">
-</span></span></span><span class="line"><span class="cl">}<span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div>
-    <blockquote>
-        <p>⚠️ 注意：踩坑点、重要提醒放这里</p>
-
-    </blockquote>
-<h2 id="三总结-1">三、总结
-</h2><p>简单收个尾，记下后续要做的事。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">简单说下几个常用配置：</span><span class="w">
-</span></span></span><span class="line"><span class="cl">- <span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="l">代表草稿，不会发布；写完改成 false</span><span class="w">
-</span></span></span><span class="line"><span class="cl">- <span class="l">categories 一般只留一个分类，自己改</span><span class="w">
-</span></span></span><span class="line"><span class="cl">- <span class="l">tags 标签可以多加几行</span><span class="w">
-</span></span></span><span class="line"><span class="cl">- <span class="l">toc 是目录，短文可以关掉</span><span class="w">
-</span></span></span><span class="line"><span class="cl">- <span class="l">hidden 设 true 的话，文章不在列表里显示，但链接能直接访问</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c">## 二、怎么用</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="l">我习惯用 Page Bundle 这种文件夹模式，截图、封面图直接跟文章放一块，管理起来舒服。</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="l">终端里敲这条命令：</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="l">```bash</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="l">hugo new post/文章英文名/index.md</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>敲完回车，<code>content/post/</code> 下面自动建好文件夹，里面生成 index.md。 打开看，头部配置、章节框架全都搭好了，改标题，填内容就行。 全部写完没问题，把 draft 改成 false，就可以打包部署。</p>
-<h2 id="三几个踩坑提醒">三、几个踩坑提醒
-</h2><ol>
-<li>想搞多种模板也可以，在 archetypes 新建别的，比如 note.md，用 <code>hugo new note/xxx/index.md</code> 调用</li>
-<li>模板改动，<strong>只对之后新建的文章生效</strong>，老文章不会自动变</li>
-<li>模板里的注释嫌乱，直接删掉，干净很多</li>
-</ol>
-<p>这下之后写东西不用再到处抄头部，专心写内容，也少很多 YAML 编译报错</p>
 
 </section>
 
