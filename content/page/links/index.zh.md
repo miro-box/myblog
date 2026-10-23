@@ -41,6 +41,10 @@ links:
     website: "https://hanchan.vip"
     image: "https://hanchan.vip/avatar.webp"
 
+  - title: "AkiNard Blog"
+    description: "AkiNard."
+    website: "https://blog.578113.xyz"
+    image: "https://image.578113.xyz/img/skyceria.jpg"
 ---
 
 > *“在这个数字荒原中，每一个独立博客都是一座赛博孤岛，而友链接通了我们的航线。”*
