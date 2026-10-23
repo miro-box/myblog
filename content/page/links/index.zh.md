@@ -1,33 +1,43 @@
 ---
-title: "链接"
+title: "友链"
 slug: "links"
 url: "/links/"
+description: "探索有趣的灵魂，连接广袤的网络世界~"
+date: 2026-10-23
+comments: true
 links:
-  - title: GitHub
-    description: GitHub 是世界上最大的软件开发平台。
-    website: https://github.com
-    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-  - title: TypeScript
-    description: TypeScript 是 JavaScript 的一个超集，它可以编译成纯 JavaScript。
-    website: https://www.typescriptlang.org
-    image: ts-logo-128.jpg
-comments: false
+  - title: "Brandon's Blog"
+    description: "Brandon 的个人博客"
+    website: "https://blog.oopss.top"
+    image: "https://cdn.oopss.top/icon.jpg"
+
+  - title: "Wudarensheng blog"
+    description: "分享科技与技术与实践"
+    website: "https://blog.wudarensheng.top"
+    image: "https://blog.wudarensheng.top/avatar.jpg"
 ---
 
-要使用此功能，请在 frontmatter 中添加 `links` 部分。
+> *“在这个数字荒原中，每一个独立博客都是一座赛博孤岛，而友链接通了我们的航线。”*
 
-此页面的 frontmatter：
+欢迎来到本站的**友链小广场**！这里记录着各路技术伙伴与极客朋友的独立小站。
 
-```yaml
-links:
-  - title: GitHub
-    description: GitHub 是世界上最大的软件开发平台。
-    website: https://github.com
-    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-  - title: TypeScript
-    description: TypeScript 是 JavaScript 的一个超集，它可以编译成纯 JavaScript。
-    website: https://www.typescriptlang.org
-    image: ts-logo-128.jpg
-```
+---
 
-`image` 字段支持本地和外部图像。
+### ☕ 交换友链
+
+没有那么多条条框框，只要你的博客能正常访问、内容健康（技术、数码、日常随笔都行），志同道合即可！
+
+想加友链的朋友，直接在下方评论区留言留个手印就行，带上这几样信息：
+* **博客名称**
+* **博客网址**
+* **简短介绍**
+* **头像链接**
+
+---
+
+### 📋 本站名片
+
+* **博客名称**：寻 Mi 处
+* **博客网址**：`https://blog.mibase.top`
+* **博主头像**：`https://blog.mibase.top/img/miro.jpg`
+* **博客简介**：寻觅文字、代码与感兴趣的一切

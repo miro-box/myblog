@@ -21,6 +21,70 @@
 <meta name="twitter:description" content="\n">
     <link rel="shortcut icon" href="/img/avatar.jpg" />
 
+<style>
+     
+    @font-face {
+        font-family: 'HarmonyOS Sans';
+        src: url('/fonts/HarmonyOS-Sans.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+     
+    @font-face {
+        font-family: 'LXGW WenKai';
+        src: url('/fonts/LXGWWenKai.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+     
+    :root {
+        --font-modern: "HarmonyOS Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --font-literary: "LXGW WenKai", serif;
+        --font-code: Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+     
+    body, p, article {
+        font-family: var(--font-literary) !important;
+    }
+
+     
+    h1, h2, h3, h4, h5, h6,
+    .sidebar,
+    .menu,
+    .site-name,
+    .site-description,
+    button,
+    input,
+    select,
+    textarea,
+    .article-title,
+    .article-subtitle,
+    .search-result-title {
+        font-family: var(--font-modern) !important;
+    }
+
+     
+    code, kbd, pre, samp {
+        font-family: var(--font-code) !important;
+    }
+
+  
+
+ 
+body, html {
+    cursor: url('/img/pixel-cursor.ani'), auto !important;
+}
+
+ 
+a, button, [role="button"], .menu a, .sidebar a, .article-title a {
+    cursor: url('/img/pixel-pointer.ani'), pointer !important;
+}
+</style>
     </head>
     <body class="
     article-page
@@ -196,7 +260,7 @@
 
 
                 
-                <span>链接</span>
+                <span>友链</span>
             </a>
         </li>
         
