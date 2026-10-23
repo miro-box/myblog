@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="为博客设计的卡片式 Hugo 主题">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="寻觅文字、代码与感兴趣的一切">
 <title>Posts</title>
 
 
-<link rel="canonical" href="//localhost:1313/posts/">
+<link rel="canonical" href="http://localhost:1313/posts/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
@@ -13,14 +13,149 @@
 
 
 <link rel="stylesheet" href="/scss/style.min.59c5eb617b2b83358d0baf163162325d5249a2be44239b430beb29a87c1ddbe4.css"><meta property='og:title' content="Posts">
-<meta property='og:description' content="为博客设计的卡片式 Hugo 主题">
-<meta property='og:url' content='//localhost:1313/posts/'>
-<meta property='og:site_name' content='Hugo 主题 Stack'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2026-10-22T20:04:11&#43;08:00 '/>
+<meta property='og:description' content="寻觅文字、代码与感兴趣的一切">
+<meta property='og:url' content='http://localhost:1313/posts/'>
+<meta property='og:site_name' content='寻 Mi 处'>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2026-10-23T21:31:35&#43;08:00 '/>
 <meta name="twitter:title" content="Posts">
-<meta name="twitter:description" content="为博客设计的卡片式 Hugo 主题"><link rel="alternate" type="application/rss&#43;xml" href="//localhost:1313/posts/index.xml">
-    <link rel="shortcut icon" href="img/avatar.png" />
+<meta name="twitter:description" content="寻觅文字、代码与感兴趣的一切"><link rel="alternate" type="application/rss&#43;xml" href="http://localhost:1313/posts/index.xml">
+    <link rel="shortcut icon" href="/img/avatar.jpg" />
 
+<style>
+     
+    @font-face {
+        font-family: 'HarmonyOS Sans';
+        src: url('/fonts/HarmonyOS-Sans.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+     
+    @font-face {
+        font-family: 'LXGW WenKai';
+        src: url('/fonts/LXGWWenKai.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+     
+    :root {
+        --font-modern: "HarmonyOS Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --font-literary: "LXGW WenKai", serif;
+        --font-code: Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+     
+    body, p, article {
+        font-family: var(--font-literary) !important;
+    }
+
+     
+    h1, h2, h3, h4, h5, h6,
+    .sidebar,
+    .menu,
+    .site-name,
+    .site-description,
+    button,
+    input,
+    select,
+    textarea,
+    .article-title,
+    .article-subtitle,
+    .search-result-title {
+        font-family: var(--font-modern) !important;
+    }
+
+     
+    code, kbd, pre, samp {
+        font-family: var(--font-code) !important;
+    }
+
+  
+
+ 
+body, html {
+    cursor: url('/img/pixel-cursor.ani'), auto !important;
+}
+
+ 
+a, button, [role="button"], .menu a, .sidebar a, .article-title a {
+    cursor: url('/img/pixel-pointer.ani'), pointer !important;
+}
+</style>
+
+<style>
+ 
+#loading-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;  
+    background-color: var(--body-background, #ffffff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+ 
+.loader {
+  display: block;
+  --height-of-loader: 4px;
+   
+  --loader-color: var(--accent-color, #0071e2);
+  width: 140px;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+   
+  background-color: rgba(128, 128, 128, 0.25);
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  background: var(--loader-color);
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+}
+
+@keyframes moving {
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
+  }
+}
+
+ 
+.loading-text {
+    font-size: 0.85rem;
+    color: var(--secondary-text-color, #666);
+    font-family: inherit;
+    letter-spacing: 2px;
+}
+
+ 
+body.loaded #loading-mask {
+    opacity: 0;
+    visibility: hidden;
+}
+</style>
     </head>
     <body class="">
     <script>
@@ -55,9 +190,9 @@
     <header>
         <figure class="site-avatar">
                 <a href="/">
-                    <img src="img/avatar.png" 
-                        width=""
-                        height=""
+                    <img src="/img/miro.jpg" 
+                        width="980"
+                        height="980"
                         class="site-logo"
                         loading="lazy"
                         alt="Avatar">
@@ -69,14 +204,14 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">Hugo 主题 Stack</a></h1>
-            <h2 class="site-description">为博客设计的卡片式 Hugo 主题</h2>
+            <h1 class="site-name"><a href="/">寻 Mi 处</a></h1>
+            <h2 class="site-description">寻觅文字、代码与感兴趣的一切</h2>
         </div>
     </header><ol class="menu-social">
             
                 <li>
                     <a 
-                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        href='https://github.com/miro-box'
                         
                         title="GitHub"
                         rel="me"
@@ -96,20 +231,14 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com'
+                        href='mailto:qij50172@gmail.com'
                         
-                        title="Twitter"
+                        title="Mail"
                         rel="me"
                     >
                         
                         
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
-</svg>
-
-
-
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" /><path d="M3 7l9 6l9 -6" /></svg>
                         
                     </a>
                 </li>
@@ -119,18 +248,19 @@
         
         
         <li >
-            <a href='/%E5%85%B3%E4%BA%8E/' >
+            <a href='https://blog.mibase.top/' >
                 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="7" r="4" />
-  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
 </svg>
 
 
 
                 
-                <span>关于</span>
+                <span>首页</span>
             </a>
         </li>
         
@@ -171,7 +301,24 @@
         
         
         <li >
-            <a href='/%E9%93%BE%E6%8E%A5/' >
+            <a href='/about/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -182,55 +329,12 @@
 
 
                 
-                <span>链接</span>
+                <span>友链</span>
             </a>
         </li>
         
         <li class="menu-bottom-section">
             <ol class="menu">
-                    <li id="i18n-switch">  
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                        <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
-                            
-                                
-                                
-                                    
-                                
-                                <option value="/en/" >English</option>
-                            
-                                
-                                
-                                    
-                                        
-                                    
-                                
-                                <option value="/posts/" selected>简体中文</option>
-                            
-                                
-                                
-                                    
-                                
-                                <option value="/zh-hant-tw/" >正體中文</option>
-                            
-                                
-                                
-                                    
-                                
-                                <option value="/ja/" >日本語</option>
-                            
-                        </select>
-                    </li>
-                
 
                 
                     <li id="dark-mode-toggle">
@@ -281,32 +385,6 @@
             
         
             
-                <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">
-            <a href="/archives/">
-                归档
-            </a>
-        </h2>
-
-        
-        
-        
-        <div class="widget-archive--list">
-            
-        </div>
-    </section>
-            
-        
-            
                 
 <section class="widget tagCloud">
     <div class="widget-icon">
@@ -323,11 +401,21 @@
     </div>
     <h2 class="widget-title section-title">
         
-            分类
+            <a href="/categories/">
+                分类
+            </a>
         
     </h2>
 
     <div class="tagCloud-tags">
+        
+            <a href="/categories/%E6%8A%98%E8%85%BE%E6%89%8B%E8%AE%B0/">
+                折腾手记
+            </a>
+        
+            <a href="/categories/hugo/">
+                Hugo
+            </a>
         
     </div>
 </section>
@@ -349,15 +437,71 @@
     </div>
     <h2 class="widget-title section-title">
         
-            标签云
+            <a href="/tags/">
+                标签云
+            </a>
         
     </h2>
 
     <div class="tagCloud-tags">
         
+            <a href="/tags/hugo/">
+                Hugo
+            </a>
+        
+            <a href="/tags/css/">
+                CSS
+            </a>
+        
+            <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                前端
+            </a>
+        
+            <a href="/tags/%E5%8D%9A%E5%AE%A2/">
+                博客
+            </a>
+        
+            <a href="/tags/%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96/">
+                博客美化
+            </a>
+        
     </div>
 </section>
 
+            
+        
+            
+                <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">
+            <a href="/archives/">
+                归档
+            </a>
+        </h2>
+
+        
+        
+        
+        <div class="widget-archive--list">
+            <div class="archives-year">
+                    <a href="/archives/#2026">
+                        
+                            <span class="year">2026</span>
+                            <span class="count">2</span>
+                        
+                    </a> 
+                </div>
+            
+        </div>
+    </section>
             
         
     </aside>
@@ -373,7 +517,7 @@
 
         <div class="section-card">
             <div class="section-details">
-                <h3 class="section-count">1 个页面</h3>
+                <h3 class="section-count">2 个页面</h3>
                 <h1 class="section-term">Posts</h1>
                 
             </div>
@@ -384,11 +528,30 @@
         <section class="article-list--compact">
             
                 <article>
-    <a href="/posts/my-first-post/">
+    <a href="/p/hugo-archetypes-setup/">
         <div class="article-details">
-            <h2 class="article-title">My First Post</h2>
-                <footer class="article-meta"><time datetime="2026-10-22T20:04:11&#43;08:00">2026年10月22日星期四</time>
+            <h2 class="article-title">Hugo archetypes 模板配置教程</h2>
+                <footer class="article-meta"><time datetime="2026-10-23T21:31:35&#43;08:00">2026年10月23日星期五</time>
                 </footer></div>
+        <div class="article-image">
+            <img alt="Hugo archetypes 模板配置教程" height="60" loading="lazy" src="/p/hugo-archetypes-setup/cover_hu_52b0da458faa426f.jpg" srcset="/p/hugo-archetypes-setup/cover_hu_52b0da458faa426f.jpg 1x, /p/hugo-archetypes-setup/cover_hu_c0d135b072513564.jpg 2x" width="60">
+
+        </div>
+        
+    </a>
+</article>
+            
+                <article>
+    <a href="/p/blog-building-and-customization-log/">
+        <div class="article-details">
+            <h2 class="article-title">博客美化</h2>
+                <footer class="article-meta"><time datetime="2026-10-23T13:13:38&#43;08:00">2026年10月23日星期五</time>
+                </footer></div>
+        <div class="article-image">
+            <img alt="博客美化" height="60" loading="lazy" src="/p/blog-building-and-customization-log/%E3%80%90%E5%93%B2%E9%A3%8E%E5%A3%81%E7%BA%B8%E3%80%91%E4%BA%8C%E6%AC%A1%E5%85%83-%E4%BE%A7%E8%84%B8%E5%B0%91%E5%A5%B3_hu_417e17a256454db2.jpg" srcset="/p/blog-building-and-customization-log/%E3%80%90%E5%93%B2%E9%A3%8E%E5%A3%81%E7%BA%B8%E3%80%91%E4%BA%8C%E6%AC%A1%E5%85%83-%E4%BE%A7%E8%84%B8%E5%B0%91%E5%A5%B3_hu_417e17a256454db2.jpg 1x, /p/blog-building-and-customization-log/%E3%80%90%E5%93%B2%E9%A3%8E%E5%A3%81%E7%BA%B8%E3%80%91%E4%BA%8C%E6%AC%A1%E5%85%83-%E4%BE%A7%E8%84%B8%E5%B0%91%E5%A5%B3_hu_b3126999d504f6c6.jpg 2x" width="60">
+
+        </div>
+        
     </a>
 </article>
             
@@ -397,9 +560,9 @@
     <section class="copyright">
         &copy; 
         
-            2020 - 
+            2023 - 
         
-        2026 Hugo 主题 Stack
+        2026 寻 Mi 处
     </section>
     
     <section class="powerby">
@@ -414,6 +577,98 @@
         
 <script type="text/javascript" src="/ts/main.b5cb6fe2fa550a9d8dfc7918a257365414ea9740b12d65e4704f9981d6ee6da1.js" defer></script>
 
+<div id="loading-mask">
+    <div class="loader"></div>
+    <div class="loading-text">寻 Mi 处载入中...</div>
+</div>
+
+<style>
+    #icp-badge a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    #icp-badge a:hover {
+        color: var(--accent-color);
+    }
+</style>
+
+<script>
+    (() => {
+        const ICP_TEXT = '萌ICP备20260690号';
+        const ICP_URL = 'https://icp.gov.moe/?keyword=20260690';
+
+         
+        const removeLoadingMask = () => {
+            document.body.classList.add('loaded');
+            const mask = document.getElementById('loading-mask');
+            if (mask) setTimeout(() => mask.remove(), 400);
+        };
+
+         
+        const findReference = (footer) => {
+            const walker = document.createTreeWalker(footer, NodeFilter.SHOW_TEXT);
+            while (walker.nextNode()) {
+                if (walker.currentNode.nodeValue.includes('Hugo')) {
+                    let el = walker.currentNode.parentElement;
+                    
+                    while (el && el !== footer && ['A', 'B', 'STRONG', 'SPAN'].includes(el.tagName)) {
+                        el = el.parentElement;
+                    }
+                    return el;
+                }
+            }
+            return null;
+        };
+
+         
+        const insertICP = () => {
+            if (document.getElementById('icp-badge')) return;
+
+            const footer = document.querySelector('.site-footer');
+            if (!footer) return;
+
+            const icp = document.createElement('section');
+            icp.id = 'icp-badge';
+
+            const ref = findReference(footer);
+            if (ref) {
+                const s = getComputedStyle(ref);
+                Object.assign(icp.style, {
+                    fontSize: s.fontSize,
+                    lineHeight: s.lineHeight,
+                    color: s.color,
+                    fontFamily: s.fontFamily,
+                    fontWeight: s.fontWeight,
+                    letterSpacing: s.letterSpacing,
+                });
+            }
+
+            const link = document.createElement('a');
+            link.href = ICP_URL;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = ICP_TEXT;
+
+            icp.appendChild(link);
+            footer.appendChild(icp);
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', insertICP, { once: true });
+        } else {
+            insertICP();
+        }
+
+        if (document.readyState === 'complete') {
+            removeLoadingMask();
+        } else {
+            window.addEventListener('load', removeLoadingMask, { once: true });
+            setTimeout(removeLoadingMask, 2500);
+        }
+    })();
+</script>
 
     </body>
 </html>

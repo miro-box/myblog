@@ -14,7 +14,7 @@ theme = "hugo-theme-stack"
     pagerSize = 3
 
 [permalinks]
-    post = "/p/:slug/"
+    posts = "/p/:slug/"
     page = "/:slug/"
 
 [services.disqus]

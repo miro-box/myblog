@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="配置 Hugo 原型模板，新建文章自动生成 Frontmatter，不用每次复制头部配置，减少 YAML 报错。">
+<title>Hugo archetypes 模板配置教程</title>
+
+
+<link rel="canonical" href="http://localhost:1313/p/hugo-archetypes-setup/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+
+
+<link rel="stylesheet" href="/scss/style.min.59c5eb617b2b83358d0baf163162325d5249a2be44239b430beb29a87c1ddbe4.css"><meta property='og:title' content="Hugo archetypes 模板配置教程">
+<meta property='og:description' content="配置 Hugo 原型模板，新建文章自动生成 Frontmatter，不用每次复制头部配置，减少 YAML 报错。">
+<meta property='og:url' content='http://localhost:1313/p/hugo-archetypes-setup/'>
+<meta property='og:site_name' content='寻 Mi 处'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='博客' /><meta property='article:published_time' content='2026-10-23T21:31:35&#43;08:00'/><meta property='article:modified_time' content='2026-10-23T21:31:35&#43;08:00'/><meta property='og:image' content='http://localhost:1313/p/hugo-archetypes-setup/cover.jpg' />
+<meta name="twitter:title" content="Hugo archetypes 模板配置教程">
+<meta name="twitter:description" content="配置 Hugo 原型模板，新建文章自动生成 Frontmatter，不用每次复制头部配置，减少 YAML 报错。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/hugo-archetypes-setup/cover.jpg' />
+    <link rel="shortcut icon" href="/img/avatar.jpg" />
+
+<style>
+     
+    @font-face {
+        font-family: 'HarmonyOS Sans';
+        src: url('/fonts/HarmonyOS-Sans.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+     
+    @font-face {
+        font-family: 'LXGW WenKai';
+        src: url('/fonts/LXGWWenKai.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+     
+    :root {
+        --font-modern: "HarmonyOS Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --font-literary: "LXGW WenKai", serif;
+        --font-code: Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+     
+    body, p, article {
+        font-family: var(--font-literary) !important;
+    }
+
+     
+    h1, h2, h3, h4, h5, h6,
+    .sidebar,
+    .menu,
+    .site-name,
+    .site-description,
+    button,
+    input,
+    select,
+    textarea,
+    .article-title,
+    .article-subtitle,
+    .search-result-title {
+        font-family: var(--font-modern) !important;
+    }
+
+     
+    code, kbd, pre, samp {
+        font-family: var(--font-code) !important;
+    }
+
+  
+
+ 
+body, html {
+    cursor: url('/img/pixel-cursor.ani'), auto !important;
+}
+
+ 
+a, button, [role="button"], .menu a, .sidebar a, .article-title a {
+    cursor: url('/img/pixel-pointer.ani'), pointer !important;
+}
+</style>
+
+<style>
+ 
+#loading-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;  
+    background-color: var(--body-background, #ffffff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+ 
+.loader {
+  display: block;
+  --height-of-loader: 4px;
+   
+  --loader-color: var(--accent-color, #0071e2);
+  width: 140px;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+   
+  background-color: rgba(128, 128, 128, 0.25);
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  background: var(--loader-color);
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+}
+
+@keyframes moving {
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
+  }
+}
+
+ 
+.loading-text {
+    font-size: 0.85rem;
+    color: var(--secondary-text-color, #666);
+    font-family: inherit;
+    letter-spacing: 2px;
+}
+
+ 
+body.loaded #loading-mask {
+    opacity: 0;
+    visibility: hidden;
+}
+</style>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        <figure class="site-avatar">
+                <a href="/">
+                    <img src="/img/miro.jpg" 
+                        width="980"
+                        height="980"
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
+                </a>
+                
+                    <span class="emoji">✏️</span>
+                
+            </figure>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">寻 Mi 处</a></h1>
+            <h2 class="site-description">寻觅文字、代码与感兴趣的一切</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/miro-box'
+                        
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='mailto:qij50172@gmail.com'
+                        
+                        title="Mail"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" /><path d="M3 7l9 6l9 -6" /></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='https://blog.mibase.top/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#一什么是-archetypes">一、什么是 archetypes</a></li>
+    <li><a href="#二编写模板文件">二、编写模板文件</a></li>
+    <li><a href="#三总结">三、总结</a></li>
+    <li><a href="#四小提示">四、小提示</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#一怎么配">一、怎么配</a></li>
+    <li><a href="#三总结-1">三、总结</a></li>
+    <li><a href="#三几个踩坑提醒">三、几个踩坑提醒</a></li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+    <div class="article-image">
+        <a href="/p/hugo-archetypes-setup/">
+            <img alt="Featured image of post Hugo archetypes 模板配置教程" height="1440" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/hugo-archetypes-setup/cover.jpg" srcset="/p/hugo-archetypes-setup/cover_hu_da396a161bbbdb5a.jpg 800w, /p/hugo-archetypes-setup/cover_hu_6f1c9746881ab947.jpg 1600w, /p/hugo-archetypes-setup/cover_hu_898dfb2c2b51641d.jpg 2400w, /p/hugo-archetypes-setup/cover.jpg 2560w" width="2560">
+        </a>
+    </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/%E6%8A%98%E8%85%BE%E6%89%8B%E8%AE%B0/" style="background-color: hsl(118, 60%, 84%); color: hsl(118, 60%, 15%);">
+                折腾手记
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/hugo-archetypes-setup/">Hugo archetypes 模板配置教程</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            配置 Hugo 原型模板，新建文章自动生成 Frontmatter，不用每次复制头部配置，减少 YAML 报错。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    
+    
+    
+    <footer class="article-meta">
+        
+            <div class="inline-meta">
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                    <time class="article-time--published" datetime='2026-10-23T21:31:35&#43;08:00'>2026年10月23日星期五</time>
+                
+
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                    <time class="article-time--reading">
+                        阅读时长: 5 分钟
+                    </time>
+                
+            </div>
+        
+
+        
+
+        
+    </footer>
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span>目录</span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#一什么是-archetypes">一、什么是 archetypes</a></li>
+    <li><a href="#二编写模板文件">二、编写模板文件</a></li>
+    <li><a href="#三总结">三、总结</a></li>
+    <li><a href="#四小提示">四、小提示</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#一怎么配">一、怎么配</a></li>
+    <li><a href="#三总结-1">三、总结</a></li>
+    <li><a href="#三几个踩坑提醒">三、几个踩坑提醒</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <p>每次写 Hugo 博客最折磨人的不是写正文，而是每次新建文章都要去翻旧文章复制 Frontmatter。 标题、发布时间、简介、分类、标签、封面、目录开关…… 配置项一大堆，稍微缩进错、冒号漏写，一执行 <code>hugo server</code> 直接红字报错，调试半天。</p>
+<p>其实 Hugo 原生就提供了 <code>archetypes</code> 原型模板功能，只需要配置一次，后续新建文章自动生成带注释、格式正确的完整模板，彻底告别复制粘贴和 YAML 语法翻车。</p>
+<h2 id="一什么是-archetypes">一、什么是 archetypes
+</h2><p><code>archetypes</code> 相当于文章的模板母版。当你执行 <code>hugo new</code> 创建文章时，Hugo 会读取 archetypes 下对应的 md 文件，自动填充内置变量（时间、文件名等）生成新文章。 一般博客根目录自带 <code>archetypes/</code> 文件夹，如果没有，直接手动新建即可。</p>
+<p>我们主要使用 <code>archetypes/post.md</code>，专门用来生成普通博文模板。</p>
+<h2 id="二编写模板文件">二、编写模板文件
+</h2><p>在 <code>archetypes/</code> 目录新建或者编辑 <code>post.md</code>，直接复制下面这段内容保存。</p>
+
+    <blockquote>
+        <p>已经修正 YAML 数组语法，带中文注释，自带文章写作骨架，开箱即用。</p>
+
+    </blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 必填配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ replace .Name &#34;</span>-<span class="s2">&#34; &#34;</span><span class="w"> </span><span class="s2">&#34; | title }}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">date</span><span class="p">:</span><span class="w"> </span>{{<span class="w"> </span><span class="l">.Date }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 推荐补充</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">slug</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">categories</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;折腾手记&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">tags</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;Hugo&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 封面图配置，二选一，不需要就注释掉</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># image: &#34;cover.jpg&#34;       # Page Bundle 模式，图片和文章放在同一个目录（推荐）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># image: &#34;/images/cover.jpg&#34; # 图片存放在 static/images 下</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 可选功能开关</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">toc</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># math: true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># license: &#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># lastmod:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># weight: 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">comments</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">&gt; 💡 导读：在这里写简短摘要，会用于首页卡片预览、RSS 摘要</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">## 一、前言</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">这里写背景、需求、写这篇文章的缘由。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">## 二、正文</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">### 1. 小标题</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">正文内容写在这里。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">```c</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">// 代码示例</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">#include &lt;stdio.h&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">int main() {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">printf(&#34;Hello Hugo\n&#34;);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">return 0;</span><span class="w">
+</span></span></span><span class="line"><span class="cl">}<span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+    <blockquote>
+        <p>⚠️ 注意：记录踩坑点、重要提醒、限制条件</p>
+
+    </blockquote>
+<h2 id="三总结">三、总结
+</h2><p>梳理要点、记录后续计划、待办事项。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c">### 配置项简单说明</span><span class="w">
+</span></span></span><span class="line"><span class="cl">- <span class="nt">`draft</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="l">`：草稿模式，不会被发布；写完定稿改为 `false`</span><span class="w">
+</span></span></span><span class="line"><span class="cl">- <span class="l">`categories`：分类，建议只保留一项，按需修改</span><span class="w">
+</span></span></span><span class="line"><span class="cl">- <span class="l">`tags`：标签，可以多行添加多个</span><span class="w">
+</span></span></span><span class="line"><span class="cl">- <span class="nt">`toc</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="l">`：自动生成文章目录，短文可以改成 false</span><span class="w">
+</span></span></span><span class="line"><span class="cl">- <span class="nt">`hidden</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="l">`：设为 true 时，文章不会出现在列表页，但直接访问链接仍然可以打开</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">## 三、模板使用方法</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">推荐使用 **Page Bundle** 文件夹模式，封面图、截图都可以和文章放在同一个目录，管理更清爽。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">在项目终端执行命令：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">```bash</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">hugo new post/文章英文标识/index.md</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行完成后，Hugo 会自动在 <code>content/post/</code> 下创建文件夹，并生成 <code>index.md</code>。 打开生成的文件，Frontmatter、文章章节骨架都已经准备好了，只需要修改标题、填充内容。</p>
+<p>内容全部写完检查无误，将 <code>draft: true</code> 修改为 <code>draft: false</code>，就可以正常构建、部署。</p>
+<h2 id="四小提示">四、小提示
+</h2><ol>
+<li>如果想要不同类型文章用不同模板，可以在 archetypes 新建别的文件，比如 <code>note.md</code>，用 <code>hugo new note/xxx/index.md</code> 调用</li>
+<li>模板修改后，<strong>只对之后新建的文章生效</strong>，已经存在的文章不会自动更新</li>
+<li>注释可以根据自己习惯删减，不用的配置项直接删掉，模板会更干净</li>
+</ol>
+<p>以后写博客，不用再到处复制头部配置，专注写内容就好，再也不会因为 YAML 格式问题编译报错。</p>
+<p>如果你想要，我还可以再出一个<strong>纯 Frontmatter 无正文骨架的精简模板版本</strong>。</p>
+<p>今天 21:45</p>
+<p>不要像 ai</p>
+<h1 id="告别复制-frontmatterhugo-原型模板一次配好">告别复制 Frontmatter，Hugo 原型模板一次配好
+</h1><p>写 Hugo 博客，码字本身还好，最烦的就是每次新建文章，都去扒之前的文章复制头部配置。</p>
+<p>改标题、填简介、分类标签、封面、目录开关，一堆东西。YAML 缩进稍微错一点，冒号漏半个，本地一跑 <code>hugo server</code> 直接红字报错，找问题要半天。</p>
+<p>Hugo 自带 archetypes，也就是原型模板，配一次，后面新建文章直接自动生成模板，不用来回复制，也不容易格式翻车。</p>
+<h2 id="一怎么配">一、怎么配
+</h2><p>博客根目录有个 <code>archetypes</code> 文件夹，没有就自己建。 我们要的就是里面的 <code>post.md</code>，<code>hugo new</code> 新建博文的时候，会拿这个文件当模板生成新文章。</p>
+<p>打开或者新建 <code>archetypes/post.md</code>，直接贴下面这段，保存就行。语法我调好了，注释写得直白，自带文章框架。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 必填</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ replace .Name &#34;</span>-<span class="s2">&#34; &#34;</span><span class="w"> </span><span class="s2">&#34; | title }}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">date</span><span class="p">:</span><span class="w"> </span>{{<span class="w"> </span><span class="l">.Date }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 尽量填上</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">slug</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">categories</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;折腾手记&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">tags</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;Hugo&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 封面图，二选一，不用就注释掉</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># image: &#34;cover.jpg&#34;       # 推荐，Page Bundle，图跟文章放一起</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># image: &#34;/images/cover.jpg&#34; # 图放在 static/images 里面</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 可选开关，没用的行直接删掉</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">toc</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># math: true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># license: &#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># lastmod:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># weight: 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">comments</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">&gt; 💡 导读：写一小段摘要，首页卡片和 RSS 会读到这里</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">## 一、前言</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">说说为啥写这篇、背景是什么。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">## 二、正文</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">### 1. 小标题</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">内容写在这里。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">```c</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">// 代码示例</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">#include &lt;stdio.h&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">int main() {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">printf(&#34;Hello Hugo\n&#34;);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">return 0;</span><span class="w">
+</span></span></span><span class="line"><span class="cl">}<span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+    <blockquote>
+        <p>⚠️ 注意：踩坑点、重要提醒放这里</p>
+
+    </blockquote>
+<h2 id="三总结-1">三、总结
+</h2><p>简单收个尾，记下后续要做的事。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">简单说下几个常用配置：</span><span class="w">
+</span></span></span><span class="line"><span class="cl">- <span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="l">代表草稿，不会发布；写完改成 false</span><span class="w">
+</span></span></span><span class="line"><span class="cl">- <span class="l">categories 一般只留一个分类，自己改</span><span class="w">
+</span></span></span><span class="line"><span class="cl">- <span class="l">tags 标签可以多加几行</span><span class="w">
+</span></span></span><span class="line"><span class="cl">- <span class="l">toc 是目录，短文可以关掉</span><span class="w">
+</span></span></span><span class="line"><span class="cl">- <span class="l">hidden 设 true 的话，文章不在列表里显示，但链接能直接访问</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">## 二、怎么用</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">我习惯用 Page Bundle 这种文件夹模式，截图、封面图直接跟文章放一块，管理起来舒服。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">终端里敲这条命令：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">```bash</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">hugo new post/文章英文名/index.md</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>敲完回车，<code>content/post/</code> 下面自动建好文件夹，里面生成 index.md。 打开看，头部配置、章节框架全都搭好了，改标题，填内容就行。 全部写完没问题，把 draft 改成 false，就可以打包部署。</p>
+<h2 id="三几个踩坑提醒">三、几个踩坑提醒
+</h2><ol>
+<li>想搞多种模板也可以，在 archetypes 新建别的，比如 note.md，用 <code>hugo new note/xxx/index.md</code> 调用</li>
+<li>模板改动，<strong>只对之后新建的文章生效</strong>，老文章不会自动变</li>
+<li>模板里的注释嫌乱，直接删掉，干净很多</li>
+</ol>
+<p>这下之后写东西不用再到处抄头部，专心写内容，也少很多 YAML 编译报错</p>
+
+</section>
+
+
+    <footer class="article-meta article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/hugo/">Hugo</a>
+        
+            <a href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright inline-meta">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under <a class="link" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"  target="_blank" rel="noopener"
+    >CC BY-NC-SA 4.0</a></span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside>
+    <h2 class="section-title">相关文章</h2>
+    <div class="subsection-list">
+        <div class="article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/blog-building-and-customization-log/">
+        
+        <div class="article-image">
+            <img alt="Featured image of post 博客美化" height="150" loading="lazy" src="/p/blog-building-and-customization-log/%E3%80%90%E5%93%B2%E9%A3%8E%E5%A3%81%E7%BA%B8%E3%80%91%E4%BA%8C%E6%AC%A1%E5%85%83-%E4%BE%A7%E8%84%B8%E5%B0%91%E5%A5%B3_hu_7bacdc6bb7ead2a5.jpg" srcset="/p/blog-building-and-customization-log/%E3%80%90%E5%93%B2%E9%A3%8E%E5%A3%81%E7%BA%B8%E3%80%91%E4%BA%8C%E6%AC%A1%E5%85%83-%E4%BE%A7%E8%84%B8%E5%B0%91%E5%A5%B3_hu_7bacdc6bb7ead2a5.jpg 1x, /p/blog-building-and-customization-log/%E3%80%90%E5%93%B2%E9%A3%8E%E5%A3%81%E7%BA%B8%E3%80%91%E4%BA%8C%E6%AC%A1%E5%85%83-%E4%BE%A7%E8%84%B8%E5%B0%91%E5%A5%B3_hu_e104ffd8db57caae.jpg 2x" width="250">
+
+        </div>
+        
+
+        <div class="article-details"style="background: linear-gradient(0deg, #48434280 0%, #d0cdd2C0 100%);">
+            <h2 class="article-title">博客美化</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+
+        <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2026 寻 Mi 处
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.3">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+
+    
+
+            </main>
+        </div>
+        
+<script type="text/javascript" src="/ts/main.b5cb6fe2fa550a9d8dfc7918a257365414ea9740b12d65e4704f9981d6ee6da1.js" defer></script>
+
+<div id="loading-mask">
+    <div class="loader"></div>
+    <div class="loading-text">寻 Mi 处载入中...</div>
+</div>
+
+<style>
+    #icp-badge a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    #icp-badge a:hover {
+        color: var(--accent-color);
+    }
+</style>
+
+<script>
+    (() => {
+        const ICP_TEXT = '萌ICP备20260690号';
+        const ICP_URL = 'https://icp.gov.moe/?keyword=20260690';
+
+         
+        const removeLoadingMask = () => {
+            document.body.classList.add('loaded');
+            const mask = document.getElementById('loading-mask');
+            if (mask) setTimeout(() => mask.remove(), 400);
+        };
+
+         
+        const findReference = (footer) => {
+            const walker = document.createTreeWalker(footer, NodeFilter.SHOW_TEXT);
+            while (walker.nextNode()) {
+                if (walker.currentNode.nodeValue.includes('Hugo')) {
+                    let el = walker.currentNode.parentElement;
+                    
+                    while (el && el !== footer && ['A', 'B', 'STRONG', 'SPAN'].includes(el.tagName)) {
+                        el = el.parentElement;
+                    }
+                    return el;
+                }
+            }
+            return null;
+        };
+
+         
+        const insertICP = () => {
+            if (document.getElementById('icp-badge')) return;
+
+            const footer = document.querySelector('.site-footer');
+            if (!footer) return;
+
+            const icp = document.createElement('section');
+            icp.id = 'icp-badge';
+
+            const ref = findReference(footer);
+            if (ref) {
+                const s = getComputedStyle(ref);
+                Object.assign(icp.style, {
+                    fontSize: s.fontSize,
+                    lineHeight: s.lineHeight,
+                    color: s.color,
+                    fontFamily: s.fontFamily,
+                    fontWeight: s.fontWeight,
+                    letterSpacing: s.letterSpacing,
+                });
+            }
+
+            const link = document.createElement('a');
+            link.href = ICP_URL;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = ICP_TEXT;
+
+            icp.appendChild(link);
+            footer.appendChild(icp);
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', insertICP, { once: true });
+        } else {
+            insertICP();
+        }
+
+        if (document.readyState === 'complete') {
+            removeLoadingMask();
+        } else {
+            window.addEventListener('load', removeLoadingMask, { once: true });
+            setTimeout(removeLoadingMask, 2500);
+        }
+    })();
+</script>
+
+    </body>
+</html>

@@ -17,7 +17,7 @@
 <meta property='og:description' content="寻觅文字、代码与感兴趣的一切">
 <meta property='og:url' content='http://localhost:1313/'>
 <meta property='og:site_name' content='寻 Mi 处'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2026-10-23T00:00:00&#43;00:00 '/>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2026-10-23T21:31:35&#43;08:00 '/>
 <meta name="twitter:title" content="寻 Mi 处">
 <meta name="twitter:description" content="寻觅文字、代码与感兴趣的一切"><link rel="alternate" type="application/rss&#43;xml" href="http://localhost:1313/index.xml">
     <link rel="shortcut icon" href="/img/avatar.jpg" />
@@ -84,6 +84,77 @@ body, html {
  
 a, button, [role="button"], .menu a, .sidebar a, .article-title a {
     cursor: url('/img/pixel-pointer.ani'), pointer !important;
+}
+</style>
+
+<style>
+ 
+#loading-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;  
+    background-color: var(--body-background, #ffffff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+ 
+.loader {
+  display: block;
+  --height-of-loader: 4px;
+   
+  --loader-color: var(--accent-color, #0071e2);
+  width: 140px;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+   
+  background-color: rgba(128, 128, 128, 0.25);
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  background: var(--loader-color);
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+}
+
+@keyframes moving {
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
+  }
+}
+
+ 
+.loading-text {
+    font-size: 0.85rem;
+    color: var(--secondary-text-color, #666);
+    font-family: inherit;
+    letter-spacing: 2px;
+}
+
+ 
+body.loaded #loading-mask {
+    opacity: 0;
+    visibility: hidden;
 }
 </style>
     </head>
@@ -339,16 +410,12 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
 
     <div class="tagCloud-tags">
         
-            <a href="/categories/documentation/">
-                Documentation
+            <a href="/categories/%E6%8A%98%E8%85%BE%E6%89%8B%E8%AE%B0/">
+                折腾手记
             </a>
         
-            <a href="/categories/syntax/">
-                Syntax
-            </a>
-        
-            <a href="/categories/themes/">
-                Themes
+            <a href="/categories/hugo/">
+                Hugo
             </a>
         
     </div>
@@ -379,40 +446,24 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
 
     <div class="tagCloud-tags">
         
-            <a href="/tags/markdown/">
-                Markdown
+            <a href="/tags/hugo/">
+                Hugo
             </a>
         
             <a href="/tags/css/">
-                Css
+                CSS
             </a>
         
-            <a href="/tags/diagrams/">
-                Diagrams
+            <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                前端
             </a>
         
-            <a href="/tags/gallery/">
-                Gallery
+            <a href="/tags/%E5%8D%9A%E5%AE%A2/">
+                博客
             </a>
         
-            <a href="/tags/html/">
-                Html
-            </a>
-        
-            <a href="/tags/mermaid/">
-                Mermaid
-            </a>
-        
-            <a href="/tags/photoswipe/">
-                Photoswipe
-            </a>
-        
-            <a href="/tags/themes/">
-                Themes
-            </a>
-        
-            <a href="/tags/%E9%9A%90%E7%A7%81/">
-                隐私
+            <a href="/tags/%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96/">
+                博客美化
             </a>
         
     </div>
@@ -445,15 +496,7 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
                     <a href="/archives/#2026">
                         
                             <span class="year">2026</span>
-                            <span class="count">6</span>
-                        
-                    </a> 
-                </div>
-            <div class="archives-year">
-                    <a href="/archives/#2025">
-                        
-                            <span class="year">2025</span>
-                            <span class="count">1</span>
+                            <span class="count">4</span>
                         
                     </a> 
                 </div>
@@ -471,35 +514,20 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
 <article class="has-image">
     <header class="article-header">
     <div class="article-image">
-        <a href="/p/image-gallery/">
-            <img alt="Featured image of post 相册" height="750" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/image-gallery/helena-hertz-wWZzXlDpMog-unsplash.jpg" srcset="/p/image-gallery/helena-hertz-wWZzXlDpMog-unsplash_hu_6c237bc498d55aea.jpg 800w, /p/image-gallery/helena-hertz-wWZzXlDpMog-unsplash.jpg 1000w" width="1000">
+        <a href="/p/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/">
+            <img alt="Featured image of post 图片测试" height="1136" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/%E3%80%90%E5%93%B2%E9%A3%8E%E5%A3%81%E7%BA%B8%E3%80%91eva-%E5%86%AC%E6%97%A5-%E5%86%AC%E8%A3%85.jpg" srcset="/p/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/%E3%80%90%E5%93%B2%E9%A3%8E%E5%A3%81%E7%BA%B8%E3%80%91eva-%E5%86%AC%E6%97%A5-%E5%86%AC%E8%A3%85_hu_deaba239e8a6bd8d.jpg 800w, /p/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/%E3%80%90%E5%93%B2%E9%A3%8E%E5%A3%81%E7%BA%B8%E3%80%91eva-%E5%86%AC%E6%97%A5-%E5%86%AC%E8%A3%85_hu_99fa30a76e624fe9.jpg 1600w, /p/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/%E3%80%90%E5%93%B2%E9%A3%8E%E5%A3%81%E7%BA%B8%E3%80%91eva-%E5%86%AC%E6%97%A5-%E5%86%AC%E8%A3%85.jpg 2048w" width="2048">
         </a>
     </div>
     
 
     <div class="article-details">
     
-    <header class="article-category">
-        
-            
-            
-            
-            <a href="/categories/documentation/" style="background-color: hsl(201, 60%, 84%); color: hsl(201, 60%, 15%);">
-                Documentation
-            </a>
-        
-    </header>
-    
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/image-gallery/">相册</a>
+            <a href="/p/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/">图片测试</a>
         </h2>
     
-        
-        <h3 class="article-subtitle">
-            展示内置的相册支持
-        </h3>
         
     </div>
 
@@ -523,7 +551,7 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                    <time class="article-time--published" datetime='2026-01-26T00:00:00Z'>2026年1月26日星期一</time>
+                    <time class="article-time--published" datetime='2026-06-01T00:00:00Z'>2026年6月1日星期一</time>
                 
 
                 
@@ -536,171 +564,7 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
 
 
                     <time class="article-time--reading">
-                        阅读时长: 1 分钟
-                    </time>
-                
-            </div>
-        
-
-        
-
-        
-    </footer>
-    
-</div>
-
-</header>
-</article>
-        
-            
-<article class="has-image">
-    <header class="article-header">
-    <div class="article-image">
-        <a href="/p/markdown-%E8%AF%AD%E6%B3%95%E6%8C%87%E5%8D%97/">
-            <img alt="Featured image of post Markdown 语法指南" height="667" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/markdown-%E8%AF%AD%E6%B3%95%E6%8C%87%E5%8D%97/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" srcset="/p/markdown-%E8%AF%AD%E6%B3%95%E6%8C%87%E5%8D%97/pawel-czerwinski-8uZPynIu-rQ-unsplash_hu_f799ae28166ce51b.jpg 800w, /p/markdown-%E8%AF%AD%E6%B3%95%E6%8C%87%E5%8D%97/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg 1000w" width="1000">
-        </a>
-    </div>
-    
-
-    <div class="article-details">
-    
-    <header class="article-category">
-        
-            
-            
-            
-            <a href="/categories/documentation/" style="background-color: hsl(201, 60%, 84%); color: hsl(201, 60%, 15%);">
-                Documentation
-            </a>
-        
-    </header>
-    
-
-    <div class="article-title-wrapper">
-        <h2 class="article-title">
-            <a href="/p/markdown-%E8%AF%AD%E6%B3%95%E6%8C%87%E5%8D%97/">Markdown 语法指南</a>
-        </h2>
-    
-        
-        <h3 class="article-subtitle">
-            展示基本 Markdown 语法和 HTML 元素格式的示例文章。
-        </h3>
-        
-    </div>
-
-    
-    
-    
-    
-    
-    
-    
-    <footer class="article-meta">
-        
-            <div class="inline-meta">
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                    <time class="article-time--published" datetime='2026-01-25T00:00:00Z'>2026年1月25日星期日</time>
-                
-
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                    <time class="article-time--reading">
-                        阅读时长: 2 分钟
-                    </time>
-                
-            </div>
-        
-
-        
-
-        
-    </footer>
-    
-</div>
-
-</header>
-</article>
-        
-            
-<article class="">
-    <header class="article-header">
-
-    <div class="article-details">
-    
-    <header class="article-category">
-        
-            
-            
-            
-            <a href="/categories/documentation/" style="background-color: hsl(201, 60%, 84%); color: hsl(201, 60%, 15%);">
-                Documentation
-            </a>
-        
-    </header>
-    
-
-    <div class="article-title-wrapper">
-        <h2 class="article-title">
-            <a href="/p/math-typesetting/">数学公式</a>
-        </h2>
-    
-        
-        <h3 class="article-subtitle">
-            在 Stack 主题中启用和使用 KaTeX 的指南
-        </h3>
-        
-    </div>
-
-    
-    
-    
-    
-    
-    
-    
-    <footer class="article-meta">
-        
-            <div class="inline-meta">
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                    <time class="article-time--published" datetime='2026-01-24T00:00:00Z'>2026年1月24日星期六</time>
-                
-
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                    <time class="article-time--reading">
-                        阅读时长: 1 分钟
+                        阅读时长: 0 分钟
                     </time>
                 
             </div>
@@ -720,7 +584,7 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
         class="pagination"
         role="navigation"
         aria-label="pagination"
-        data-total="3"
+        data-total="2"
         data-first-url="/"
         data-format-url="/page/2/"><a
             class="page-link "href="/"
@@ -731,15 +595,10 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
             aria-label="Page 1"href="/">
             1
         </a><a
-                    class="page-link current "aria-current="page"href="/page/2/"
-                    aria-label="Page 2">
-                    2
-                </a><a
-            class="page-link "href="/page/3/"aria-label="Page 3">
-            3
+            class="page-link current"aria-label="Page 2"aria-current="page">
+            2
         </a><a
-            class="page-link "href="/page/3/"
-                aria-label="Next page">
+            class="page-link disabled"aria-disabled="true">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
         </a>
     </nav>
@@ -750,14 +609,14 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
                 <label id="pagination-jump-title" class="title" for="pagination-jump-input">
                     跳转到页码
                 </label>
-                <span class="subtitle">(1 - 3)</span>
+                <span class="subtitle">(1 - 2)</span>
             </header>
             <div class="pagination-jump-input-group">
                 <input
                     type="number"
                     id="pagination-jump-input"
                     min="1"
-                    max="3"
+                    max="2"
                     autofocus
                     autocomplete="off"
                     required>
@@ -774,7 +633,7 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
     <section class="copyright">
         &copy; 
         
-            2020 - 
+            2023 - 
         
         2026 寻 Mi 处
     </section>
@@ -790,6 +649,98 @@ a, button, [role="button"], .menu a, .sidebar a, .article-title a {
         
 <script type="text/javascript" src="/ts/main.b5cb6fe2fa550a9d8dfc7918a257365414ea9740b12d65e4704f9981d6ee6da1.js" defer></script>
 
+<div id="loading-mask">
+    <div class="loader"></div>
+    <div class="loading-text">寻 Mi 处载入中...</div>
+</div>
+
+<style>
+    #icp-badge a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    #icp-badge a:hover {
+        color: var(--accent-color);
+    }
+</style>
+
+<script>
+    (() => {
+        const ICP_TEXT = '萌ICP备20260690号';
+        const ICP_URL = 'https://icp.gov.moe/?keyword=20260690';
+
+         
+        const removeLoadingMask = () => {
+            document.body.classList.add('loaded');
+            const mask = document.getElementById('loading-mask');
+            if (mask) setTimeout(() => mask.remove(), 400);
+        };
+
+         
+        const findReference = (footer) => {
+            const walker = document.createTreeWalker(footer, NodeFilter.SHOW_TEXT);
+            while (walker.nextNode()) {
+                if (walker.currentNode.nodeValue.includes('Hugo')) {
+                    let el = walker.currentNode.parentElement;
+                    
+                    while (el && el !== footer && ['A', 'B', 'STRONG', 'SPAN'].includes(el.tagName)) {
+                        el = el.parentElement;
+                    }
+                    return el;
+                }
+            }
+            return null;
+        };
+
+         
+        const insertICP = () => {
+            if (document.getElementById('icp-badge')) return;
+
+            const footer = document.querySelector('.site-footer');
+            if (!footer) return;
+
+            const icp = document.createElement('section');
+            icp.id = 'icp-badge';
+
+            const ref = findReference(footer);
+            if (ref) {
+                const s = getComputedStyle(ref);
+                Object.assign(icp.style, {
+                    fontSize: s.fontSize,
+                    lineHeight: s.lineHeight,
+                    color: s.color,
+                    fontFamily: s.fontFamily,
+                    fontWeight: s.fontWeight,
+                    letterSpacing: s.letterSpacing,
+                });
+            }
+
+            const link = document.createElement('a');
+            link.href = ICP_URL;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = ICP_TEXT;
+
+            icp.appendChild(link);
+            footer.appendChild(icp);
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', insertICP, { once: true });
+        } else {
+            insertICP();
+        }
+
+        if (document.readyState === 'complete') {
+            removeLoadingMask();
+        } else {
+            window.addEventListener('load', removeLoadingMask, { once: true });
+            setTimeout(removeLoadingMask, 2500);
+        }
+    })();
+</script>
 
     </body>
 </html>
