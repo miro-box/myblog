@@ -576,11 +576,18 @@ body.loaded #loading-mask {
 <p><img alt="air" class="gallery-image" data-flex-basis="162px" data-flex-grow="67" height="543" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/air/images.png" width="368"></p>
 <h2 id="下载地址">下载地址
 </h2><style>
+  .dl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 1.5rem 0;
+  }
   .dl-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin: 1.5rem 0;
+    max-width: 100%;
     padding: 11px 24px;
     border-radius: var(--card-border-radius, 10px);
     background: var(--accent-color, #34495e);
@@ -605,19 +612,91 @@ body.loaded #loading-mask {
     height: 18px;
     flex-shrink: 0;
   }
+  .dl-note {
+    margin: 0;
+    padding-left: 4px;
+    font-size: .875rem;
+    line-height: 1.5;
+    color: var(--card-text-color-secondary, #777);
+    word-break: break-all;
+  }
   @media (max-width: 480px) {
-    .dl-btn { display: flex; justify-content: center; }
+    .dl-btn { padding: 10px 20px; font-size: .95rem; }
   }
 </style>
 
-<a class="dl-btn" href="https://pan.baidu.com/s/1Qr5VQh1FpQkZVmJR9jVo8Q?pwd=0000" target="_blank" rel="noopener noreferrer">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <path d="M12 3v12"/>
-    <path d="m7 10 5 5 5-5"/>
-    <path d="M5 21h14"/>
-  </svg>
-  <span>百度网盘(解压密码:MisaraLc)</span>
-</a>
+<div class="dl-item">
+  <a class="dl-btn" href="https://pan.baidu.com/s/1Qr5VQh1FpQkZVmJR9jVo8Q?pwd=0000" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 3v12"/>
+      <path d="m7 10 5 5 5-5"/>
+      <path d="M5 21h14"/>
+    </svg>
+    <span>百度网盘</span>
+  </a>
+  
+</div>
+<style>
+  .dl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 1.5rem 0;
+  }
+  .dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+    padding: 11px 24px;
+    border-radius: var(--card-border-radius, 10px);
+    background: var(--accent-color, #34495e);
+    color: var(--accent-color-text, #fff) !important;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none !important;
+    box-shadow: var(--shadow-l1, 0 2px 8px rgba(0, 0, 0, .12));
+    transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .dl-btn:hover {
+    background: var(--accent-color-darker, #2c3e50);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-l2, 0 6px 18px rgba(0, 0, 0, .18));
+  }
+  .dl-btn:active {
+    transform: translateY(0);
+  }
+  .dl-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  .dl-note {
+    margin: 0;
+    padding-left: 4px;
+    font-size: .875rem;
+    line-height: 1.5;
+    color: var(--card-text-color-secondary, #777);
+    word-break: break-all;
+  }
+  @media (max-width: 480px) {
+    .dl-btn { padding: 10px 20px; font-size: .95rem; }
+  }
+</style>
+
+<div class="dl-item">
+  <a class="dl-btn" href="https://pan.baidu.com/s/1Qr5VQh1FpQkZVmJR9jVo8Q?pwd=0000" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 3v12"/>
+      <path d="m7 10 5 5 5-5"/>
+      <path d="M5 21h14"/>
+    </svg>
+    <span>百度网盘</span>
+  </a>
+  <p class="dl-note">解压密码:MisaraLc</p>
+</div>
 
 </section>
 

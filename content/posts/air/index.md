@@ -46,4 +46,6 @@ comments: false                                 # 是否开启评论：true / fa
 
 ## 下载地址
 
-{{< download url="https://pan.baidu.com/s/1Qr5VQh1FpQkZVmJR9jVo8Q?pwd=0000" name="百度网盘(解压密码:MisaraLc)" >}}
+{{< download url="https://pan.baidu.com/s/1Qr5VQh1FpQkZVmJR9jVo8Q?pwd=0000" name="百度网盘" >}}
+
+{{< download url="https://pan.baidu.com/s/1Qr5VQh1FpQkZVmJR9jVo8Q?pwd=0000" name="百度网盘" note="解压密码:MisaraLc" >}}
