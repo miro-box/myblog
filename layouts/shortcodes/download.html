@@ -1,0 +1,54 @@
+{{- /*
+  用法：
+  {{< download url="https://pan.baidu.com/s/xxxx" name="百度网盘" >}}
+  参数：
+    url  下载链接（必填）
+    name 按钮文字，默认“下载”
+  颜色跟随 Stack 主题变量（--accent-color 等），换主题色/深色模式会自动适配。
+*/ -}}
+{{- $url := .Get "url" -}}
+{{- $name := .Get "name" | default "下载" -}}
+
+<style>
+  .dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 1.5rem 0;
+    padding: 11px 24px;
+    border-radius: var(--card-border-radius, 10px);
+    background: var(--accent-color, #34495e);
+    color: var(--accent-color-text, #fff) !important;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none !important;
+    box-shadow: var(--shadow-l1, 0 2px 8px rgba(0, 0, 0, .12));
+    transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .dl-btn:hover {
+    background: var(--accent-color-darker, #2c3e50);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-l2, 0 6px 18px rgba(0, 0, 0, .18));
+  }
+  .dl-btn:active {
+    transform: translateY(0);
+  }
+  .dl-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 480px) {
+    .dl-btn { display: flex; justify-content: center; }
+  }
+</style>
+
+<a class="dl-btn" href="{{ $url }}" target="_blank" rel="noopener noreferrer">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 3v12"/>
+    <path d="m7 10 5 5 5-5"/>
+    <path d="M5 21h14"/>
+  </svg>
+  <span>{{ $name }}</span>
+</a>

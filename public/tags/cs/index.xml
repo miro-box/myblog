@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Cs on 寻 Mi 处</title>
+        <link>http://localhost:1313/tags/cs/</link>
+        <description>Recent content in Cs on 寻 Mi 处</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh</language>
+        <lastBuildDate>Sat, 24 Oct 2026 22:58:32 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/cs/index.xml" rel="self" type="application/rss+xml" /><item>
+            <title>Cs</title>
+            <link>http://localhost:1313/p/cs/</link>
+            <pubDate>Sat, 24 Oct 2026 22:58:32 +0800</pubDate>
+            <guid>http://localhost:1313/p/cs/</guid>
+            <description>&lt;img src=&#34;http://localhost:1313/cover.jpg&#34; alt=&#34;Featured image of post Cs&#34; /&gt;&lt;h2 id=&#34;iawsjd&#34;&gt;iawsjd&#xD;&#xA;&lt;/h2&gt;&lt;p&gt;cs&lt;/p&gt;&#xA;&lt;p&gt;cs&lt;/p&gt;&#xA;&lt;p&gt;cswsefsergv&lt;/p&gt;&#xA;&lt;h3 id=&#34;cs&#34;&gt;cs&#xD;&#xA;&lt;/h3&gt;&lt;p&gt;aefsgv&lt;/p&gt;&#xA;&lt;h4 id=&#34;下载&#34;&gt;下载&#xD;&#xA;&lt;/h4&gt;&lt;style&gt;&#xD;&#xA;   .dl-btn {&#xD;&#xA;     display: inline-flex;&#xD;&#xA;     align-items: center;&#xD;&#xA;     gap: 8px;&#xD;&#xA;     margin: 1.5rem 0;&#xD;&#xA;     padding: 11px 24px;&#xD;&#xA;     border-radius: var(--card-border-radius, 10px);&#xD;&#xA;     background: var(--accent-color, #34495e);&#xD;&#xA;     color: var(--accent-color-text, #fff) !important;&#xD;&#xA;     font-size: 1rem;&#xD;&#xA;     font-weight: 600;&#xD;&#xA;     line-height: 1.4;&#xD;&#xA;     text-decoration: none !important;&#xD;&#xA;     box-shadow: var(--shadow-l1, 0 2px 8px rgba(0, 0, 0, .12));&#xD;&#xA;     transition: background .2s ease, transform .2s ease, box-shadow .2s ease;&#xD;&#xA;   }&#xD;&#xA;   .dl-btn:hover {&#xD;&#xA;     background: var(--accent-color-darker, #2c3e50);&#xD;&#xA;     transform: translateY(-2px);&#xD;&#xA;     box-shadow: var(--shadow-l2, 0 6px 18px rgba(0, 0, 0, .18));&#xD;&#xA;   }&#xD;&#xA;   .dl-btn:active {&#xD;&#xA;     transform: translateY(0);&#xD;&#xA;   }&#xD;&#xA;   .dl-btn svg {&#xD;&#xA;     width: 18px;&#xD;&#xA;     height: 18px;&#xD;&#xA;     flex-shrink: 0;&#xD;&#xA;   }&#xD;&#xA;   @media (max-width: 480px) {&#xD;&#xA;     .dl-btn { display: flex; justify-content: center; }&#xD;&#xA;   }&#xD;&#xA; &lt;/style&gt;&#xD;&#xA; &#xD;&#xA; &lt;a class=&#34;dl-btn&#34; href=&#34;https://pan.baidu.com/share/init?surl=sRANePCuMfpHhFctrVPMWg&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;   &lt;svg viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2.2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; aria-hidden=&#34;true&#34;&gt;&#xD;&#xA;     &lt;path d=&#34;M12 3v12&#34;/&gt;&#xD;&#xA;     &lt;path d=&#34;m7 10 5 5 5-5&#34;/&gt;&#xD;&#xA;     &lt;path d=&#34;M5 21h14&#34;/&gt;&#xD;&#xA;   &lt;/svg&gt;&#xD;&#xA;   &lt;span&gt;百度网盘&lt;/span&gt;&#xD;&#xA; &lt;/a&gt;&#xA;</description>
+        </item></channel>
+</rss>

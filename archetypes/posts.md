@@ -2,21 +2,28 @@
 # ==================== 必填（3 项）====================
 title: "{{ replace .Name "-" " " | title }}"   # 标题：由文件名自动生成，直接改成中文标题即可
 date: {{ .Date }}                              # 发布时间：自动生成，不用动
-draft: true                                    # 草稿开关：true=不发布；写完改成 false 再 push
+draft: true                                    # 草稿开关：true=不发布；写完改成 false 再 push（本地预览：hugo server -D）
 
 # ==================== 建议填 ====================
-description: ""                                # 一句话简介（显示在首页卡片/RSS）。例："记录我用 Hugo 搭博客的全过程"
-slug: ""                                       # 网址后缀，建议英文。例：my-first-post → /p/my-first-post/；留空=用文件名
+description: ""                                # 一句话简介（显示在首页卡片/RSS/搜索结果）。
+slug: ""                                       # 网址后缀，建议英文
 categories:                                    # 分类：只选 1 个
-    - "折腾手记"                               #   例：折腾手记 / 嵌入式 / 网安 / 生活随笔
+    - ""                               #   例：折腾手记 / 嵌入式 / 网安 / 生活随笔
 tags:                                          # 标签：可多个
-    - "Hugo"                                   #   例：Hugo / C语言 / STM32 / Linux
+    - ""                                   #   例：Hugo / C语言 / STM32 / Linux
 
 # ==================== 封面图（用不到就保持注释）====================
+# 首页卡片的封面是横向裁切的，建议用横图（宽高比约 5:2 / 3:1）
 # 方式 A（推荐）：图片和文章放同一文件夹（Page Bundle），文件名 cover.jpg
 # image: "cover.jpg"
 # 方式 B：图片放在 static/images/ 下
 # image: "/images/cover.jpg"
+
+# ==================== 正文里的下载按钮（不是 front matter，复制到正文用）====================
+# 写在“## 下载地址”下面，样式文件：layouts/shortcodes/download.html，颜色跟随主题色
+# {{ `{{< download url="网盘链接" name="百度网盘" >}}` }}
+#   url  = 网盘链接（必填）
+#   name = 按钮文字，不写默认“下载”；要提示密码就写进去，例：name="百度网盘（密码：xxxx）"
 
 # ==================== 可选（不需要就整行删掉）====================
 toc: true                                      # 显示文章目录：true / false（短文可关）
