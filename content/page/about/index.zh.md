@@ -1,5 +1,5 @@
 ---
-title: "寻我｜About"
+title: "寻己｜About"
 slug: "about"
 url: "/about/"
 description: "此处是我，寻 Mi 之人。"
