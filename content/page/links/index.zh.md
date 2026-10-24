@@ -45,6 +45,11 @@ links:
     description: "AkiNard."
     website: "https://blog.578113.xyz"
     image: "https://image.578113.xyz/img/skyceria.jpg"
+
+  - title: "猫不吃鱼"
+    description: "雾散处，玫瑰花开"
+    website: "https://starsei.com"
+    image: "https://starsei.com/favicon.ico"
 ---
 
 > *“在这个数字荒原中，每一个独立博客都是一座赛博孤岛，而友链接通了我们的航线。”*
