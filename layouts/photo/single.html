@@ -10,8 +10,8 @@
     {{/* 1. 自动读取 assets/waifus 目录下的所有图片 */}}
     {{- $imgs := resources.Match "waifus/*.{jpg,jpeg,png,webp}" -}}
 
-    {{/* 2. 三列自适应瀑布流网格 */}}
-    <div class="gallery photo-masonry">
+    {{/* 2. 三列自适应瀑布流网格（加上 id="photo-gallery" 方便 JS 随机排序） */}}
+    <div class="gallery photo-masonry" id="photo-gallery">
         {{- range $i, $img := $imgs -}}
             {{/* 动态生成 640x900 高清缩略图，大幅提升首屏加载速度 */}}
             {{- $thumb := $img.Fit "640x900 q82" -}}
@@ -30,7 +30,7 @@
     </div>
 </article>
 
-{{/* 3. 瀑布流响应式 CSS 样式（电脑 3 列，平板 2 列，手机 1 列） */}}
+{{/* 3. 瀑布流响应式 CSS 样式 */}}
 <style>
 .photo-gallery-content .gallery.photo-masonry {
     display: block;
@@ -65,4 +65,24 @@
     }
 }
 </style>
+
+{{/* 4. 前端每次加载自动随机打乱图片顺序的脚本 */}}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const gallery = document.getElementById("photo-gallery");
+    if (!gallery) return;
+
+    // 获取所有图片卡片元素
+    const tiles = Array.from(gallery.children);
+
+    // 随机打乱数组顺序 (Fisher-Yates 洗牌算法)
+    for (let i = tiles.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+    }
+
+    // 重新按随机顺序放回容器中
+    tiles.forEach(tile => gallery.appendChild(tile));
+});
+</script>
 {{ end }}

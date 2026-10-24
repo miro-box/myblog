@@ -260,7 +260,7 @@ body.loaded #loading-mask {
 
 
                 
-                <span>首页</span>
+                <span>首页 | Home</span>
             </a>
         </li>
         
@@ -278,7 +278,7 @@ body.loaded #loading-mask {
 
 
                 
-                <span>归档</span>
+                <span>归档 | Archive</span>
             </a>
         </li>
         
@@ -295,7 +295,7 @@ body.loaded #loading-mask {
 
 
                 
-                <span>搜索</span>
+                <span>搜索 | Search</span>
             </a>
         </li>
         
@@ -312,7 +312,7 @@ body.loaded #loading-mask {
 
 
                 
-                <span>关于</span>
+                <span>关于 | About</span>
             </a>
         </li>
         
@@ -329,7 +329,7 @@ body.loaded #loading-mask {
 
 
                 
-                <span>友链</span>
+                <span>友链 | Links</span>
             </a>
         </li>
         
@@ -339,7 +339,7 @@ body.loaded #loading-mask {
                 
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-photo"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 8h.01" /><path d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12" /><path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5" /><path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3" /></svg>
                 
-                <span>图库</span>
+                <span>图库 | Photo</span>
             </a>
         </li>
         
@@ -380,7 +380,7 @@ body.loaded #loading-mask {
     </header>
 
     
-    <div class="gallery photo-masonry"><figure class="gallery-image photo-tile" style="margin-bottom: 16px; break-inside: avoid;">
+    <div class="gallery photo-masonry" id="photo-gallery"><figure class="gallery-image photo-tile" style="margin-bottom: 16px; break-inside: avoid;">
                 <a href="/waifus/%E3%80%90%E5%93%B2%E9%A3%8E%E5%A3%81%E7%BA%B8%E3%80%91eva-%E5%86%AC%E6%97%A5-%E5%86%AC%E8%A3%85.jpg" target="_blank" rel="noopener">
                     <img
                         src="/waifus/%E3%80%90%E5%93%B2%E9%A3%8E%E5%A3%81%E7%BA%B8%E3%80%91eva-%E5%86%AC%E6%97%A5-%E5%86%AC%E8%A3%85_hu_8f4cc6b6a12bf1e4.jpg"
@@ -488,6 +488,26 @@ body.loaded #loading-mask {
     }
 }
 </style>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const gallery = document.getElementById("photo-gallery");
+    if (!gallery) return;
+
+    
+    const tiles = Array.from(gallery.children);
+
+    
+    for (let i = tiles.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+    }
+
+    
+    tiles.forEach(tile => gallery.appendChild(tile));
+});
+</script>
 
             </main>
         </div>

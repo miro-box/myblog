@@ -20,8 +20,7 @@ theme = "hugo-theme-stack"
 [services.disqus]
     shortname = "hugo-theme-stack"
 
-# ==========================================
-# 优化项：禁用远程封面图的自动下载与处理，解决图床慢导致的编译卡顿/超时
-# ==========================================
-[params.article.imageProcessing]
-    enabled = false
+
+[params.dateFormat]
+    published = "2006-01-02"
+    lastUpdated = "2006-01-02 15:04"

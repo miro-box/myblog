@@ -3,7 +3,7 @@
 # ==========================================
 [[main]]
     identifier = "home"
-    name       = "首页"
+    name       = "首页 | Home"
     url        = "https://blog.mibase.top/"
     weight     = -120
     [main.params]
@@ -11,7 +11,7 @@
 
 [[main]]
     identifier = "archives"
-    name       = "归档"
+    name       = "归档 | Archive"
     url        = "/archives/"
     weight     = -100
     [main.params]
@@ -19,7 +19,7 @@
 
 [[main]]
     identifier = "search"
-    name       = "搜索"
+    name       = "搜索 | Search"
     url        = "/search/"
     weight     = -80
     [main.params]
@@ -27,7 +27,7 @@
 
 [[main]]
     identifier = "about"
-    name       = "关于"
+    name       = "关于 | About"
     url        = "/about/"
     weight     = -60
     [main.params]
@@ -35,7 +35,7 @@
 
 [[main]]
     identifier = "links"
-    name       = "友链"
+    name       = "友链 | Links"
     url        = "/links/"
     weight     = -40
     [main.params]
@@ -43,7 +43,7 @@
 
 [[main]]
     identifier = "photo"
-    name       = "图库"
+    name       = "图库 | Photo"
     url        = "/photo/"
     weight     = -20
     [main.params]
@@ -51,7 +51,7 @@
 
 
 # ==========================================
-# 2. 社交图标
+# 2. 社交图标(未改动)
 # ==========================================
 [[social]]
     identifier = "github"
