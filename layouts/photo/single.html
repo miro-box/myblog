@@ -7,21 +7,37 @@
         {{ end }}
     </header>
 
-    {{/* 1. 自动读取 assets/waifus 目录下的所有图片 */}}
-    {{- $imgs := resources.Match "waifus/*.{jpg,jpeg,png,webp}" -}}
+    {{/* 1. 读取 waifus 下所有文件，只保留图片类型（不限扩展名） */}}
+    {{- $imgs := where (resources.Match "waifus/*") "MediaType.MainType" "image" -}}
 
     {{/* 2. 三列自适应瀑布流网格（加上 id="photo-gallery" 方便 JS 随机排序） */}}
     <div class="gallery photo-masonry" id="photo-gallery">
         {{- range $i, $img := $imgs -}}
-            {{/* 动态生成 640x900 高清缩略图，大幅提升首屏加载速度 */}}
-            {{- $thumb := $img.Fit "640x900 q82" -}}
+            {{- $src := $img.RelPermalink -}}
+            {{- $w := 0 -}}
+            {{- $h := 0 -}}
+
+            {{/* GIF 保留原图以免动图被压成静态；其他格式尝试生成 640x900 缩略图，失败则回退原图 */}}
+            {{- if ne $img.MediaType.SubType "gif" -}}
+                {{- with try ($img.Fit "640x900 q82") -}}
+                    {{- if .Err -}}
+                        {{- warnf "无法处理 %s，已使用原图: %s" $img.Name .Err -}}
+                    {{- else -}}
+                        {{- with .Value -}}
+                            {{- $src = .RelPermalink -}}
+                            {{- $w = .Width -}}
+                            {{- $h = .Height -}}
+                        {{- end -}}
+                    {{- end -}}
+                {{- end -}}
+            {{- end -}}
+
             <figure class="gallery-image photo-tile" style="margin-bottom: 16px; break-inside: avoid;">
                 <a href="{{ $img.RelPermalink }}" target="_blank" rel="noopener">
                     <img
-                        src="{{ $thumb.RelPermalink }}"
-                        data-thumb="{{ $thumb.RelPermalink }}"
-                        width="{{ $img.Width }}"
-                        height="{{ $img.Height }}"
+                        src="{{ $src }}"
+                        data-thumb="{{ $src }}"
+                        {{ if and $w $h }}width="{{ $w }}" height="{{ $h }}"{{ end }}
                         loading="lazy"
                         alt="图库图片 {{ add $i 1 }}">
                 </a>
@@ -72,16 +88,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const gallery = document.getElementById("photo-gallery");
     if (!gallery) return;
 
-    // 获取所有图片卡片元素
     const tiles = Array.from(gallery.children);
 
-    // 随机打乱数组顺序 (Fisher-Yates 洗牌算法)
+    // Fisher-Yates 洗牌算法
     for (let i = tiles.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
     }
 
-    // 重新按随机顺序放回容器中
     tiles.forEach(tile => gallery.appendChild(tile));
 });
 </script>

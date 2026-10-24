@@ -3,51 +3,51 @@
 # ==========================================
 [[main]]
     identifier = "home"
-    name       = "首页 | Home"
+    name       = "寻始｜Home"
     url        = "https://blog.mibase.top/"
-    weight     = -120
+    weight     = -70
     [main.params]
         icon   = "home"
 
 [[main]]
     identifier = "archives"
-    name       = "归档 | Archive"
+    name       = "寻迹｜Archive"
     url        = "/archives/"
-    weight     = -100
+    weight     = -60
     [main.params]
         icon   = "archives"
 
 [[main]]
     identifier = "search"
-    name       = "搜索 | Search"
+    name       = "寻索｜Search"
     url        = "/search/"
-    weight     = -80
+    weight     = -25
     [main.params]
         icon   = "search"
 
 [[main]]
     identifier = "about"
-    name       = "关于 | About"
+    name       = "寻己｜About"
     url        = "/about/"
-    weight     = -60
+    weight     = -10
     [main.params]
         icon   = "user"
 
 [[main]]
     identifier = "links"
-    name       = "友链 | Links"
+    name       = "寻伴｜Friends"
     url        = "/links/"
-    weight     = -40
+    weight     = -20
     [main.params]
         icon   = "link"
 
 [[main]]
     identifier = "photo"
-    name       = "图库 | Photo"
+    name       = "寻影｜Gallery"
     url        = "/photo/"
-    weight     = -20
+    weight     = -40
     [main.params]
-        icon   = "photo"
+        icon   = "photo"      # 导航栏图标（采用 Tabler Icons 中的名称，如 photo, camera 等）
 
 
 # ==========================================

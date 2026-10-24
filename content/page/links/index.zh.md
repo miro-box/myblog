@@ -1,8 +1,8 @@
 ---
-title: "友链"
+title: "寻伴｜Friends"
 slug: "links"
 url: "/links/"
-description: "探索有趣的灵魂，连接广袤的网络世界~"
+description: "同好相逢，互为星光"
 date: 2026-10-23
 comments: true
 links:

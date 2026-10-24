@@ -1,8 +1,8 @@
 ---
-title: "关于"
+title: "寻我｜About"
 slug: "about"
 url: "/about/"
-description: "欢迎来到寻 Mi 处，这里是记录探索、文字与代码的个人空间。"
+description: "此处是我，寻 Mi 之人。"
 date: 2026-10-22
 license: CC BY-NC-SA 4.0
 ---
