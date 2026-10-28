@@ -5,7 +5,7 @@
 把新图放进原图文件夹（和第一次用的 -Src 是同一个）。
 重新运行脚本：
 powershell
-powershell -ExecutionPolicy Bypass -File .\build-gallery.ps1 -Src "原图文件夹路径"
+powershell -ExecutionPolicy Bypass -File .\build-gallery.ps1 -Src "D:\blog-assets\waifus"
 
 已处理的图（按内容哈希识别）会跳过，只处理新增的，并更新 data\waifus.json。
 
@@ -19,4 +19,4 @@ git push
 顺序很重要：先传图，再推送清单。反过来的话，网站上线后清单里有图、桶里还没有，会短暂出现裂图。
 
 
-原图文件夹路径:D:\blog\myblog\assets\waifus
+原图文件夹路径:D:\blog-assets\waifus
