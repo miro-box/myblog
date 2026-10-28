@@ -1,0 +1,102 @@
+{{ define "main" }}
+<article class="main-article photo-gallery-content">
+    <header class="article-header">
+        <h1 class="article-title">{{ .Title }}</h1>
+        {{ if .Description }}
+        <h2 class="article-subtitle">{{ .Description }}</h2>
+        {{ end }}
+    </header>
+
+    {{/* 1. 读取 waifus 下所有文件，只保留图片类型（不限扩展名） */}}
+    {{- $imgs := where (resources.Match "waifus/*") "MediaType.MainType" "image" -}}
+
+    {{/* 2. 三列自适应瀑布流网格（加上 id="photo-gallery" 方便 JS 随机排序） */}}
+    <div class="gallery photo-masonry" id="photo-gallery">
+        {{- range $i, $img := $imgs -}}
+            {{- $src := $img.RelPermalink -}}
+            {{- $w := 0 -}}
+            {{- $h := 0 -}}
+
+            {{/* GIF 保留原图以免动图被压成静态；其他格式尝试生成 640x900 缩略图，失败则回退原图 */}}
+            {{- if ne $img.MediaType.SubType "gif" -}}
+                {{- with try ($img.Fit "640x900 q82") -}}
+                    {{- if .Err -}}
+                        {{- warnf "无法处理 %s，已使用原图: %s" $img.Name .Err -}}
+                    {{- else -}}
+                        {{- with .Value -}}
+                            {{- $src = .RelPermalink -}}
+                            {{- $w = .Width -}}
+                            {{- $h = .Height -}}
+                        {{- end -}}
+                    {{- end -}}
+                {{- end -}}
+            {{- end -}}
+
+            <figure class="gallery-image photo-tile" style="margin-bottom: 16px; break-inside: avoid;">
+                <a href="{{ $img.RelPermalink }}" target="_blank" rel="noopener">
+                    <img
+                        src="{{ $src }}"
+                        data-thumb="{{ $src }}"
+                        {{ if and $w $h }}width="{{ $w }}" height="{{ $h }}"{{ end }}
+                        loading="lazy"
+                        alt="图库图片 {{ add $i 1 }}">
+                </a>
+            </figure>
+        {{- end -}}
+    </div>
+</article>
+
+{{/* 3. 瀑布流响应式 CSS 样式 */}}
+<style>
+.photo-gallery-content .gallery.photo-masonry {
+    display: block;
+    column-count: 3;
+    column-gap: 16px;
+}
+
+.photo-gallery-content .gallery.photo-masonry img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: var(--shadow-l1);
+    transition: transform 0.2s ease;
+}
+
+.photo-gallery-content .gallery.photo-masonry img:hover {
+    transform: translateY(-2px);
+}
+
+/* 平板端 (≤ 900px) 2 列 */
+@media (max-width: 900px) {
+    .photo-gallery-content .gallery.photo-masonry {
+        column-count: 2;
+    }
+}
+
+/* 手机端 (≤ 520px) 1 列 */
+@media (max-width: 520px) {
+    .photo-gallery-content .gallery.photo-masonry {
+        column-count: 1;
+    }
+}
+</style>
+
+{{/* 4. 前端每次加载自动随机打乱图片顺序的脚本 */}}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const gallery = document.getElementById("photo-gallery");
+    if (!gallery) return;
+
+    const tiles = Array.from(gallery.children);
+
+    // Fisher-Yates 洗牌算法
+    for (let i = tiles.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+    }
+
+    tiles.forEach(tile => gallery.appendChild(tile));
+});
+</script>
+{{ end }}

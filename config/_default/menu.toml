@@ -1,0 +1,68 @@
+# ==========================================
+# 1. 侧边栏主菜单
+# ==========================================
+[[main]]
+    identifier = "home"
+    name       = "首页 ｜ Home"
+    url        = "https://blog.mibase.top/"
+    weight     = -70
+    [main.params]
+        icon   = "home"
+
+[[main]]
+    identifier = "archives"
+    name       = "归档 ｜ Archive"
+    url        = "/archives/"
+    weight     = -60
+    [main.params]
+        icon   = "archives"
+
+[[main]]
+    identifier = "search"
+    name       = "搜索 ｜ Search"
+    url        = "/search/"
+    weight     = -25
+    [main.params]
+        icon   = "search"
+
+[[main]]
+    identifier = "about"
+    name       = "关于 ｜ About"
+    url        = "/about/"
+    weight     = -10
+    [main.params]
+        icon   = "user"
+
+[[main]]
+    identifier = "links"
+    name       = "友链 ｜ Friends"
+    url        = "/links/"
+    weight     = -20
+    [main.params]
+        icon   = "link"
+
+[[main]]
+    identifier = "photo"
+    name       = "画廊 ｜ Gallery"
+    url        = "/photo/"
+    weight     = -40
+    [main.params]
+        icon   = "photo"      # 导航栏图标（采用 Tabler Icons 中的名称，如 photo, camera 等）
+
+
+# ==========================================
+# 2. 社交图标(未改动)
+# ==========================================
+[[social]]
+    identifier = "github"
+    name       = "GitHub"
+    url        = "https://github.com/miro-box"
+    [social.params]
+        icon   = "brand-github"
+
+[[social]]
+    identifier = "mail"
+    name       = "Mail"
+    url        = "mailto:qij50172@gmail.com"
+    [social.params]
+        icon   = "mail"

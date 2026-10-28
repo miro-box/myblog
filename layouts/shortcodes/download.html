@@ -1,0 +1,75 @@
+{{- /*
+  用法：
+  {{< download url="https://pan.baidu.com/s/xxxx" name="百度网盘" >}}
+  {{< download url="https://pan.baidu.com/s/xxxx" name="百度网盘" note="解压密码：MisaraLc" >}}
+  参数：
+    url  下载链接（必填）
+    name 按钮文字，默认“下载”
+    note 按钮下方的小字提示（可选），常用来写解压密码；不写就不显示
+  颜色跟随 Stack 主题变量（--accent-color 等），换主题色/深色模式会自动适配。
+*/ -}}
+{{- $url := .Get "url" -}}
+{{- $name := .Get "name" | default "下载" -}}
+{{- $note := .Get "note" -}}
+
+<style>
+  .dl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 1.5rem 0;
+  }
+  .dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+    padding: 11px 24px;
+    border-radius: var(--card-border-radius, 10px);
+    background: var(--accent-color, #34495e);
+    color: var(--accent-color-text, #fff) !important;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none !important;
+    box-shadow: var(--shadow-l1, 0 2px 8px rgba(0, 0, 0, .12));
+    transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .dl-btn:hover {
+    background: var(--accent-color-darker, #2c3e50);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-l2, 0 6px 18px rgba(0, 0, 0, .18));
+  }
+  .dl-btn:active {
+    transform: translateY(0);
+  }
+  .dl-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  .dl-note {
+    margin: 0;
+    padding-left: 4px;
+    font-size: .875rem;
+    line-height: 1.5;
+    color: var(--card-text-color-secondary, #777);
+    word-break: break-all;
+  }
+  @media (max-width: 480px) {
+    .dl-btn { padding: 10px 20px; font-size: .95rem; }
+  }
+</style>
+
+<div class="dl-item">
+  <a class="dl-btn" href="{{ $url }}" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 3v12"/>
+      <path d="m7 10 5 5 5-5"/>
+      <path d="M5 21h14"/>
+    </svg>
+    <span>{{ $name }}</span>
+  </a>
+  {{ with $note }}<p class="dl-note">{{ . }}</p>{{ end }}
+</div>

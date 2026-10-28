@@ -1,0 +1,69 @@
+@media (min-width: 1024px) {
+  .article-list--compact {
+    display: grid;
+    // 目前是两列，如需三列，则后面再加一个1fr，以此类推
+    grid-template-columns: 1fr 1fr;
+    background: none;
+    box-shadow: none;
+    gap: 1rem;
+
+    article {
+      background: var(--card-background);
+      border: none;
+      box-shadow: var(--shadow-l2);
+      margin-bottom: 8px;
+      margin-right: 8px;
+      border-radius: 16px;
+    }
+  }
+}
+
+/* 侧边栏菜单样式微调 */
+.main-menu a {
+    /* 1. 中文部分：保持主题特色，稍微清晰一点 */
+    color: var(--card-text-color-main);
+    font-weight: 500;
+    
+    /* 2. 让抗锯齿生效，防止艺术字体细笔画发虚 */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* 如果你的 HTML 结构里英文有单独的 span，或者可以用样式把竖线和英文调淡 */
+.main-menu a {
+    letter-spacing: 0.5px; /* 稍微加一点字间距，看起来更有呼吸感 */
+}
+
+/* 侧边栏菜单悬停效果（不改变间距） */
+.main-menu a {
+    /* 让过渡变顺滑 */
+    transition: transform 0.2s ease, color 0.2s ease;
+
+    /* 鼠标悬停时稍微往右滑一点点 */
+    &:hover {
+        transform: translateX(5px);
+        color: var(--accent-color);
+    }
+}
+
+/* 1. 自定义网页文字被鼠标选中时的背景色（改成你博客的强调色） */
+::selection {
+    background-color: var(--accent-color);
+    color: #ffffff;
+}
+
+/* 2. 自定义极简细滚动条（告别浏览器默认又宽又丑的滚动条） */
+/* ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color-transparent, rgba(0, 0, 0, 0.2));
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+} */

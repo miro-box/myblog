@@ -1,0 +1,39 @@
+{{- $IsList := .IsList -}}
+{{- $Page := .Page -}}
+
+{{- /* 文章页的封面图是 LCP；首页列表里只有最新一篇需要高优先级 */ -}}
+{{- $first := not $IsList -}}
+{{- if $IsList -}}
+    {{- $sections := $Page.Site.Params.mainSections | default (slice "post") -}}
+    {{- $mainPages := where $Page.Site.RegularPages "Section" "in" $sections -}}
+    {{- if $mainPages -}}
+        {{- if eq (index $mainPages 0).RelPermalink $Page.RelPermalink -}}
+            {{- $first = true -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+<header class="article-header">
+    {{- $image := partial "helper/image" (dict "Image" $Page.Params.image "Resources" $Page.Resources "Context" $Page) -}}
+    {{ if $image }}
+    <div class="article-image">
+        <a href="{{ $Page.RelPermalink }}">
+            {{ partial "helper/responsive-image" (dict
+                "Resource" $image.Resource
+                "Widths" (cond $Page.Site.Params.ImageProcessing.Content.Enabled $Page.Site.Params.ImageProcessing.Content.Widths nil)
+                "Attributes" (dict
+                    "src" $image.Permalink
+                    "width" $image.Width
+                    "height" $image.Height
+                    "alt" (printf "Featured image of post %s" $Page.Title)
+                    "loading" (cond $first "eager" "lazy")
+                    "fetchpriority" (cond $first "high" "auto")
+                    "sizes" "(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px"
+                )
+            ) }}
+        </a>
+    </div>
+    {{ end }}
+
+    {{ partial "article/components/details" (dict "Page" $Page "IsList" $IsList) }}
+</header>

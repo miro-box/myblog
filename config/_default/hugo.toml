@@ -1,0 +1,39 @@
+baseURL                = "https://blog.mibase.top/"
+locale                 = "zh"
+title                  = "寻 Mi 处"
+# Theme i18n support
+# See i18n folder for available languages
+defaultContentLanguage = "zh"
+# Set hasCJKLanguage to true if DefaultContentLanguage is a CJK language
+# This will make .Summary and .WordCount behave correctly
+hasCJKLanguage         = true
+
+theme = "hugo-theme-stack"
+
+[pagination]
+    pagerSize = 6
+
+[permalinks]
+    posts = "/p/:slug/"
+    page = "/:slug/"
+
+[services.disqus]
+    shortname = "hugo-theme-stack"
+
+
+[params.dateFormat]
+    published = "2006-01-02"
+    lastUpdated = "2006-01-02 15:04"
+
+[services]
+  [services.googleAnalytics]
+    id = 'G-NN33GXTYKM'
+
+[params.article]
+    math = false
+    toc = true
+    readingTime = true
+
+    [params.article.imageProcessing]
+        cover.enabled = true
+        content.enabled = true

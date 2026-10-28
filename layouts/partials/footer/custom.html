@@ -1,0 +1,149 @@
+<!-- 页面加载动画 -->
+<div id="loading-mask">
+    <div class="loader"></div>
+    <div class="loading-text">寻 Mi 处载入中...</div>
+</div>
+
+<!-- 构建时由 Hugo 统计文章数和总字数 -->
+{{ $posts := where .Site.RegularPages "Section" "posts" }}
+{{ $words := 0 }}
+{{ range $posts }}{{ $words = add $words .WordCount }}{{ end }}
+<div id="site-stats" hidden data-posts="{{ len $posts }}" data-words="{{ $words }}"></div>
+
+<style>
+    #site-footer-extra a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    #site-footer-extra a:hover {
+        color: var(--accent-color);
+    }
+</style>
+
+<script>
+    (() => {
+        /* ===== 配置 ===== */
+        const START_TIME = new Date('2023-03-05T00:00:00+08:00'); // 博客上线时间
+        const ICP_TEXT = '萌ICP备20260690号';
+        const ICP_URL = 'https://icp.gov.moe/?keyword=20260690';
+        const BUSUANZI_SRC = 'https://events.vercount.one/js';
+
+        /* ===== 加载动画 ===== */
+        const removeLoadingMask = () => {
+            document.body.classList.add('loaded');
+            const mask = document.getElementById('loading-mask');
+            if (mask) setTimeout(() => mask.remove(), 400);
+        };
+
+        /* ===== 样式参照：「使用 Hugo 构建」所在行 ===== */
+        const findReference = (footer) => {
+            const walker = document.createTreeWalker(footer, NodeFilter.SHOW_TEXT);
+            while (walker.nextNode()) {
+                if (walker.currentNode.nodeValue.includes('Hugo')) {
+                    let el = walker.currentNode.parentElement;
+                    while (el && el !== footer && ['A', 'B', 'STRONG', 'SPAN'].includes(el.tagName)) {
+                        el = el.parentElement;
+                    }
+                    return el;
+                }
+            }
+            return null;
+        };
+
+        /* ===== 运行时间 ===== */
+        const formatUptime = () => {
+            const diff = Math.max(0, Date.now() - START_TIME.getTime());
+            const days = Math.floor(diff / 864e5);
+            const hours = Math.floor(diff % 864e5 / 36e5);
+            const minutes = Math.floor(diff % 36e5 / 6e4);
+            return `本博客已稳定运行 ${days} 天 ${hours} 小时 ${minutes} 分钟`;
+        };
+
+        /* ===== 加载不蒜子，超时则显示 -- ===== */
+        const loadBusuanzi = () => {
+            const pv = document.getElementById('busuanzi_value_site_pv');
+            const giveUp = () => {
+                if (pv && !/\d/.test(pv.textContent)) pv.textContent = '--';
+            };
+
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = BUSUANZI_SRC;
+            script.onerror = giveUp;
+            document.head.appendChild(script);
+
+            setTimeout(giveUp, 6000);
+        };
+
+        /* ===== 插入页脚内容 ===== */
+        const insertFooterExtra = () => {
+            if (document.getElementById('site-footer-extra')) return;
+
+            const footer = document.querySelector('.site-footer');
+            if (!footer) return;
+
+            const stats = document.getElementById('site-stats');
+            const posts = stats ? Number(stats.dataset.posts) : 0;
+            const words = stats ? Number(stats.dataset.words) : 0;
+            const wordsK = (words / 1000).toFixed(1).replace(/\.0$/, '');
+
+            const wrap = document.createElement('div');
+            wrap.id = 'site-footer-extra';
+
+            const ref = findReference(footer);
+            const refStyle = ref ? getComputedStyle(ref) : null;
+
+            const addLine = (html, id) => {
+                const line = document.createElement('section');
+                if (id) line.id = id;
+                if (refStyle) {
+                    Object.assign(line.style, {
+                        fontSize: refStyle.fontSize,
+                        lineHeight: refStyle.lineHeight,
+                        color: refStyle.color,
+                        fontFamily: refStyle.fontFamily,
+                        fontWeight: refStyle.fontWeight,
+                        letterSpacing: refStyle.letterSpacing,
+                    });
+                }
+                line.innerHTML = html;
+                wrap.appendChild(line);
+                return line;
+            };
+
+            // 第 1 行：运行时间
+            const uptimeLine = addLine(formatUptime(), 'uptime-line');
+
+            // 第 2 行：文章数 · 字数 · 访问量
+            addLine(
+                `共发表 ${posts} 篇文章 · 总计 ${wordsK} k 字 · ` +
+                '<span id="busuanzi_container_site_pv">本站总访问量 ' +
+                '<span id="busuanzi_value_site_pv">…</span> 次</span>'
+            );
+
+            // 第 3 行：备案号
+            addLine(`<a href="${ICP_URL}" target="_blank" rel="noopener noreferrer">${ICP_TEXT}</a>`, 'icp-badge');
+
+            footer.appendChild(wrap);
+
+            setInterval(() => { uptimeLine.textContent = formatUptime(); }, 30000);
+
+            loadBusuanzi();
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', insertFooterExtra, { once: true });
+        } else {
+            insertFooterExtra();
+        }
+
+        if (document.readyState === 'complete') {
+            removeLoadingMask();
+        } else {
+            window.addEventListener('load', removeLoadingMask, { once: true });
+            setTimeout(removeLoadingMask, 2500);
+        }
+    })();
+</script>

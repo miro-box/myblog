@@ -1,0 +1,173 @@
+<!-- 霞鹜文楷：切片版（按需加载，自带 font-display: swap） -->
+<link rel="preload" href="/fonts/lxgw/lxgwwenkai-regular.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/fonts/lxgw/lxgwwenkai-regular.css"></noscript>
+<link rel="preload" href="/fonts/HarmonyOS-Sans-sub.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- ==========================================
+  1. 本地字体声明 (@font-face)
+  ========================================== -->
+<style>
+    /* 声明本地 HarmonyOS Sans (UI/标题/侧边栏) */
+    @font-face {
+        font-family: 'HarmonyOS Sans';
+        src: url('/fonts/HarmonyOS-Sans-sub.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    /* 霞鹜文楷 已改用上面的切片 css，这里不再声明 */
+
+    /* 定义 CSS 变量 */
+    :root {
+        --font-modern: "HarmonyOS Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --font-literary: "LXGW WenKai", serif;
+        --font-code: Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+    /* ==========================================
+      2. 字体应用规则
+      ========================================== */
+
+    /* 默认正文区域：使用 霞鹜文楷 */
+    body, p, article {
+        font-family: var(--font-literary) !important;
+    }
+
+    /* UI、侧边栏、菜单、按钮及标题：使用 HarmonyOS Sans */
+    h1, h2, h3, h4, h5, h6,
+    .sidebar,
+    .menu,
+    .site-name,
+    .site-description,
+    button,
+    input,
+    select,
+    textarea,
+    .article-title,
+    .article-subtitle,
+    .search-result-title {
+        font-family: var(--font-modern) !important;
+    }
+
+    /* 代码块：保留等宽字体 */
+    code, kbd, pre, samp {
+        font-family: var(--font-code) !important;
+    }
+
+ /* ==========================================
+   自定义二次元 Kuro 鼠标指针
+   ========================================== */
+
+/* 1. 全局默认光标 */
+body, html {
+    cursor: url('/img/pixel-cursor.ani'), auto !important;
+}
+
+/* 2. 悬停在链接、按钮上时的光标 */
+a, button, [role="button"], .menu a, .sidebar a, .article-title a {
+    cursor: url('/img/pixel-pointer.ani'), pointer !important;
+}
+</style>
+
+<style>
+/* 页面加载动画全屏遮罩：电脑与手机端完美居中 */
+#loading-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh; /* 适配手机浏览器动态高度，防止底部被地址栏遮挡 */
+    background-color: var(--body-background, #ffffff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* Uiverse 进度条动画 (satyamchaudharydev) */
+.loader {
+  display: block;
+  --height-of-loader: 4px;
+  /* 自动跟随主题强调色，未定义时默认使用科技蓝 #0071e2 */
+  --loader-color: var(--accent-color, #0071e2);
+  width: 140px;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+  /* 半透明轨道底色，在白天和黑夜模式下都能完美显示 */
+  background-color: rgba(128, 128, 128, 0.25);
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  background: var(--loader-color);
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+}
+
+@keyframes moving {
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
+  }
+}
+
+/* 博客加载提示字 */
+.loading-text {
+    font-size: 0.85rem;
+    color: var(--secondary-text-color, #666);
+    font-family: inherit;
+    letter-spacing: 2px;
+}
+
+/* 加载完成后的渐隐退场效果 */
+body.loaded #loading-mask {
+    opacity: 0;
+    visibility: hidden;
+}
+</style>
+
+{{ if .IsPage }}
+{{ $schema := dict
+  "@context" "https://schema.org"
+  "@type" "BlogPosting"
+  "headline" .Title
+  "description" .Description
+  "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+  "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+  "url" .Permalink
+  "author" (dict "@type" "Person" "name" "miro")
+}}
+<script type="application/ld+json">
+{{ $schema | jsonify (dict "indent" "  ") | safeJS }}
+</script>
+{{ end }}
+
+<meta name="baidu-site-verification" content="codeva-Ld5qahoowf" />
+<meta name="bo-ke-verify" content="c39b0fa87348e59a17991620bdc70cf4">
+<meta name="bkh-verification" content="bkh-verification=701122b6dfe8b129e3f25862d1d5b63c94550b757d118086bf51ebaaa6ab4ad4">
+<meta name="blogsclub-verify" content="3a50143efeaa4601bfa6c31bcf0a3ae7">
+
+<!-- 异步非阻塞加载样式表 -->
+<link rel="preload" href="/scss/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/scss/style.min.css"></noscript>
+
+{{ if .IsPage }}
+  {{ if .Params.image }}
+  <link rel="preload" as="image" href="{{ .Params.image | absURL }}" fetchpriority="high">
+  {{ end }}
+{{ end }}
