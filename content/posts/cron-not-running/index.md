@@ -13,7 +13,7 @@ tags:
     - "Shell"
     - "排障"
 
-image: "cover.webp"
+image: "cover.jpg"
 
 toc: true
 hidden: false

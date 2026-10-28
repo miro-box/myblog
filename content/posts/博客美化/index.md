@@ -1,13 +1,13 @@
 ---
 title: '博客美化'
-date: 2026-03-23T13:13:38+08:00
+date: 2023-10-23T13:13:38+08:00
 draft: false
 description: '记录个人独立博客「寻 Mi 处」的完整折腾过程：Hugo Stack 主题配置、本地双字体混排、静态资源与 HTTPS 头像直链、友链小广场搭建及一些浏览器的奇葩小坑。'
 slug: 'blog-building-and-customization-log'
 categories: ['折腾日常', 'Hugo']
 tags: ['Hugo', '博客美化', '前端', 'CSS']
 comments: true
-image: "cover.webp"
+image: "cover.jpg"
 ---
 
 > *“在这个数字荒原中，每一个独立博客都是一座赛博孤岛，而亲手为它添砖加瓦，正是独属于程序员与极客的浪漫。”*

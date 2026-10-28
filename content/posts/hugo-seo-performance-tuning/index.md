@@ -16,10 +16,10 @@ tags:                                          # 标签：可多个
     - "Stack"
 
 # ==================== 封面图（用不到就保持注释）====================
-# 方式 A（推荐）：图片和文章放同一文件夹（Page Bundle），文件名 cover.webp
-image: "cover.webp"
+# 方式 A（推荐）：图片和文章放同一文件夹（Page Bundle），文件名 cover.jpg
+image: "cover.jpg"
 # 方式 B：图片放在 static/images/ 下
-# image: "/images/cover.webp"
+# image: "/images/cover.jpg"
 
 # ==================== 可选（不需要就整行删掉）====================
 toc: true                                      # 显示文章目录：true / false（短文可关）
@@ -56,7 +56,7 @@ comments: false                                 # 是否开启评论：true / fa
 Hugo 内置了图片处理，用 Page Bundle 就能直接调：
 
 ```markdown
-{{ $img := .Resources.Get "cover.webp" }}
+{{ $img := .Resources.Get "cover.jpg" }}
 {{ $small := $img.Resize "800x webp q80" }}
 <img src="{{ $small.RelPermalink }}" width="{{ $small.Width }}" height="{{ $small.Height }}" alt="封面">
 ```
@@ -66,7 +66,7 @@ Hugo 内置了图片处理，用 Page Bundle 就能直接调：
 如果要响应式，用 `srcset`：
 
 ```markdown
-{{ $img := .Resources.Get "cover.webp" }}
+{{ $img := .Resources.Get "cover.jpg" }}
 {{ $s := $img.Resize "480x webp" }}
 {{ $m := $img.Resize "800x webp" }}
 {{ $l := $img.Resize "1200x webp" }}
