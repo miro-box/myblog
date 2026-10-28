@@ -4,3 +4,5 @@ node_modules/
 fonts-src/
 resources/_gen/
 public/
+
+gallery-out/

@@ -7,46 +7,32 @@
         {{ end }}
     </header>
 
-    {{/* 1. 读取 waifus 下所有文件，只保留图片类型（不限扩展名） */}}
-    {{- $imgs := where (resources.Match "waifus/*") "MediaType.MainType" "image" -}}
+    {{/* 图床地址：R2 绑定的自定义域名 + 目录。thumb 放缩略图，full 放大图 */}}
+    {{- $base := "https://img.mibase.top/waifus" -}}
 
-    {{/* 2. 三列自适应瀑布流网格（加上 id="photo-gallery" 方便 JS 随机排序） */}}
+    {{/* 图片清单来自 data/waifus.json，由 build-gallery.ps1 生成 */}}
+    {{- $items := site.Data.waifus -}}
+
+    {{ if $items }}
     <div class="gallery photo-masonry" id="photo-gallery">
-        {{- range $i, $img := $imgs -}}
-            {{- $src := $img.RelPermalink -}}
-            {{- $w := 0 -}}
-            {{- $h := 0 -}}
-
-            {{/* GIF 保留原图以免动图被压成静态；其他格式尝试生成 640x900 缩略图，失败则回退原图 */}}
-            {{- if ne $img.MediaType.SubType "gif" -}}
-                {{- with try ($img.Fit "640x900 q82") -}}
-                    {{- if .Err -}}
-                        {{- warnf "无法处理 %s，已使用原图: %s" $img.Name .Err -}}
-                    {{- else -}}
-                        {{- with .Value -}}
-                            {{- $src = .RelPermalink -}}
-                            {{- $w = .Width -}}
-                            {{- $h = .Height -}}
-                        {{- end -}}
-                    {{- end -}}
-                {{- end -}}
-            {{- end -}}
-
+        {{- range $i, $it := $items -}}
             <figure class="gallery-image photo-tile" style="margin-bottom: 16px; break-inside: avoid;">
-                <a href="{{ $img.RelPermalink }}" target="_blank" rel="noopener">
+                <a href="{{ $base }}/full/{{ $it.f }}" target="_blank" rel="noopener">
                     <img
-                        src="{{ $src }}"
-                        data-thumb="{{ $src }}"
-                        {{ if and $w $h }}width="{{ $w }}" height="{{ $h }}"{{ end }}
-                        loading="lazy"
+                        src="{{ $base }}/thumb/{{ $it.t }}"
+                        width="{{ $it.w }}" height="{{ $it.h }}"
+                        loading="lazy" decoding="async"
                         alt="图库图片 {{ add $i 1 }}">
                 </a>
             </figure>
         {{- end -}}
     </div>
+    {{ else }}
+    <p>还没有图片清单（data/waifus.json）。</p>
+    {{ end }}
 </article>
 
-{{/* 3. 瀑布流响应式 CSS 样式 */}}
+{{/* 瀑布流响应式 CSS 样式 */}}
 <style>
 .photo-gallery-content .gallery.photo-masonry {
     display: block;
@@ -82,7 +68,7 @@
 }
 </style>
 
-{{/* 4. 前端每次加载自动随机打乱图片顺序的脚本 */}}
+{{/* 前端每次加载自动随机打乱图片顺序的脚本 */}}
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const gallery = document.getElementById("photo-gallery");
