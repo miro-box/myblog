@@ -6,7 +6,7 @@ favicon        = "img/favicon.png"
     since = 2023
 
 [sidebar]
-    emoji    = "✦"
+    emoji    = ""
     subtitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     avatar   = "img/miro.jpg"
 

@@ -8,11 +8,11 @@
 
 [zh]
     label  = "简体中文"
-    title  = "寻 Mi 处"
+    title  = "昭鸢笺"
     weight = 2
 
     [zh.params.sidebar]
-        subtitle = "寻觅文字、代码与感兴趣的一切"
+        subtitle = " 鸢起云间，一纸笺藏见闻"
 
 #[zh-hant-tw]
 #    label  = "正體中文"

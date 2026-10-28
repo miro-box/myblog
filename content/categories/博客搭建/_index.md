@@ -1,5 +1,5 @@
 ---
 title: "博客搭建"
-description: "Hugo 静态博客构建、Stack 主题配置与样式调优相关文章。"
+description: "敲码筑笺，搭建一隅"
 image: "cover.jpg"
 ---

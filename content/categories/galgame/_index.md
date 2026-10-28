@@ -1,6 +1,6 @@
 ---
 title: "galgame"
-description: "galgame资源分享"
+description: "闲阅故事，寄意篇章"
 image: "cover.jpg"
 ---
 
