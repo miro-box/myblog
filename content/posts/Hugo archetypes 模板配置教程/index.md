@@ -13,7 +13,7 @@ tags:
 toc: true
 hidden: false
 comments: true
-image: "cover.jpg"
+image: "cover.webp"
 
 ---
 
@@ -49,8 +49,8 @@ tags:
   - "Hugo"
 
 # 封面图配置，二选一，不需要就注释掉
-# image: "cover.jpg"       # Page Bundle 模式，图片和文章放在同一个目录（推荐）
-# image: "/images/cover.jpg" # 图片存放在 static/images 下
+# image: "cover.webp"       # Page Bundle 模式，图片和文章放在同一个目录（推荐）
+# image: "/images/cover.webp" # 图片存放在 static/images 下
 
 # 可选功能开关
 toc: true

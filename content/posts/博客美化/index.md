@@ -7,7 +7,7 @@ slug: 'blog-building-and-customization-log'
 categories: ['折腾日常', 'Hugo']
 tags: ['Hugo', '博客美化', '前端', 'CSS']
 comments: true
-image: "cover.jpg"
+image: "cover.webp"
 ---
 
 > *“在这个数字荒原中，每一个独立博客都是一座赛博孤岛，而亲手为它添砖加瓦，正是独属于程序员与极客的浪漫。”*

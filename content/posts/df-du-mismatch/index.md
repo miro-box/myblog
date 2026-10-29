@@ -13,7 +13,7 @@ tags:
     - "lsof"
     - "排障"
  
-image: "cover.jpg"
+image: "cover.webp"
  
 toc: true
 hidden: false

@@ -16,10 +16,10 @@ tags:                                          # 标签：可多个
     - "前端优化"
 
 # ==================== 封面图（用不到就保持注释）====================
-# 方式 A（推荐）：图片和文章放同一文件夹（Page Bundle），文件名 cover.jpg
-image: "cover.jpg"
+# 方式 A（推荐）：图片和文章放同一文件夹（Page Bundle），文件名 cover.webp
+image: "cover.webp"
 # 方式 B：图片放在 static/images/ 下
-# image: "/images/cover.jpg"
+# image: "/images/cover.webp"
 
 # ==================== 可选（不需要就整行删掉）====================
 toc: true                                      # 显示文章目录：true / false（短文可关）
@@ -108,7 +108,7 @@ location ~* \.(jpg|jpeg|png|gif|webp|svg|ico|css|js|woff2?)$ {
 最直接的办法是 curl：
 
 ```bash
-curl -sI https://blog.mibase.top/images/cover.jpg | grep -i cf-cache
+curl -sI https://blog.mibase.top/images/cover.webp | grep -i cf-cache
 ```
 
 第一次大概率是 `MISS`，这是正常的，节点上还没有。再跑一次，应该就变成 `HIT` 了。如果跑了好几次还是 `MISS`，那就回去看看规则的条件是不是没匹配上，或者 Cache eligibility 是不是还停在 `Bypass cache`。

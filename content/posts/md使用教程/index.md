@@ -15,10 +15,10 @@ tags:                                          # 标签：可多个
 
 # ==================== 封面图（用不到就保持注释）====================
 # 首页卡片的封面是横向裁切的，建议用横图（宽高比约 5:2 / 3:1）
-#方式 A（推荐）：图片和文章放同一文件夹（Page Bundle），文件名 cover.jpg
-image: "cover.jpg"
+#方式 A（推荐）：图片和文章放同一文件夹（Page Bundle），文件名 cover.webp
+image: "cover.webp"
 # 方式 B：图片放在 static/images/ 下
-# image: "/images/cover.jpg"
+# image: "/images/cover.webp"
 
 # ==================== 正文里的下载按钮（不是 front matter，复制到正文用）====================
 # 写在“## 下载地址”下面，样式文件：layouts/shortcodes/download.html，颜色跟随主题色
