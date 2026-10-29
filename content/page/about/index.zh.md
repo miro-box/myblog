@@ -42,5 +42,5 @@ license: CC BY-NC-SA 4.0
 如果你对本站的内容感兴趣，欢迎通过下面渠道联系：
 
 - **GitHub**：[miro-box](https://github.com/miro-box)
-- **Email**：`qij50172@gmail.com`
+- **Email**：`hi@mibase.top`
 - **RSS 订阅**：[订阅本站](/index.xml)
