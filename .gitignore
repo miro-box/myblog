@@ -8,3 +8,5 @@ public/
 gallery-out/
 
 画廊维护.md
+
+发现某个标题的字显示成系统字体时，需要跑这个脚本.txt
