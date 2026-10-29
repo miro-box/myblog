@@ -28,7 +28,7 @@
                     "alt" (printf "Featured image of post %s" $Page.Title)
                     "loading" (cond $first "eager" "lazy")
                     "fetchpriority" (cond $first "high" "auto")
-                    "sizes" "(max-width: 767px) calc(100vw - 45px), (max-width: 900px) 594px, (max-width: 1279px) 532px, (max-width: 1599px) 727px, 818px"
+                    "sizes" (cond $IsList "(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) calc(75vw - 81px), (max-width: 1279px) calc(50vw - 108px), (max-width: 1551px) calc(60vw - 113px), 818px" "(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px")
                 )
             ) }}
         </a>
