@@ -11,7 +11,7 @@ menu:
         params:
             icon: brand-bilibili
 
-comments: true
+comments: false 
 ---
 
 {{< bangumi >}}
