@@ -57,12 +57,42 @@
     identifier = "github"
     name       = "GitHub"
     url        = "https://github.com/miro-box"
+    weight = 40
     [social.params]
         icon   = "brand-github"
+
 
 [[social]]
     identifier = "mail"
     name       = "Mail"
     url        = "mailto:hi@mibase.top"
+    weight = 50
     [social.params]
         icon   = "mail"
+
+[[social]]
+    identifier = "telegram"
+    name = "Telegram"
+    url = "https://t.me/zhaoyuan_bot"
+    weight = 60
+
+    [social.params]
+        icon = "brand-telegram"
+
+[[social]]
+    identifier = "rss"
+    name = "RSS"
+    url = "/index.xml"
+    weight = 80
+
+    [social.params]
+        icon = "rss"
+
+[[social]]
+    identifier = "travellings"
+    name = "开往"
+    url = "https://www.travellings.cn/go.html"
+    weight = 70
+
+    [social.params]
+        icon = "train"
