@@ -66,6 +66,11 @@ links:
     website: "https://flowersink.com"
     image: "https://api.flowersink.com/img/logo.png"
 
+  - title: "朝朝听雨"
+    description: "物物而不物于物，念念而不念于念"
+    website: "https://rainzt.cn/"
+    image: "https://rainzt.cn/zzty.png"
+
 ---
 
 > *“鸢起云间，笺书相逢，友链是孤岛之间牵起的长线。”*

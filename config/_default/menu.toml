@@ -83,7 +83,7 @@
     identifier = "rss"
     name = "RSS"
     url = "/index.xml"
-    weight = 80
+    weight = 70
 
     [social.params]
         icon = "rss"
@@ -92,7 +92,7 @@
     identifier = "travellings"
     name = "开往"
     url = "https://www.travellings.cn/go.html"
-    weight = 70
+    weight = 80
 
     [social.params]
         icon = "train"
