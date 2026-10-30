@@ -1,6 +1,226 @@
 {
-  "fetched_at": "2026-10-24T10:05:45.498034+00:00",
+  "fetched_at": "2026-10-30T12:58:52.879154+00:00",
   "data": [
+    {
+      "subject_id": 397604,
+      "type": 2,
+      "rate": 0,
+      "ep_status": 0,
+      "comment": "",
+      "subject": {
+        "name": "ATRI -My Dear Moments-",
+        "name_cn": "亚托莉 -我挚爱的时光-",
+        "date": "2024-07-13",
+        "score": 6.3,
+        "rank": 6567,
+        "eps": 13,
+        "images": {
+          "common": "https://lain.bgm.tv/r/400/pic/cover/l/66/6d/397604_TgJ63.jpg",
+          "medium": "https://lain.bgm.tv/r/800/pic/cover/l/66/6d/397604_TgJ63.jpg",
+          "large": "https://lain.bgm.tv/pic/cover/l/66/6d/397604_TgJ63.jpg"
+        }
+      }
+    },
+    {
+      "subject_id": 124341,
+      "type": 2,
+      "rate": 0,
+      "ep_status": 0,
+      "comment": "",
+      "subject": {
+        "name": "ARIA The AVVENIRE",
+        "name_cn": "水星领航员 The AVVENIRE",
+        "date": "2015-12-24",
+        "score": 8.3,
+        "rank": 97,
+        "eps": 3,
+        "images": {
+          "common": "https://lain.bgm.tv/r/400/pic/cover/l/10/a1/124341_5oSro.jpg",
+          "medium": "https://lain.bgm.tv/r/800/pic/cover/l/10/a1/124341_5oSro.jpg",
+          "large": "https://lain.bgm.tv/pic/cover/l/10/a1/124341_5oSro.jpg"
+        }
+      }
+    },
+    {
+      "subject_id": 20851,
+      "type": 3,
+      "rate": 0,
+      "ep_status": 0,
+      "comment": "",
+      "subject": {
+        "name": "Another",
+        "name_cn": "",
+        "date": "2012-01-09",
+        "score": 6.9,
+        "rank": 2951,
+        "eps": 12,
+        "images": {
+          "common": "https://lain.bgm.tv/r/400/pic/cover/l/d3/39/20851_V4eXe.jpg",
+          "medium": "https://lain.bgm.tv/r/800/pic/cover/l/d3/39/20851_V4eXe.jpg",
+          "large": "https://lain.bgm.tv/pic/cover/l/d3/39/20851_V4eXe.jpg"
+        }
+      }
+    },
+    {
+      "subject_id": 1851,
+      "type": 2,
+      "rate": 0,
+      "ep_status": 0,
+      "comment": "",
+      "subject": {
+        "name": "Angel Beats!",
+        "name_cn": "天使的心跳！",
+        "date": "2010-04-02",
+        "score": 7.6,
+        "rank": 784,
+        "eps": 13,
+        "images": {
+          "common": "https://lain.bgm.tv/r/400/pic/cover/l/ff/14/1851_ZFEg7.jpg",
+          "medium": "https://lain.bgm.tv/r/800/pic/cover/l/ff/14/1851_ZFEg7.jpg",
+          "large": "https://lain.bgm.tv/pic/cover/l/ff/14/1851_ZFEg7.jpg"
+        }
+      }
+    },
+    {
+      "subject_id": 46452,
+      "type": 1,
+      "rate": 0,
+      "ep_status": 0,
+      "comment": "",
+      "subject": {
+        "name": "AMNESIA",
+        "name_cn": "失忆症",
+        "date": "2013-01-07",
+        "score": 6,
+        "rank": 7769,
+        "eps": 13,
+        "images": {
+          "common": "https://lain.bgm.tv/r/400/pic/cover/l/4a/0a/46452_I2aB8.jpg",
+          "medium": "https://lain.bgm.tv/r/800/pic/cover/l/4a/0a/46452_I2aB8.jpg",
+          "large": "https://lain.bgm.tv/pic/cover/l/4a/0a/46452_I2aB8.jpg"
+        }
+      }
+    },
+    {
+      "subject_id": 410203,
+      "type": 1,
+      "rate": 0,
+      "ep_status": 0,
+      "comment": "",
+      "subject": {
+        "name": "AIの遺電子",
+        "name_cn": "AI电子基因",
+        "date": "2023-07-07",
+        "score": 5.8,
+        "rank": 8597,
+        "eps": 12,
+        "images": {
+          "common": "https://lain.bgm.tv/r/400/pic/cover/l/e6/62/410203_mDDq8.jpg",
+          "medium": "https://lain.bgm.tv/r/800/pic/cover/l/e6/62/410203_mDDq8.jpg",
+          "large": "https://lain.bgm.tv/pic/cover/l/e6/62/410203_mDDq8.jpg"
+        }
+      }
+    },
+    {
+      "subject_id": 234,
+      "type": 1,
+      "rate": 0,
+      "ep_status": 0,
+      "comment": "",
+      "subject": {
+        "name": "AIR",
+        "name_cn": "",
+        "date": "2005-01-06",
+        "score": 7.9,
+        "rank": 277,
+        "eps": 13,
+        "images": {
+          "common": "https://lain.bgm.tv/r/400/pic/cover/l/28/9d/234_hIMht.jpg",
+          "medium": "https://lain.bgm.tv/r/800/pic/cover/l/28/9d/234_hIMht.jpg",
+          "large": "https://lain.bgm.tv/pic/cover/l/28/9d/234_hIMht.jpg"
+        }
+      }
+    },
+    {
+      "subject_id": 496973,
+      "type": 2,
+      "rate": 0,
+      "ep_status": 0,
+      "comment": "",
+      "subject": {
+        "name": "9-nine- Ruler's Crown",
+        "name_cn": "9-nine- 支配者的王冠",
+        "date": "2025-07-05",
+        "score": 4.4,
+        "rank": 10284,
+        "eps": 13,
+        "images": {
+          "common": "https://lain.bgm.tv/r/400/pic/cover/l/0a/ad/496973_kUlKl.jpg",
+          "medium": "https://lain.bgm.tv/r/800/pic/cover/l/0a/ad/496973_kUlKl.jpg",
+          "large": "https://lain.bgm.tv/pic/cover/l/0a/ad/496973_kUlKl.jpg"
+        }
+      }
+    },
+    {
+      "subject_id": 331887,
+      "type": 3,
+      "rate": 0,
+      "ep_status": 0,
+      "comment": "",
+      "subject": {
+        "name": "86―エイティシックス― 第2クール",
+        "name_cn": "86 -不存在的战区- 第2部分",
+        "date": "2021-10-02",
+        "score": 8,
+        "rank": 257,
+        "eps": 12,
+        "images": {
+          "common": "https://lain.bgm.tv/r/400/pic/cover/l/85/0e/331887_rZdb9.jpg",
+          "medium": "https://lain.bgm.tv/r/800/pic/cover/l/85/0e/331887_rZdb9.jpg",
+          "large": "https://lain.bgm.tv/pic/cover/l/85/0e/331887_rZdb9.jpg"
+        }
+      }
+    },
+    {
+      "subject_id": 147068,
+      "type": 2,
+      "rate": 0,
+      "ep_status": 0,
+      "comment": "",
+      "subject": {
+        "name": "3月のライオン",
+        "name_cn": "3月的狮子",
+        "date": "2016-10-08",
+        "score": 8.3,
+        "rank": 86,
+        "eps": 22,
+        "images": {
+          "common": "https://lain.bgm.tv/r/400/pic/cover/l/a7/86/147068_60GJJ.jpg",
+          "medium": "https://lain.bgm.tv/r/800/pic/cover/l/a7/86/147068_60GJJ.jpg",
+          "large": "https://lain.bgm.tv/pic/cover/l/a7/86/147068_60GJJ.jpg"
+        }
+      }
+    },
+    {
+      "subject_id": 211567,
+      "type": 2,
+      "rate": 0,
+      "ep_status": 0,
+      "comment": "",
+      "subject": {
+        "name": "3月のライオン 第2シリーズ",
+        "name_cn": "3月的狮子 第二季",
+        "date": "2017-10-14",
+        "score": 8.8,
+        "rank": 10,
+        "eps": 22,
+        "images": {
+          "common": "https://lain.bgm.tv/r/400/pic/cover/l/5c/49/211567_pGm5Q.jpg",
+          "medium": "https://lain.bgm.tv/r/800/pic/cover/l/5c/49/211567_pGm5Q.jpg",
+          "large": "https://lain.bgm.tv/pic/cover/l/5c/49/211567_pGm5Q.jpg"
+        }
+      }
+    },
     {
       "subject_id": 654294,
       "type": 2,
@@ -12,7 +232,7 @@
         "name_cn": "冰剑的魔术师将要统一世界 第二季",
         "date": "2026-10-08",
         "score": 5.6,
-        "rank": 7314,
+        "rank": 7520,
         "eps": 12,
         "images": {
           "common": "https://lain.bgm.tv/r/400/pic/cover/l/ec/2f/654294_ckrD9.jpg",
@@ -32,7 +252,7 @@
         "name_cn": "恶女不才，请多关照 ～雏宫蝶鼠换身传～",
         "date": "2026-07-12",
         "score": 7,
-        "rank": 2627,
+        "rank": 2645,
         "eps": 11,
         "images": {
           "common": "https://lain.bgm.tv/r/400/pic/cover/l/14/a1/545008_pNnzQ.jpg",
@@ -51,8 +271,8 @@
         "name": "ブラッククローバー 2nd Season",
         "name_cn": "黑色五叶草 第二季",
         "date": "2026-10-03",
-        "score": 7.6,
-        "rank": 1032,
+        "score": 7.8,
+        "rank": 737,
         "eps": 13,
         "images": {
           "common": "https://lain.bgm.tv/r/400/pic/cover/l/be/e7/567896_RWffW.jpg",
@@ -72,7 +292,7 @@
         "name_cn": "魔法★探险家",
         "date": "2026-10-03",
         "score": 6.3,
-        "rank": 5866,
+        "rank": 6074,
         "eps": 13,
         "images": {
           "common": "https://lain.bgm.tv/r/400/pic/cover/l/f5/6b/456078_jtjPi.jpg",
@@ -92,8 +312,8 @@
         "name_cn": "不擅交际的未亡人雪女与诅咒戒指",
         "date": "2026-10-04",
         "score": 5.3,
-        "rank": 9155,
-        "eps": 0,
+        "rank": 9280,
+        "eps": 8,
         "images": {
           "common": "https://lain.bgm.tv/r/400/pic/cover/l/af/7e/656083_B22Yt.jpg",
           "medium": "https://lain.bgm.tv/r/800/pic/cover/l/af/7e/656083_B22Yt.jpg",
@@ -131,8 +351,8 @@
         "name": "FX戦士くるみちゃん",
         "name_cn": "FX战士久留美",
         "date": "2026-10-01",
-        "score": 6.9,
-        "rank": 3116,
+        "score": 6.8,
+        "rank": 3277,
         "eps": 12,
         "images": {
           "common": "https://lain.bgm.tv/r/400/pic/cover/l/d3/99/622288_nmbC3.jpg",
@@ -151,8 +371,8 @@
         "name": "生徒会にも穴はある！",
         "name_cn": "学生会也有洞！",
         "date": "2026-10-03",
-        "score": 7.5,
-        "rank": 916,
+        "score": 7.6,
+        "rank": 722,
         "eps": 12,
         "images": {
           "common": "https://lain.bgm.tv/r/400/pic/cover/l/17/c7/554779_oPitO.jpg",
