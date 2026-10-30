@@ -1,0 +1,32 @@
+{{ define "main" }}
+<main class="main-container flex">
+    <article class="main-article" style="width: 100%; max-width: 800px; margin: 0 auto;">
+        <div class="article-details" style="text-align: center; padding: 4.5rem 1.5rem 5rem 1.5rem;">
+            
+            <!-- 带有微光质感的 404 大字 -->
+            <div style="font-size: clamp(5.5rem, 16vw, 9rem); font-weight: 900; color: var(--accent-color); line-height: 1; margin-bottom: 1.2rem; opacity: 0.92; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; letter-spacing: -0.05em; text-shadow: 0 8px 32px color-mix(in srgb, var(--accent-color) 25%, transparent);">
+                404
+            </div>
+            
+            <!-- 昭鸢笺专属二次元文案标题 -->
+            <h1 class="article-title" style="font-size: 1.6rem; margin-bottom: 0.8rem; font-weight: 700; letter-spacing: 0.02em;">
+                「 散落于时空缝隙的折纸…… 」
+            </h1>
+            
+            <!-- 主题呼应与剧情感寄语 -->
+            <p style="color: var(--secondary-text-color); font-size: 0.98rem; max-width: 460px; margin: 0 auto 2.5rem auto; line-height: 1.8; opacity: 0.88;">
+                这页纸笺似乎已被纸鸢带往未知的风中。<br>
+                你所寻找的内容不在「昭鸢笺」的此卷记载中，或许早已迷失在数字虚空里……
+            </p>
+            
+            <!-- 极简微圆角按钮（非胶囊） -->
+            <div style="display: flex; justify-content: center; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                <a href="{{ "" | absURL }}" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.6rem; background-color: var(--accent-color); color: #ffffff; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 0.92rem; box-shadow: 0 4px 18px color-mix(in srgb, var(--accent-color) 35%, transparent); transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <span>返回昭鸢笺首页</span>
+                </a>
+            </div>
+            
+        </div>
+    </article>
+</main>
+{{ end }}

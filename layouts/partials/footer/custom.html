@@ -147,3 +147,81 @@
         }
     })();
 </script>
+
+<script>
+(function() {
+    function updateReadingProgress() {
+        const bar = document.querySelector('.reading-progress');
+        // 将计算基准从正文改为整个文章容器（包含顶部的封面图、标题等）
+        const container = document.querySelector('.main-article');
+        if (!bar || !container) return;
+        
+        const rect = container.getBoundingClientRect();
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const start = scrollTop + rect.top;
+        const total = Math.max(container.scrollHeight - window.innerHeight * 0.55, 1);
+        const current = Math.min(Math.max(scrollTop - start, 0), total);
+        bar.style.transform = `scaleX(${current / total})`;
+    }
+
+    function setupReadingProgress() {
+        const existing = document.querySelector('.reading-progress');
+        const article = document.querySelector('.article-page .main-article');
+        
+        if (!article) {
+            existing?.remove();
+            window.removeEventListener('scroll', updateReadingProgress);
+            window.removeEventListener('resize', updateReadingProgress);
+            return;
+        }
+        
+        const bar = existing || document.createElement('div');
+        bar.className = 'reading-progress';
+        bar.setAttribute('aria-hidden', 'true');
+        if (!existing) document.body.appendChild(bar);
+
+        window.removeEventListener('scroll', updateReadingProgress);
+        window.removeEventListener('resize', updateReadingProgress);
+        window.addEventListener('scroll', updateReadingProgress);
+        window.addEventListener('resize', updateReadingProgress);
+        
+        updateReadingProgress();
+    }
+
+    // 页面初次加载时执行
+    document.addEventListener('DOMContentLoaded', setupReadingProgress);
+    
+    // 适配 Stack 主题的 Swup PJAX 无刷新跳转，换页后自动重新挂载
+    document.addEventListener('swup:contentReplaced', setupReadingProgress);
+})();
+</script>
+
+<script>
+  // 自动将页脚版权或副标题植入“昭鸢笺”专属印记
+  document.addEventListener("DOMContentLoaded", () => {
+    const footerCopyright = document.querySelector('.site-footer .copyright');
+    if (footerCopyright && !footerCopyright.innerHTML.includes('昭鸢笺')) {
+      // 在原有的版权后面或者中间温和嵌入
+      footerCopyright.innerHTML = `&copy; ${new Date().getFullYear()} 昭鸢笺 &middot; 纸鸢轻飞`;
+    }
+  });
+</script>
+
+<!-- 页脚版权与署名精简重构 -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // 查找 Stack 主题默认渲染的页脚版权容器
+    const copyrightEl = document.querySelector('.site-footer .copyright') || document.querySelector('footer .copyright');
+    
+    if (copyrightEl) {
+      // 替换为“昭鸢笺”专属纯净版权落款
+      copyrightEl.innerHTML = `&copy; 2023–2026 <strong>昭鸢笺</strong> &middot; 纸鸢轻飞远`;
+    }
+    
+    // 如果想要隐藏主题默认的 "Powered by Hugo & Stack" 等冗余外链字样
+    const poweredByEl = document.querySelector('.site-footer .powerby') || document.querySelector('footer .powerby');
+    if (poweredByEl) {
+      poweredByEl.style.display = 'none';
+    }
+  });
+</script>

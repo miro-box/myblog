@@ -67,3 +67,216 @@
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent-color);
 } */
+
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  width: 100%;
+  height: 2.5px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  
+  /* 纯净的主题色渐变，彻底舍弃 box-shadow，杜绝任何缩放残影和重影 */
+  background: linear-gradient(90deg, var(--accent-color), color-mix(in srgb, var(--accent-color) 75%, black));
+  
+  /* 开启 GPU 硬件加速，让渲染绝对丝滑、不闪烁、不拖影 */
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  
+  /* Apple 风格阻尼过渡曲线 */
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  pointer-events: none;
+}
+
+/* =========================================
+   全局右侧滚动条美化（极简优雅风）
+   ========================================= */
+
+/* 1. 滚动条整体宽度与高度 */
+::-webkit-scrollbar {
+  width: 6px;  /* 纤细适中，不显得笨重 */
+  height: 6px;
+}
+
+/* 2. 滚动条轨道：保持完全透明，干净不唐突 */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 3. 滚动条滑块：默认半透明主题色，温润克制 */
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--accent-color) 35%, transparent);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+/* 4. 鼠标悬停滑块时：变为清晰的主题色 */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+/* 5. 兼容 Firefox 浏览器的现代滚动条样式 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--accent-color) 40%, transparent) transparent;
+}
+
+/* 优化文章正文内联代码的精致感 */
+.article-content code:not(pre code) {
+  padding: 0.2em 0.4em;
+  margin: 0 0.2em;
+  font-size: 85% !important;
+  background-color: color-mix(in srgb, var(--accent-color) 10%, var(--card-background));
+  border: 1px solid color-mix(in srgb, var(--accent-color) 20%, transparent);
+  border-radius: 6px;
+  color: var(--accent-color);
+}
+
+/* 统一代码块内部滚动条风格 */
+.highlight pre::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+.highlight pre::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--accent-color) 40%, transparent);
+  border-radius: 3px;
+}
+
+/* =========================================
+   移动端安全区适配 (Safe Area & Home Indicator)
+   ========================================= */
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  
+  /* 1. 底部页脚/版权区域：自动增加安全区内边距，避免被底部小黑条压住 */
+  .site-footer {
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom)) !important;
+  }
+
+  /* 2. 移动端全屏菜单/抽屉展开时的底部适配 */
+  .mobile-menu, 
+  .partial-component--menu {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* 3. 如果页面中有吸底的浮动按钮（如返回顶部、评论悬浮栏等），增加底部安全距离 */
+  .article-footer,
+  .bottom-fixed-bar {
+    margin-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* 4. 优化移动端抽屉菜单背景模糊（Backdrop-filter） */
+.pswp, 
+.mobile-menu-overlay,
+aside.sidebar {
+  /* 确保移动端侧边栏或遮罩层开启硬件加速的高级磨砂玻璃模糊效果 */
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+/* =========================================
+   博客微整形：平滑滚动、划词高亮与引用美化
+   ========================================= */
+
+/* 1. 点击 TOC 目录或锚点时全局平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 2. 鼠标划词选中的背景色与主题色完美融合 */
+::selection {
+  background: color-mix(in srgb, var(--accent-color) 25%, transparent);
+  color: inherit;
+}
+
+/* 3. 优化文章正文引用块（Blockquote）的质感 */
+.article-content blockquote {
+  border-left: 3px solid var(--accent-color);
+  background-color: color-mix(in srgb, var(--accent-color) 4%, var(--card-background));
+  border-radius: 0 8px 8px 0;
+  padding: 0.8rem 1rem;
+  margin: 1.5rem 0;
+  box-shadow: none;
+}
+
+/* 2. 文章正文内链接的流光下划线悬停动效 */
+.article-content p a, 
+.article-content li a {
+  position: relative;
+  text-decoration: none;
+  color: var(--accent-color);
+  background-image: linear-gradient(to right, var(--accent-color), var(--accent-color));
+  background-size: 0 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+  padding-bottom: 1px;
+
+  &:hover {
+    background-size: 100% 1.5px;
+    color: color-mix(in srgb, var(--accent-color) 80%, black);
+  }
+}
+
+/* =========================================
+   博客终极细节：标签胶囊与搜索框聚焦态
+   ========================================= */
+
+
+
+/* 2. 搜索框与输入框聚焦时的精致主题色光晕 */
+input[type="text"], 
+input[type="search"], 
+textarea, 
+.search-modal input {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  
+  &:focus {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color) 15%, transparent) !important;
+  }
+}
+
+/* 切换深色/浅色模式时的全局平滑色调过渡 */
+body, 
+.card, 
+.sidebar, 
+.widget, 
+.article-content, 
+header.site-header {
+  transition: background-color 0.35s ease, 
+              color 0.35s ease, 
+              border-color 0.35s ease, 
+              box-shadow 0.35s ease;
+}
+
+/* 优化键盘导航时的聚焦指示器 */
+a:focus-visible, 
+button:focus-visible, 
+input:focus-visible, 
+textarea:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* 优化正文排版密度与舒适度 */
+.article-content {
+  line-height: 1.85;
+  letter-spacing: 0.015em;
+
+  p {
+    margin-bottom: 1.6rem;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.01em;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+}
