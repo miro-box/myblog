@@ -71,6 +71,11 @@ links:
     website: "https://rainzt.cn/"
     image: "https://rainzt.cn/zzty.png"
 
+  - title: "Muyu の 小窝"
+    description: "永远相信美好的事情即将发生"
+    website: "https://muyudada.dpdns.org"
+    image: "https://muyuimg.cc.cd/file/blog/1788157305659_maomao.gif"
+
 ---
 
 > *“鸢起云间，笺书相逢，友链是孤岛之间牵起的长线。”*
