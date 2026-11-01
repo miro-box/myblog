@@ -8,7 +8,7 @@ draft: false                                    # 草稿开关：true=不发布�
 description: "深度解析为什么从 Giscus/Utterances 迁移到 Twikoo+Netlify，涵盖 MongoDB 数据库配置、Resend SMTP 587 端口踩坑实录、Cloudflare Turnstile 无感防刷机制及 Stack 主题专属邮件模板定制。"                                # 一句话简介（显示在首页卡片/RSS）
 slug: "migrate-giscus-to-twikoo-netlify"         # 网址后缀
 categories:                                    # 分类：只选 1 个
-    - "折腾手记"                               #   例：折腾手记 / 嵌入式 / 网安 / 生活随笔
+    - "折腾日常"                               #   例：折腾手记 / 嵌入式 / 网安 / 生活随笔
 tags:                                          # 标签：可多个
     - "Twikoo"
     - "Netlify"
