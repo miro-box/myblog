@@ -25,24 +25,14 @@ favicon        = "img/favicon.png"
     page     = [{ type = "toc" }]
 
 [comments]
-    # See complete configuration in config/_default/params.toml
-    enabled  = true
-    provider = "giscus"
+    enabled = true
+    provider = "twikoo"
 
-        [comments.giscus]
-        repo             = "miro-box/myblog"
-        repoID           = "R_kgDOVTe1mA"
-        category         = "Announcements"
-        categoryID       = "DIC_kwDOVTe1mM4DJgGB"
-        mapping          = "pathname"
-        lightTheme       = "light"
-        darkTheme        = "dark_dimmed"
-        reactionsEnabled = 1
-        emitMetadata     = 0
-        inputPosition    = "top"
-        lang             = "zh-CN"
-        strict           = 0
-        loading          = "lazy"
+    [comments.twikoo]
+        envId = "https://comments.mibase.top/.netlify/functions/twikoo"
+        region = ""
+        path = ""
+        lang = "zh-CN"
 
 # GDPR Cookie Consent Configuration
 # When enabled, analytics and functional cookies require user consent

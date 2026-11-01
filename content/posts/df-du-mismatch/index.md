@@ -17,7 +17,7 @@ image: "cover.webp"
  
 toc: true
 hidden: false
-comments: false
+comments: true
 ---
 周日晚上快十一点，手机震了一下，Uptime Kuma 的推送：Gitea 挂了，HTTP 502。
 

@@ -27,7 +27,7 @@ toc: true                                      # 显示文章目录：true / fal
 # lastmod:                                     # 最后修改时间。例：2026-10-23T21:00:00+08:00
 # weight: 1                                    # 排序权重，数字越小越靠前（置顶用）
 hidden: false                                  # true=不出现在首页/列表，但链接仍可访问
-comments: false                                 # 是否开启评论：true / false
+comments: true                                 # 是否开启评论：true / false
 ---
 
 那台老 VPS 跑了三年，配置早就跟不上了。1 核 2G，40G 硬盘，用到了 78%。新买的机器是 2 核 4G，80G 盘，价格还便宜一点。

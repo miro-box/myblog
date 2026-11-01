@@ -4,7 +4,7 @@ slug: "links"
 url: "/links/"
 description: ""
 date: 2026-10-30
-comments: false
+comments: true
 links:
   - title: "Brandon's Blog"
     description: "Brandon 的个人博客"

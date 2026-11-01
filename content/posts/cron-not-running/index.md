@@ -17,7 +17,7 @@ image: "cover.webp"
 
 toc: true
 hidden: false
-comments: false
+comments: true
 ---
 
 先说结论的话，这篇其实没什么高深的东西，全是 cron 的基本脾气。但我是真的被它折腾了一个周末，所以还是想写下来，哪天再遇到能少走点弯路。

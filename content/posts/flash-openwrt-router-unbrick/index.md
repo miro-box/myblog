@@ -28,7 +28,7 @@ toc: true                                      # 显示文章目录：true / fal
 # lastmod:                                     # 最后修改时间。例：2026-10-23T21:00:00+08:00
 # weight: 1                                    # 排序权重，数字越小越靠前（置顶用）
 hidden: false                                  # true=不出现在首页/列表，但链接仍可访问
-comments: false                                 # 是否开启评论：true / false
+comments: true                                 # 是否开启评论：true / false
 ---
 
 在海鲜市场花五十块收了一台二手的千兆路由器，型号是小米 AX3000T。卖家的描述只有一句"能开机，无线正常"，照片拍得模糊，看不出什么。

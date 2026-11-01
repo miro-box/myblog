@@ -28,7 +28,7 @@ toc: true                                      # 显示文章目录：true / fal
 # lastmod:                                     # 最后修改时间。例：2026-10-23T21:00:00+08:00
 # weight: 1                                    # 排序权重，数字越小越靠前（置顶用）
 hidden: false                                  # true=不出现在首页/列表，但链接仍可访问
-comments: false                                 # 是否开启评论：true / false
+comments: true                                 # 是否开启评论：true / false
 ---
 
 域名托管到 Cloudflare 有一段时间了，页面打开速度一直说不上好。白天在公司摸鱼的时候打开自己的博客，首屏的图片总是一块一块地往下蹦，像是网速被谁掐了一半。

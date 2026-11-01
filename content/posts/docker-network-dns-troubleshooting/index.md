@@ -28,7 +28,7 @@ toc: true                                      # 显示文章目录：true / fal
 # lastmod:                                     # 最后修改时间。例：2026-10-23T21:00:00+08:00
 # weight: 1                                    # 排序权重，数字越小越靠前（置顶用）
 hidden: false                                  # true=不出现在首页/列表，但链接仍可访问
-comments: false                                 # 是否开启评论：true / false
+comments: true                                 # 是否开启评论：true / false
 ---
 
 有段时间我在搭一个小的内部工具，前端是一个 PHP 的容器，后端是一个 Redis 容器。两个都在同一台机器上，端口也都正常开着。
