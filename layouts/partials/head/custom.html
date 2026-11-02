@@ -188,13 +188,11 @@ body:not(.article-page) .article-image img {
 
 <style>
 /* ==========================================
-   Twikoo 评论区样式 v4：简洁线条风，同时兼容 Twikoo 1.x 和 2.x
+   Twikoo 评论区样式 v3：简洁线条风
    没有卡片、没有气泡、没有阴影、没有动画，只用细线分隔
    颜色全部取自主题变量，自动适配深色和浅色模式
    用法：整段粘贴到 layouts/partials/head/custom.html 里，
    先把之前版本的 Twikoo 样式整段删掉
-   说明：2.x 的内置样式把颜色直接写死了（蓝色 #409eff 等），
-   所以下面部分属性加了 !important 才能覆盖
    ========================================== */
 
 .twikoo {
@@ -211,105 +209,76 @@ body:not(.article-page) .article-image img {
     font-weight: 700;
 }
 
-.twikoo .tk-sort-item {
-    color: var(--card-text-color-secondary) !important;
-}
-
-.twikoo .tk-sort-item:hover,
-.twikoo .tk-sort-item.__active {
-    color: var(--accent-color) !important;
-}
-
-/* ---------- 输入框（1.x 用 el-*，2.x 用 tk-input*） ---------- */
+/* ---------- 输入框 ---------- */
 .twikoo .el-textarea__inner,
 .twikoo .el-input__inner,
 .twikoo .el-input-group__prepend,
-.twikoo .el-input-group__append,
-.twikoo .tk-input__inner,
-.twikoo .tk-input-group__prepend,
-.twikoo .tk-input-group__append {
-    background: transparent !important;
+.twikoo .el-input-group__append {
+    background: transparent;
     color: var(--card-text-color-main);
-    border: 1px solid var(--card-separator-color) !important;
+    border: 1px solid var(--card-separator-color);
     border-radius: 2px;
     box-shadow: none;
     transition: border-color 0.2s ease;
 }
 
-.twikoo .el-input-group__prepend,
-.twikoo .tk-input-group__prepend {
-    border-right: none !important;
+.twikoo .el-input-group__prepend {
+    border-right: none;
     color: var(--card-text-color-secondary);
 }
 
-.twikoo .el-textarea__inner,
-.twikoo .tk-textarea .tk-input__inner {
+.twikoo .el-textarea__inner {
     min-height: 120px;
     line-height: 1.8;
     padding: 10px 12px;
 }
 
 .twikoo .el-textarea__inner::placeholder,
-.twikoo .el-input__inner::placeholder,
-.twikoo .tk-input__inner::placeholder {
+.twikoo .el-input__inner::placeholder {
     color: var(--card-text-color-tertiary);
 }
 
 .twikoo .el-textarea__inner:focus,
-.twikoo .el-input__inner:focus,
-.twikoo .tk-input__inner:focus {
-    border-color: var(--accent-color) !important;
+.twikoo .el-input__inner:focus {
+    border-color: var(--accent-color);
     box-shadow: none;
     outline: none;
 }
 
 /* ---------- 按钮：发送是实心方块，其余是普通描边 ---------- */
-.twikoo .el-button--primary,
-.twikoo .tk-button--primary {
-    background: var(--accent-color) !important;
-    border: 1px solid var(--accent-color) !important;
-    color: var(--accent-color-text) !important;
+.twikoo .el-button--primary {
+    background: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color-text);
     border-radius: 2px;
     box-shadow: none;
 }
 
 .twikoo .el-button--primary:hover,
-.twikoo .el-button--primary:focus,
-.twikoo .tk-button--primary:hover,
-.twikoo .tk-button--primary:focus {
-    background: var(--accent-color-darker, var(--accent-color)) !important;
-    border-color: var(--accent-color-darker, var(--accent-color)) !important;
-    color: var(--accent-color-text) !important;
+.twikoo .el-button--primary:focus {
+    background: var(--accent-color-darker, var(--accent-color));
+    border-color: var(--accent-color-darker, var(--accent-color));
+    color: var(--accent-color-text);
 }
 
-.twikoo .tk-button--primary.is-disabled {
-    opacity: 0.5;
-}
-
-.twikoo .el-button--default,
-.twikoo .tk-button:not(.tk-button--primary):not(.tk-button--text) {
-    background: transparent !important;
-    color: var(--card-text-color-secondary) !important;
-    border: 1px solid var(--card-separator-color) !important;
+.twikoo .el-button--default {
+    background: transparent;
+    color: var(--card-text-color-secondary);
+    border: 1px solid var(--card-separator-color);
     border-radius: 2px;
 }
 
-.twikoo .el-button--default:hover,
-.twikoo .tk-button:not(.tk-button--primary):not(.tk-button--text):hover {
-    color: var(--accent-color) !important;
-    border-color: var(--accent-color) !important;
-    background: transparent !important;
+.twikoo .el-button--default:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
 }
 
-/* 表情、图片、预览等小图标 */
-.twikoo .tk-action-icon,
-.twikoo .tk-submit-action-icon {
-    color: var(--card-text-color-secondary) !important;
+.twikoo .tk-action-icon {
+    color: var(--card-text-color-secondary);
 }
 
-.twikoo .tk-action-icon:hover,
-.twikoo .tk-submit-action-icon:hover {
-    color: var(--accent-color) !important;
+.twikoo .tk-action-icon:hover {
+    color: var(--accent-color);
 }
 
 /* ---------- 评论列表：没有卡片，条与条之间一条细线 ---------- */
@@ -330,7 +299,7 @@ body:not(.article-page) .article-image img {
 
 /* ---------- 头像、昵称、博主标识、时间 ---------- */
 .twikoo .tk-avatar {
-    border-radius: 4px;
+    border-radius: 50%;
     overflow: hidden;
     box-shadow: none;
 }
@@ -338,18 +307,14 @@ body:not(.article-page) .article-image img {
 .twikoo .tk-nick,
 .twikoo .tk-nick-link {
     font-weight: 700;
-    color: var(--card-text-color-main) !important;
+    color: var(--card-text-color-main);
 }
 
-.twikoo .tk-nick-link:hover {
-    color: var(--accent-color) !important;
-}
-
-/* 博主标识（和置顶等标签）：主题色描边的小方框 */
+/* 博主标识：主题色描边的小方框 */
 .twikoo .tk-tag {
-    background: transparent !important;
-    color: var(--accent-color) !important;
-    border: 1px solid var(--accent-color) !important;
+    background: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
     border-radius: 2px;
     padding: 0 6px;
 }
@@ -357,7 +322,7 @@ body:not(.article-page) .article-image img {
 .twikoo .tk-time,
 .twikoo .tk-extras,
 .twikoo .tk-extra {
-    color: var(--card-text-color-tertiary) !important;
+    color: var(--card-text-color-tertiary);
 }
 
 /* ---------- 评论正文：就是普通文字 ---------- */
@@ -384,14 +349,12 @@ body:not(.article-page) .article-image img {
 }
 
 /* ---------- 回复、点赞等操作：纯文字，鼠标放上去变主题色 ---------- */
-.twikoo .tk-action-link,
-.twikoo .tk-actions button {
-    color: var(--card-text-color-secondary) !important;
+.twikoo .tk-action-link {
+    color: var(--card-text-color-secondary);
 }
 
-.twikoo .tk-action-link:hover,
-.twikoo .tk-actions button:hover {
-    color: var(--accent-color) !important;
+.twikoo .tk-action-link:hover {
+    color: var(--accent-color);
 }
 
 /* ---------- 展开更多 ---------- */
