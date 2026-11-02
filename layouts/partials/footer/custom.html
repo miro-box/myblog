@@ -226,100 +226,152 @@
   });
 </script>
 
-<!-- 全局右下角快捷悬浮按钮（返回顶部 & 跳转评论区） -->
-<div id="quick-actions" class="quick-actions">
-    <!-- 跳转到评论区按钮 -->
-    <button id="jump-to-comments" class="quick-btn" title="跳转到评论区" aria-label="跳转到评论区">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+{{- /* 右下角快捷操作：只在文章页和友链页出现，滚动一定距离后浮现 */ -}}
+{{- $isPost := eq .Type `posts` -}}
+{{- $isLinks := .Params.links -}}
+{{- if and .IsPage (or $isPost $isLinks) -}}
+<div class="quick-nav" id="quick-nav">
+    <button type="button" class="quick-nav__btn quick-nav__btn--comments" data-quick="comments" title="跳到评论" aria-label="跳到评论区">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     </button>
-    <!-- 返回顶部按钮 -->
-    <button id="back-to-top" class="quick-btn" title="返回顶部" aria-label="返回顶部">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    <button type="button" class="quick-nav__btn quick-nav__btn--top" data-quick="top" title="回到顶部" aria-label="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
     </button>
 </div>
 
 <style>
-/* 悬浮按钮容器：固定在右下角 */
-.quick-actions {
+/* =========================================
+   右下角快捷操作（毛玻璃小圆钮，极简）
+   ========================================= */
+.quick-nav {
     position: fixed;
     right: 24px;
-    bottom: 32px;
-    z-index: 999;
+    bottom: 28px;
+    z-index: 900;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s;
 }
 
-/* 按钮通用样式：细边框、透明背景、契合 Stack 主题 */
-.quick-btn {
-    width: 38px;
-    height: 38px;
-    background: var(--card-background, #fff);
-    color: var(--card-text-color-secondary, #666);
-    border: 1px solid var(--card-separator-color, #e0e0e0);
-    border-radius: 4px;
-    cursor: pointer;
+.quick-nav.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+.quick-nav__btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    transition: all 0.2s ease;
+    width: 40px;
+    height: 40px;
     padding: 0;
+    color: var(--card-text-color-secondary);
+    background: color-mix(in srgb, var(--card-background) 82%, transparent);
+    border: 1px solid var(--card-separator-color);
+    border-radius: 50%;
+    box-shadow: var(--shadow-l1);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    backdrop-filter: blur(10px) saturate(150%);
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 }
 
-.quick-btn:hover {
+.quick-nav__btn:hover {
     color: var(--accent-color);
     border-color: var(--accent-color);
+    transform: translateY(-2px);
 }
 
-/* 移动端适当缩小间距或微调位置 */
+.quick-nav__btn:active {
+    transform: translateY(0);
+}
+
+.quick-nav__btn:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+/* 已经到达评论区时，评论按钮自己隐去 */
+.quick-nav__btn.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
 @media (max-width: 768px) {
-    .quick-actions {
+    .quick-nav {
         right: 16px;
-        bottom: 20px;
+        bottom: calc(20px + env(safe-area-inset-bottom));
+        gap: 8px;
     }
-    .quick-btn {
-        width: 34px;
-        height: 34px;
+
+    .quick-nav__btn {
+        width: 36px;
+        height: 36px;
     }
 }
 </style>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const backToTopBtn = document.getElementById("back-to-top");
-    const jumpCommentsBtn = document.getElementById("jump-to-comments");
+(function () {
+    const nav = document.getElementById('quick-nav');
+    if (!nav) return;
 
-    // 1. 返回顶部逻辑
-    if (backToTopBtn) {
-        backToTopBtn.addEventListener("click", function () {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        });
-    }
+    const SHOW_AFTER = 320;   // 滚动多少像素后才浮现
+    const OFFSET = 20;        // 跳到评论区时顶部留白
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const behavior = reduce ? 'auto' : 'smooth';
 
-    // 2. 跳转到评论区逻辑（自动搜寻常见评论区容器 ID 或 Class）
-    if (jumpCommentsBtn) {
-        jumpCommentsBtn.addEventListener("click", function () {
-            // 兼容 Hugo Stack / Twikoo 常见评论区锚点
-            const commentsElement = document.getElementById("comments") || 
-                                    document.querySelector(".twikoo") || 
-                                    document.querySelector(".article-comments");
-            if (commentsElement) {
-                commentsElement.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            } else {
-                // 如果当前页面没有评论区，则滚动到底部
-                window.scrollTo({
-                    top: document.body.scrollHeight,
-                    behavior: "smooth"
-                });
+    const commentsBtn = nav.querySelector('.quick-nav__btn--comments');
+    const commentsHost = document.getElementById('tcomment');
+    if (commentsBtn && !commentsHost) commentsBtn.remove();
+
+    // Twikoo 是异步渲染的，真正滚动时再取一次卡片
+    const commentsTarget = () => document.querySelector('.twikoo') || commentsHost;
+
+    nav.addEventListener('click', (event) => {
+        const btn = event.target.closest('.quick-nav__btn');
+        if (!btn) return;
+
+        if (btn.dataset.quick === 'top') {
+            window.scrollTo({ top: 0, behavior });
+            return;
+        }
+
+        const el = commentsTarget();
+        if (!el) return;
+        const top = el.getBoundingClientRect().top + (window.scrollY || 0) - OFFSET;
+        window.scrollTo({ top: Math.max(top, 0), behavior });
+    });
+
+    let ticking = false;
+    function update() {
+        ticking = false;
+        const scrolled = window.scrollY || document.documentElement.scrollTop || 0;
+        nav.classList.toggle('is-visible', scrolled > SHOW_AFTER);
+
+        if (commentsBtn && commentsHost) {
+            const el = commentsTarget();
+            if (el) {
+                commentsBtn.classList.toggle('is-hidden', el.getBoundingClientRect().top <= OFFSET + 40);
             }
-        });
+        }
     }
-});
+
+    function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(update);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    document.addEventListener('swup:contentReplaced', onScroll);
+    update();
+})();
 </script>
+{{- end -}}
