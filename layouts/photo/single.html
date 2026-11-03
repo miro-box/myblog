@@ -15,10 +15,27 @@
     {{- $items := site.Data.waifus -}}
 
     {{ if $items }}
-    <link rel="preconnect" href="{{ $host.Scheme }}://{{ $host.Host }}" crossorigin>
+    {{/* 构建时把清单压成紧凑数组，写成带指纹的独立 JSON 文件：
+         普通图：[id, 宽, 高]（大图和缩略图文件名都是 id.webp）
+         例外图（比如 GIF）：[id, 宽, 高, 大图文件名, 缩略图文件名] */}}
+    {{- $rows := slice -}}
+    {{- range $items -}}
+      {{- $std := printf "%s.webp" .id -}}
+      {{- if and (eq .f $std) (eq .t $std) -}}
+        {{- $rows = $rows | append (printf "[%q,%d,%d]" .id (int .w) (int .h)) -}}
+      {{- else -}}
+        {{- $rows = $rows | append (printf "[%q,%d,%d,%q,%q]" .id (int .w) (int .h) .f .t) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $json := printf "[%s]" (delimit $rows ",") -}}
+    {{- $data := resources.FromString "photo/gallery-data.json" $json | fingerprint -}}
 
-    <div class="photo-masonry" id="photo-gallery" data-base="{{ $base }}"></div>
+    <link rel="preconnect" href="{{ $host.Scheme }}://{{ $host.Host }}" crossorigin>
+    <link rel="preload" href="{{ $data.RelPermalink }}" as="fetch" crossorigin>
+
+    <div class="photo-masonry" id="photo-gallery" data-base="{{ $base }}" data-src="{{ $data.RelPermalink }}"></div>
     <nav class="gallery-pager" id="gallery-pager-bottom" aria-label="图集分页"></nav>
+    <p class="gallery-count" id="gallery-count"></p>
 
     <div id="gallery-lightbox" class="gallery-lightbox" hidden>
         <img alt="">
@@ -28,7 +45,6 @@
         <div class="lb-count"></div>
     </div>
 
-    <script id="gallery-data" type="application/json">{{ $items | jsonify | safeJS }}</script>
     <noscript><p>图集需要开启 JavaScript 才能显示。</p></noscript>
     {{ else }}
     <p>还没有图片清单（data/waifus.json）。</p>
@@ -200,28 +216,43 @@
     opacity: 0.8;
     pointer-events: none;
 }
+
+/* 页码和总数 */
+.gallery-count {
+    margin: 0 0 16px;
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--card-text-color-secondary);
+}
 </style>
 
 <script>
 (function () {
     var gallery = document.getElementById("photo-gallery");
-    var dataEl = document.getElementById("gallery-data");
     var lightbox = document.getElementById("gallery-lightbox");
+    var countEl = document.getElementById("gallery-count");
     var navs = [
         document.getElementById("gallery-pager-bottom")
     ];
-    if (!gallery || !dataEl) return;
+    if (!gallery) return;
 
     var base = gallery.getAttribute("data-base");
+    var dataUrl = gallery.getAttribute("data-src");
     var PAGE_SIZE = 60;   // 每页多少张，可按需修改
+    if (!dataUrl) return;
 
-    var items;
-    try {
-        items = JSON.parse(dataEl.textContent);
-    } catch (e) {
-        return;
+    // 还原紧凑格式：[id, w, h] 或 [id, w, h, 大图文件名, 缩略图文件名]
+    function decode(rows) {
+        var out = new Array(rows.length);
+        for (var i = 0; i < rows.length; i++) {
+            var r = rows[i];
+            var std = r[0] + ".webp";
+            out[i] = { f: r[3] || std, t: r[4] || std, w: r[1], h: r[2] };
+        }
+        return out;
     }
 
+    function init(items) {
     var totalPages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
 
     // ---- 随机顺序：同一次访问（同一个标签页）内固定，翻页不会重复或漏图 ----
@@ -355,6 +386,9 @@
     }
 
     function renderNavs() {
+        if (countEl) {
+            countEl.textContent = "第 " + current + " / " + totalPages + " 页 · 共 " + items.length.toLocaleString() + " 张";
+        }
         navs.forEach(function (nav) {
             if (!nav) return;
             nav.innerHTML = "";
@@ -589,6 +623,19 @@
             }
         }, { passive: true });
     }
+    }
+
+    fetch(dataUrl)
+        .then(function (res) {
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            return res.json();
+        })
+        .then(function (rows) {
+            init(decode(rows));
+        })
+        .catch(function () {
+            gallery.textContent = "图集加载失败，请刷新页面重试。";
+        });
 })();
 </script>
 {{ end }}
