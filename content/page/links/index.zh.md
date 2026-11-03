@@ -41,16 +41,6 @@ links:
     website: "https://blog.578113.xyz"
     image: "https://image.578113.xyz/img/skyceria.jpg"
 
-  - title: "THW's Blog"
-    description: "前途似海，来日方长"
-    website: "https://blog.tianhw.top"
-    image: "https://image.tianhw.top/avatar.webp"
-
-  - title: "番茄主理人"
-    description: "躬身入局，心为主理，行有尺度，自持本心。"
-    website: "https://blog.fqzlr.top/"
-    image: "https://q1.qlogo.cn/g?b=qq&nk=20447289&s=640"
-
   - title: "空鸣深语"
     description: "深鸣的博客，主要记录技术与生活相关的内容"
     website: "https://blog.deepchirp.com"
@@ -60,11 +50,6 @@ links:
     description: "雨滴会记录生命中的每一个瞬间"
     website: "https://daily.yybb.us"
     image: "https://r2tc.20030327.xyz/file/博客/主题/1780655293662_avatar_me.jpg.PNG"
-
-  - title: "花墨"
-    description: "好耶！是再花猫猫头ฅ•ω•ฅ"
-    website: "https://flowersink.com"
-    image: "https://api.flowersink.com/img/logo.png"
 
   - title: "朝朝听雨"
     description: "物物而不物于物，念念而不念于念"
