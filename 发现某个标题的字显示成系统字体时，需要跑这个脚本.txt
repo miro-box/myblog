@@ -1,0 +1,4 @@
+Get-ChildItem fonts-src
+
+Set-Location D:\blog\myblog
+powershell -ExecutionPolicy Bypass -File .\update-font.ps1
