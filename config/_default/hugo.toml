@@ -1,6 +1,6 @@
 baseURL                = "https://blog.mibase.top/"
 locale                 = "zh"
-title                  = "寻 Mi 处"
+title                  = "昭鸢笺"
 # Theme i18n support
 # See i18n folder for available languages
 defaultContentLanguage = "zh"

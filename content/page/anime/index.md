@@ -1,3 +1,4 @@
+/*
 ---
 title: "追番 ｜ Bangumi"
 date: 2023-10-26
@@ -15,3 +16,5 @@ comments: false
 ---
 
 {{< bangumi >}}
+
+*/
