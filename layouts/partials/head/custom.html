@@ -175,10 +175,6 @@ body:not(.article-page) .article-image img {
 <meta name="bkh-verification" content="bkh-verification=701122b6dfe8b129e3f25862d1d5b63c94550b757d118086bf51ebaaa6ab4ad4">
 <meta name="blogsclub-verify" content="3a50143efeaa4601bfa6c31bcf0a3ae7">
 
-<!-- 异步非阻塞加载样式表 -->
-<link rel="preload" href="/scss/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="/scss/style.min.css"></noscript>
-
 {{ if .IsPage }}
   {{ if .Params.image }}
   <link rel="preload" as="image" href="{{ .Params.image | absURL }}" fetchpriority="high">
