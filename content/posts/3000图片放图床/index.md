@@ -15,7 +15,7 @@ tags:
     - "鸣潮"
     - "前端"
 
-image: "cover.webp"
+cover: "/p/gallery-5000-wuthering-waves/cover.webp"
 
 toc: true
 hidden: false

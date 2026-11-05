@@ -13,7 +13,7 @@ tags:
     - "Shell"
     - "排障"
 
-image: "cover.webp"
+cover: "/p/cron-not-running/cover.webp"
 
 toc: true
 hidden: false

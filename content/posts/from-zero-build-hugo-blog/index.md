@@ -16,7 +16,7 @@ tags:                                          # 标签：可多个
 
 # ==================== 封面图（用不到就保持注释）====================
 # 方式 A（推荐）：图片和文章放同一文件夹（Page Bundle），文件名 cover.webp
-image: "cover.webp"
+cover: "/p/折腾了三种博客程序之后我最后还是回到了-hugo/cover.webp"
 # 方式 B：图片放在 static/images/ 下
 # image: "/images/cover.webp"
 

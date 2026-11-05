@@ -16,7 +16,7 @@ tags:                                          # 标签：可多个
 
 # ==================== 封面图（用不到就保持注释）====================
 # 方式 A（推荐）：图片和文章放在同一文件夹（Page Bundle），文件名 cover.webp
-image: "cover.webp"
+cover: "/p/把一百多-g-的网站数据搬到新服务器中间没停过服务/cover.webp"
 # 方式 B：图片放在 static/images/ 下
 # image: "/images/cover.webp"
 

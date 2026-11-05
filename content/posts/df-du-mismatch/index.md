@@ -13,7 +13,7 @@ tags:
     - "lsof"
     - "排障"
  
-image: "cover.webp"
+cover: "/p/df-du-mismatch/cover.webp"
  
 toc: true
 hidden: false

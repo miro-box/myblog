@@ -13,7 +13,7 @@ tags:
 toc: true
 hidden: false
 comments: true
-image: "cover.webp"
+cover: "/p/hugo-archetypes-setup/cover.webp"
 
 ---
 

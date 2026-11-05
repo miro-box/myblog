@@ -1,37 +1,53 @@
 ---
-title: Links
-links:
-  - title: GitHub
-    description: GitHub is the world's largest software development platform.
-    website: https://github.com
-    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-  - title: TypeScript
-    description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
-    website: https://www.typescriptlang.org
-    image: ts-logo-128.jpg
-menu:
-    main: 
-        weight: -50
-        params:
-            icon: link
-
-comments: false
+title: "友链 ｜ Friends"
+slug: "links"
+url: "/links/"
+description: ""
+date: 2026-10-30
+comments: true
 ---
 
-To use this feature, add `links` section to frontmatter.
+{{< friendsLink >}}
 
-This page's frontmatter:
 
-```yaml
-links:
-  - title: GitHub
-    description: GitHub is the world's largest software development platform.
-    website: https://github.com
-    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-  - title: TypeScript
-    description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
-    website: https://www.typescriptlang.org
-    image: ts-logo-128.jpg
-```
+> *“鸢起云间，笺书相逢，友链是孤岛之间牵起的长线。”*
 
-`image` field accepts both local and external images.
+欢迎来到本站的**友链小广场**！这里记录着各路技术伙伴与极客朋友的独立小站。
+
+---
+
+### 📌 申请须知
+
+为了让这里一直保持清爽，申请之前，请先留意下面几点：
+
+* **互换原则**：请先在你的友链页放上本站的链接，我确认之后，会把你的站点加进来
+* **长期维护**：友链站点如果长时间打不开、内容变质，或者出现违规内容，会被移除
+* **内容健康**：内容积极向上，不含色情、暴力、反动等任何违法违规的信息
+* **站点要求**：需要支持 HTTPS，能正常访问并持续更新，以原创内容为主
+
+---
+
+### ☕ 如何申请
+
+**请私聊我**，带上下面这几样信息：
+
+* **博客名称**
+* **博客网址**
+* **简短介绍**
+* **头像链接**
+
+联系方式：
+
+* 邮箱：`hi@mibase.top`
+* Telegram：[@zhaoyuan_bot](https://t.me/zhaoyuan_bot)
+
+我看到后会尽快回复，感谢你的耐心。
+
+---
+
+### 📋 本站名片
+
+* **博客名称**：昭鸢笺
+* **博客网址**：`https://blog.mibase.top`
+* **博主头像**：`https://blog.mibase.top/img/miro.jpg`
+* **博客简介**：昭有明朗向远之意，鸢乘风而上，笺以载笔墨见闻

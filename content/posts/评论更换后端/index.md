@@ -18,7 +18,7 @@ tags:                                          # 标签：可多个
 
 # ==================== 封面图（用不到就保持注释）====================
 # 方式 A（推荐）：图片和文章放同一文件夹（Page Bundle），文件名 cover.webp
-image: "cover.webp"
+cover: "/p/migrate-giscus-to-twikoo-netlify/cover.webp"
 
 # ==================== 可选（不需要就整行删掉）====================
 toc: true                                      # 显示文章目录：true / false（短文可关）
