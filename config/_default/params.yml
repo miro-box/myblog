@@ -495,10 +495,10 @@ beaudar:
 ########################################
 
 algolia_search:
-  enable: false
-  appID:
-  apiKey:
-  indexName:
+  enable: true
+  appID: 2JFMHYE4VT
+  apiKey: e4088df8d14ba87a4235023eb07ab494
+  indexName: algolia
   hits:
     per_page: 10
 
@@ -1159,20 +1159,131 @@ injector:
         color: var(--tk-accent);
     }
 
-    /* ---------- 表情面板 / 加载动画 ---------- */
+    /* ---------- 表情面板（OwO）：细边框，格子跟内容走，文字不折断 ---------- */
     #comments .twikoo .OwO .OwO-body {
+        top: calc(100% + 12px);
+        left: 0;
+        right: auto;
+        width: min(100%, 460px);
+        max-width: 100%;
+        color: var(--color-default);
+        background: var(--color-wrap);
         border: 1px solid var(--tk-line);
         border-radius: var(--tk-radius);
         box-shadow: var(--shadow-card);
+        overflow: hidden;
     }
 
-    #comments .twikoo .OwO .OwO-item {
+    #comments .twikoo .OwO .OwO-logo {
+        width: 1.25em;
+        height: 1.25em;
+        line-height: 0;
+    }
+
+    #comments .twikoo .OwO .OwO-items {
+        margin: 0;
+        padding: 8px 6px 6px 8px;
+        overflow: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+        scrollbar-color: var(--tk-line-strong) transparent;
+    }
+
+    /* 用 flex 排格子：每个格子保持自身宽度，放不下就整体换行，绝不被压扁 */
+    #comments .twikoo .OwO .OwO-items-show {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        justify-content: flex-start;
+    }
+
+    /* 关键：颜文字不许在格子中间折断，放不下就整体换行 */
+    #comments .twikoo .OwO .OwO-items .OwO-item {
+        flex: 0 0 auto;
+        padding: 5px 8px;
+        border-radius: 6px;
+        background: transparent;
+        box-shadow: none;
+        color: var(--color-default);
+        font-size: 13px;
+        line-height: 1.6;
+        white-space: nowrap;
+        word-break: keep-all;
+        overflow-wrap: normal;
+        vertical-align: middle;
         cursor: var(--cursor-pointer, pointer) !important;
+    }
+
+    #comments .twikoo .OwO .OwO-items .OwO-item:hover {
+        background: var(--tk-accent-soft);
+    }
+
+    /* 图片表情（Emoji / Bilibili 之类）：每行几个格 */
+    #comments .twikoo .OwO .OwO-items-image .OwO-item {
+        width: 12.5%;
+        padding: 4px 2px;
+    }
+
+    #comments .twikoo .OwO .OwO-items-image .OwO-item img,
+    #comments .twikoo .OwO .OwO-item img.tk-owo-emotion {
+        width: 1.9em;
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        vertical-align: middle;
+    }
+
+    /* 分类栏：没底色的文字标签，当前分类用主题色下划线 */
+    #comments .twikoo .OwO .OwO-bar {
+        border-top: 1px solid var(--tk-line);
+        background: transparent;
+    }
+
+    #comments .twikoo .OwO .OwO-packages {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px;
+        padding: 4px;
+    }
+
+    #comments .twikoo .OwO .OwO-packages li {
+        margin: 0;
+        padding: 3px 12px;
+        border-radius: 6px;
+        background: transparent;
+        color: var(--tk-muted);
+        font-size: 13px;
+        line-height: 24px;
+        cursor: var(--cursor-pointer, pointer) !important;
+    }
+
+    #comments .twikoo .OwO .OwO-packages li:hover {
+        background: transparent;
+        color: var(--tk-accent);
+    }
+
+    #comments .twikoo .OwO .OwO-packages .OwO-package-active {
+        background: transparent;
+        color: var(--tk-accent);
+        box-shadow: inset 0 -2px 0 var(--tk-accent);
+        transition: none;
+    }
+
+    #comments .twikoo .OwO .OwO-items::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    #comments .twikoo .OwO .OwO-items::-webkit-scrollbar-thumb {
+        background: var(--tk-line-strong);
+        border-radius: 3px;
     }
 
     #comments .twikoo .tk-owo-preview-panel {
         border-color: var(--tk-line);
         border-radius: var(--tk-radius);
+        background: var(--color-wrap);
+        box-shadow: var(--shadow-card);
     }
 
     #comments .twikoo .tk-loading-spinner .path {
@@ -1229,10 +1340,45 @@ injector:
         #comments .twikoo .tk-textarea .tk-input__inner {
             min-height: 104px;
         }
+
+        #comments .twikoo .OwO .OwO-body {
+            top: calc(100% + 8px);
+            width: 100%;
+            max-width: 100%;
+        }
+
+        #comments .twikoo .OwO .OwO-items-image .OwO-item {
+            width: 20%;
+        }
     }
+    .reimu-bg { opacity: 0.85; }
     </style>
   body_begin: # Inject code snippet right after <body>
-  body_end: # Inject code snippet right before </body>
+  body_end: |-
+    <script>
+    (function () {
+      var els = document.querySelectorAll('.twikoo-comment-count');
+      if (!els.length) return;
+      var envId = 'https://comments.mibase.top/.netlify/functions/twikoo';
+      function run() {
+        if (!window.twikoo || !twikoo.getCommentsCount) return false;
+        twikoo.getCommentsCount({
+          envId: envId,
+          urls: [location.pathname],
+          includeReply: false
+        }).then(function (res) {
+          els.forEach(function (el) { el.innerText = res[0].count; });
+        }).catch(function () {});
+        return true;
+      }
+      var n = 0;
+      var t = setInterval(function () {
+        if (run() || ++n > 40) clearInterval(t);
+      }, 500);
+      setTimeout(run, 3000);
+      setTimeout(run, 6000);
+    })();
+    </script>
   sidebar_begin: # Inject code snippet right after <aside>
   sidebar_end: # Inject code snippet right before </aside>
 
