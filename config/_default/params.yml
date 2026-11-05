@@ -678,6 +678,555 @@ injector:
     }
     .main-nav-icon.icon { width: 26px; height: 26px; }
     .sidebar-menu-icon.icon { width: 32px; height: 32px; }
+    #loader .loading-taichi img { width: 120px; height: 120px; display: block; }
+    #loader .spinner-box .loading-word { letter-spacing: 4px; }
+    .photo-gallery-content img { opacity: 1 !important; visibility: visible !important; }
+    .photo-gallery-content a, .photo-gallery-content figure { opacity: 1 !important; }
+    </style>
+    <style>
+    /* ==========================================================================
+       Twikoo 2.0.17 评论样式 · 适配 Hugo 主题 Reimu（今汐配色 / 简约线条风）
+       --------------------------------------------------------------------------
+       用法：整段替换 config/_default/params.yml → injector.head_end 里旧的 Twikoo 样式
+       版本：按 twikoo@2.0.17 的真实 DOM 写（tk-* 类名、tk-textarea__inner、tk-input--group）
+       颜色：全部走 Reimu 主题变量，跟随「主题色 / 深色模式」自动变化
+            主色 --red-1（今汐青）｜正文 --color-default｜链接 --color-link
+       要点：twikoo 是在运行时才把自带样式插进 <head> 的（比本段晚插入），
+            所以这里统一用 #comments 提高优先级来覆盖，全篇不写 !important
+       换色：把 --tk-accent / --tk-accent-dark 改成金色即可（见下方注释）
+       ========================================================================== */
+
+    #comments .twikoo {
+        /* ↓↓↓ 只改这一块就能换配色，例：金色今汐 #c8a25a / #a9853f ↓↓↓ */
+        --tk-accent: var(--red-1);
+        --tk-accent-dark: var(--red-0);
+        /* ↑↑↑ 其余颜色都由 --color-default 自动推导，深浅色都不用管 ↑↑↑ */
+        --tk-accent-soft: color-mix(in srgb, var(--red-1) 12%, transparent);
+        --tk-line: color-mix(in srgb, var(--color-default) 15%, transparent);
+        --tk-line-strong: color-mix(in srgb, var(--color-default) 30%, transparent);
+        --tk-fill: color-mix(in srgb, var(--color-default) 4%, transparent);
+        --tk-muted: color-mix(in srgb, var(--color-default) 55%, transparent);
+        --tk-radius: 8px;
+
+        margin-top: 4px;
+        color: var(--color-default);
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    /* ---------- 标题：N 条评论 + 排序 + 搜索，下面一条细线 ---------- */
+    #comments .twikoo .tk-comments-title {
+        margin: 18px 0 4px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--tk-line);
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.4;
+    }
+
+    #comments .twikoo .tk-comments-count {
+        font-size: 15px;
+    }
+
+    #comments .twikoo .tk-comments-actions {
+        gap: 10px;
+    }
+
+    #comments .twikoo .tk-comments-sort {
+        font-size: 13px;
+    }
+
+    #comments .twikoo .tk-sort-item {
+        color: var(--tk-muted);
+        font-size: 13px;
+        cursor: var(--cursor-pointer, pointer) !important;
+    }
+
+    #comments .twikoo .tk-sort-item:hover,
+    #comments .twikoo .tk-sort-item:focus,
+    #comments .twikoo .tk-sort-item.__active {
+        color: var(--tk-accent);
+    }
+
+    /* ---------- 输入框 / 文本域：细边框 + 10px 圆角，聚焦用主题色描边 ---------- */
+    #comments .twikoo .tk-input__inner,
+    #comments .twikoo .tk-input-group__prepend,
+    #comments .twikoo .tk-input-group__append {
+        color: var(--color-default);
+        background: var(--tk-fill);
+        border: 1px solid var(--tk-line);
+        border-radius: var(--tk-radius);
+        box-shadow: none;
+        height: 38px;
+        line-height: 38px;
+        font-size: 14px;
+        transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #comments .twikoo .tk-input__inner {
+        cursor: var(--cursor-text, text) !important;
+    }
+
+    #comments .twikoo .tk-input__inner::placeholder {
+        color: var(--tk-muted);
+    }
+
+    #comments .twikoo .tk-input__inner:hover {
+        border-color: var(--tk-line-strong);
+    }
+
+    #comments .twikoo .tk-input__inner:focus {
+        border-color: var(--tk-accent);
+        background: transparent;
+        box-shadow: 0 0 0 3px var(--tk-accent-soft);
+        outline: none;
+    }
+
+    #comments .twikoo .tk-input__count {
+        color: var(--tk-muted);
+        font-size: 12px;
+    }
+
+    #comments .twikoo .tk-input__suffix {
+        color: var(--tk-muted);
+    }
+
+    #comments .twikoo .tk-input__icon:hover {
+        color: var(--tk-accent);
+    }
+
+    /* 文本域：单独还原高度，别被上面的 38px 顶掉 */
+    #comments .twikoo .tk-textarea .tk-input__inner {
+        height: auto;
+        min-height: 128px;
+        padding: 10px 12px;
+        line-height: 1.75;
+        resize: vertical;
+    }
+
+    /* 昵称 / 邮箱 / 网址：标签和输入框拼成一个框，不要双线 */
+    #comments .twikoo .tk-input-group__prepend {
+        padding: 0 12px;
+        color: var(--tk-muted);
+        border-right: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    #comments .twikoo .tk-input-group__append {
+        color: var(--tk-muted);
+        border-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    #comments .twikoo .tk-input--group > .tk-input-group__prepend + .tk-input__inner {
+        border-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    #comments .twikoo .tk-input--group > .tk-input__inner + .tk-input-group__append {
+        border-left: 0;
+    }
+
+    /* ---------- 搜索框：右下角的搜索图标留出空位 ---------- */
+    #comments .twikoo .tk-comments-search {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    #comments .twikoo .tk-comments-search .tk-input__inner {
+        height: 34px;
+        line-height: 34px;
+        padding-right: 32px;
+    }
+
+    /* ---------- 按钮：发送是实心主题色，其余是细描边 ---------- */
+    #comments .twikoo .tk-button {
+        padding: 9px 18px;
+        border: 1px solid var(--tk-line);
+        border-radius: var(--tk-radius);
+        background: transparent;
+        color: var(--color-default);
+        font-size: 14px;
+        line-height: 1.4;
+        box-shadow: none;
+        cursor: var(--cursor-pointer, pointer) !important;
+        transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    #comments .twikoo .tk-button:not(.tk-button--primary):not(.tk-button--text):hover,
+    #comments .twikoo .tk-button:not(.tk-button--primary):not(.tk-button--text):focus {
+        color: var(--tk-accent);
+        border-color: var(--tk-accent);
+        background: var(--tk-accent-soft);
+    }
+
+    #comments .twikoo .tk-button--primary {
+        color: #fff;
+        background: var(--tk-accent);
+        border-color: var(--tk-accent);
+    }
+
+    #comments .twikoo .tk-button--primary:not(.is-disabled):hover,
+    #comments .twikoo .tk-button--primary:not(.is-disabled):focus {
+        color: #fff;
+        background: var(--tk-accent-dark);
+        border-color: var(--tk-accent-dark);
+    }
+
+    #comments .twikoo .tk-button--primary.is-disabled {
+        opacity: 0.45;
+    }
+
+    #comments .twikoo .tk-button--text {
+        padding-left: 6px;
+        padding-right: 6px;
+        color: var(--tk-muted);
+        background: transparent;
+        border-color: transparent;
+    }
+
+    #comments .twikoo .tk-button--text:not(.is-disabled):hover,
+    #comments .twikoo .tk-button--text:not(.is-disabled):focus {
+        color: var(--tk-accent);
+        background: transparent;
+    }
+
+    #comments .twikoo .tk-button--small {
+        padding: 7px 14px;
+        font-size: 13px;
+    }
+
+    /* ---------- 发表评论处的表情 / 图片 / Markdown 图标 ---------- */
+    #comments .twikoo .tk-submit-action-icon {
+        width: 1.35em;
+        margin-right: 14px;
+        color: var(--tk-muted);
+        cursor: var(--cursor-pointer, pointer) !important;
+    }
+
+    #comments .twikoo .tk-submit-action-icon:hover,
+    #comments .twikoo .tk-submit-action-icon.__markdown:hover {
+        color: var(--tk-accent);
+    }
+
+    #comments .twikoo .tk-row.actions {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    /* ---------- 评论列表：没有卡片，只靠细线分隔 ---------- */
+    #comments .twikoo .tk-comments-container {
+        min-height: 0;
+    }
+
+    #comments .twikoo .tk-comment {
+        padding: 18px 0;
+        margin-top: 0;
+        border-top: 1px solid var(--tk-line);
+        align-items: flex-start;
+    }
+
+    /* 第一条评论不画顶线（2.0.17 的结构：.tk-comments-container 里先标题后评论） */
+    #comments .twikoo .tk-comments-title + .tk-comment,
+    #comments .twikoo .tk-comments-container > .tk-comment:first-child {
+        padding-top: 6px;
+        border-top: 0;
+    }
+
+    /* 回复：缩进 + 一条竖线 */
+    #comments .twikoo .tk-replies {
+        margin-top: 10px;
+    }
+
+    #comments .twikoo .tk-replies .tk-comment {
+        padding: 12px 0 4px 14px;
+        border-top: 0;
+        border-left: 2px solid var(--tk-line);
+    }
+
+    #comments .twikoo .tk-replies .tk-comment + .tk-comment {
+        margin-top: 10px;
+    }
+
+    /* ---------- 头像 / 昵称 / 标签 / 时间 ---------- */
+    #comments .twikoo .tk-avatar {
+        border-radius: var(--tk-radius);
+        overflow: hidden;
+    }
+
+    #comments .twikoo .tk-avatar.tk-has-avatar {
+        background-color: var(--tk-accent-soft);
+    }
+
+    #comments .twikoo .tk-avatar.tk-clickable {
+        cursor: var(--cursor-pointer, pointer) !important;
+    }
+
+    #comments .twikoo .tk-nick,
+    #comments .twikoo .tk-nick-link {
+        color: var(--color-default);
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    #comments .twikoo .tk-nick-link {
+        text-decoration: none;
+    }
+
+    #comments .twikoo .tk-nick-link:hover {
+        color: var(--tk-accent);
+    }
+
+    /* 博主 / 置顶 / 待审 等小标签：描边小框，不带底色 */
+    #comments .twikoo .tk-tag,
+    #comments .twikoo .tk-tag-green,
+    #comments .twikoo .tk-tag-blue,
+    #comments .twikoo .tk-tag-yellow,
+    #comments .twikoo .tk-tag-red {
+        padding: 0 6px;
+        border: 1px solid currentColor;
+        border-radius: 6px;
+        background: transparent;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    #comments .twikoo .tk-tag {
+        color: var(--tk-accent);
+    }
+
+    #comments .twikoo .tk-time,
+    #comments .twikoo .tk-extras,
+    #comments .twikoo .tk-extra {
+        color: var(--tk-muted);
+    }
+
+    #comments .twikoo .tk-time {
+        font-size: 12.5px;
+    }
+
+    #comments .twikoo .tk-extras {
+        font-size: 12.5px;
+    }
+
+    /* ---------- 正文：就是普通文字，不套背景 ---------- */
+    #comments .twikoo .tk-content {
+        margin-top: 6px;
+        font-size: 15px;
+        line-height: 1.8;
+        color: var(--color-default);
+    }
+
+    #comments .twikoo .tk-replies .tk-content {
+        font-size: 14px;
+    }
+
+    #comments .twikoo .tk-content a {
+        color: var(--color-link);
+        text-decoration: none;
+        word-break: break-word;
+    }
+
+    #comments .twikoo .tk-content a:hover {
+        text-decoration: underline;
+    }
+
+    #comments .twikoo .tk-content code:not(pre code) {
+        padding: 1px 4px;
+        border-radius: 6px;
+        background: var(--color-code-background);
+        color: var(--color-link);
+    }
+
+    #comments .twikoo .tk-content blockquote {
+        margin: 10px 0;
+        padding: 2px 12px;
+        border-left: 3px solid var(--red-3);
+        border-radius: 0 var(--tk-radius) var(--tk-radius) 0;
+        background: var(--red-5-5);
+        color: var(--tk-muted);
+    }
+
+    #comments .twikoo .tk-content img {
+        max-width: min(100%, 320px);
+        max-height: 320px;
+        border-radius: var(--tk-radius);
+    }
+
+    #comments .twikoo .tk-owo-emotion {
+        width: 1.9em;
+    }
+
+    /* ---------- 回复 / 点赞：纯文字，hover 变主题色 ---------- */
+    #comments .twikoo .tk-actions {
+        margin-left: 12px;
+        font-size: 13px;
+    }
+
+    #comments .twikoo .tk-action-link,
+    #comments .twikoo .tk-actions button {
+        color: var(--tk-muted);
+        font-size: 13px;
+        cursor: var(--cursor-pointer, pointer) !important;
+    }
+
+    #comments .twikoo .tk-action-icon {
+        color: inherit;
+    }
+
+    #comments .twikoo .tk-action-link:hover,
+    #comments .twikoo .tk-actions button:hover {
+        color: var(--tk-accent);
+    }
+
+    #comments .twikoo .tk-action-count {
+        font-size: 12px;
+    }
+
+    /* 触屏没有 hover，操作按钮直接显示出来 */
+    @media (hover: none) {
+        #comments .twikoo .tk-actions {
+            display: inline;
+        }
+    }
+
+    /* ---------- 展开更多：一条安静的居中文案 ---------- */
+    #comments .twikoo .tk-expand {
+        padding: 10px 0;
+        background: transparent;
+        color: var(--tk-muted);
+        font-size: 13px;
+    }
+
+    #comments .twikoo .tk-expand:hover,
+    #comments .twikoo .tk-expand:active {
+        background: transparent;
+        color: var(--tk-accent);
+    }
+
+    /* ---------- 暂无评论 / 分页 / Powered by ---------- */
+    #comments .twikoo .tk-comments-no {
+        padding: 18px 0;
+        color: var(--tk-muted);
+        font-size: 14px;
+    }
+
+    #comments .twikoo .tk-pagination {
+        margin-top: 14px;
+        font-size: 13px;
+    }
+
+    #comments .twikoo .tk-pagination-pager {
+        border-radius: var(--tk-radius);
+        color: var(--color-default);
+        cursor: var(--cursor-pointer, pointer) !important;
+    }
+
+    #comments .twikoo .tk-pagination-pager:hover {
+        background: var(--tk-accent-soft);
+        color: var(--tk-accent);
+    }
+
+    #comments .twikoo .tk-pagination-pager.__current {
+        background: var(--tk-accent);
+        color: #fff;
+    }
+
+    #comments .twikoo .tk-pagination .tk-input__inner {
+        height: 30px;
+        padding: 0;
+        line-height: 30px;
+        text-align: center;
+    }
+
+    #comments .twikoo .tk-footer {
+        margin-top: 14px;
+        color: var(--tk-muted);
+        font-size: 12px;
+    }
+
+    #comments .twikoo .tk-footer a {
+        color: var(--tk-muted);
+    }
+
+    #comments .twikoo .tk-footer a:hover {
+        color: var(--tk-accent);
+    }
+
+    /* ---------- 表情面板 / 加载动画 ---------- */
+    #comments .twikoo .OwO .OwO-body {
+        border: 1px solid var(--tk-line);
+        border-radius: var(--tk-radius);
+        box-shadow: var(--shadow-card);
+    }
+
+    #comments .twikoo .OwO .OwO-item {
+        cursor: var(--cursor-pointer, pointer) !important;
+    }
+
+    #comments .twikoo .tk-owo-preview-panel {
+        border-color: var(--tk-line);
+        border-radius: var(--tk-radius);
+    }
+
+    #comments .twikoo .tk-loading-spinner .path {
+        stroke: var(--tk-accent);
+    }
+
+    /* ---------- 深色模式：头像和表情不要被主题的 brightness(70%) 压暗 ---------- */
+    [data-theme="dark"] #comments .twikoo img {
+        filter: none;
+    }
+
+    /* ---------- 管理面板（评论管理 / 登录）：深色遮罩上保持浅色可读 ---------- */
+    #comments .twikoo .tk-admin .tk-input__inner,
+    #comments .twikoo .tk-admin .tk-input-group__prepend {
+        color: #fff;
+        background: rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    #comments .twikoo .tk-admin .tk-input__inner:focus {
+        background: rgba(0, 0, 0, 0.3);
+        border-color: #fff;
+        box-shadow: none;
+    }
+
+    #comments .twikoo .tk-admin .tk-button {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    #comments .twikoo .tk-admin .tk-button:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.16);
+        border-color: rgba(255, 255, 255, 0.55);
+    }
+
+    #comments .twikoo .tk-admin .tk-button--primary {
+        color: #fff;
+        background: var(--tk-accent);
+        border-color: var(--tk-accent);
+    }
+
+    /* ---------- 手机端：留白小一点 ---------- */
+    @media screen and (max-width: 767px) {
+        #comments .twikoo .tk-comments-title {
+            font-size: 16px;
+        }
+
+        #comments .twikoo .tk-comment {
+            padding: 14px 0;
+        }
+
+        #comments .twikoo .tk-textarea .tk-input__inner {
+            min-height: 104px;
+        }
+    }
     </style>
   body_begin: # Inject code snippet right after <body>
   body_end: # Inject code snippet right before </body>
