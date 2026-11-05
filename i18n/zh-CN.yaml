@@ -2,3 +2,7 @@
   translation: 画廊
 - id: anime
   translation: 追番
+- id: archive_a
+  translation: 归档  ｜  Archives
+#- id: travelling
+#  translation: 开往
