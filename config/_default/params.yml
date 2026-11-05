@@ -22,9 +22,9 @@ menu:
     url: "about"
     icon:
 
- # - name: travelling
- #   url: "https://www.travellings.cn/go.html"
- #   icon:
+  - name: travelling
+    url: "https://www.travellings.cn/go.html"
+    icon:
 # friend links
 friends:
   shuffle: false  # whether to shuffle the friend links

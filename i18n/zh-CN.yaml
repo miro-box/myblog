@@ -4,5 +4,5 @@
   translation: 追番
 - id: archive_a
   translation: 归档  ｜  Archives
-#- id: travelling
-#  translation: 开往
+- id: travelling
+  translation: 开往
