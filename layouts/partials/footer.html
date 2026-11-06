@@ -3,43 +3,64 @@
 {{- range $posts -}}
   {{- $totalWordCount = add $totalWordCount .WordCount -}}
 {{- end -}}
+{{- $slogan := .Site.Params.footer.slogan | default "纸鸢轻飞远" -}}
+{{- $start := .Site.Params.footer.start | default "2023-03-05" -}}
 
 <style>
-#footer-info { --gold: #c9a45c; font-size: .72em; }
-#footer-info div { margin: 3px 0; }
+#footer-info {
+  --gold: #c9a45c;
+  font-size: .8em;
+  padding: 6px 12px 34px;
+  line-height: 1.7;
+}
+#footer-info > div { margin: 0; }
+
+/* title */
 #footer-info .footer-title {
-  font-size: 1.1em;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2px 0;
+  font-size: 1.15em;
   font-weight: 700;
   letter-spacing: 1px;
-  align-items: center;
 }
 #footer-info .footer-title .footer-slogan {
   font-weight: 400;
-  font-size: .85em;
-  letter-spacing: 2px;
+  font-size: .82em;
+  letter-spacing: 3px;
   opacity: .7;
-  margin-left: 8px;
-  padding-left: 8px;
+  margin-left: 10px;
+  padding-left: 10px;
   border-left: 1px solid var(--gold);
 }
-#footer-info .footer-title .footer-info-sep { width: 18px; height: 18px; }
+#footer-info .footer-title .footer-info-sep { width: 18px; height: 18px; margin: 0 4px; }
+
+/* gold rule */
 #footer-info .footer-rule {
-  width: 90px;
+  width: 120px;
   height: 1px;
-  margin: 6px auto 6px;
+  margin: 9px auto 9px;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  opacity: .7;
+  opacity: .75;
 }
+
+/* info lines */
 #footer-info .footer-line-text {
   flex-wrap: wrap;
+  justify-content: center;
   align-items: baseline;
-  opacity: .85;
+  gap: 0 2px;
+  margin: 2px 0;
+  opacity: .88;
+  letter-spacing: .4px;
 }
+#footer-info .footer-item { white-space: nowrap; }
 #footer-info .footer-num {
   color: var(--red-1);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  margin: 0 1px;
+  margin: 0 2px;
   padding: 0 1px;
   border-bottom: 1px solid rgba(201, 164, 92, .5);
 }
@@ -47,13 +68,30 @@
   display: inline-block;
   width: 4px;
   height: 4px;
-  margin: 0 8px;
+  margin: 0 10px;
   background: var(--gold);
   transform: rotate(45deg) translateY(-1px);
   opacity: .8;
 }
-#footer-info .footer-powered { opacity: .7; }
-#footer-info .footer-beian { opacity: .7; margin-top: 4px; }
+
+/* small print */
+#footer-info .footer-powered { opacity: .65; margin-top: 4px; }
+#footer-info .footer-beian { opacity: .7; margin-top: 8px; font-size: .95em; }
+
+/* phones: no diamonds, tidy wrapping, keep clear of the back-to-top button */
+@media (max-width: 600px) {
+  #footer-info { font-size: .84em; padding-bottom: 64px; }
+  #footer-info .footer-title { flex-direction: column; }
+  #footer-info .footer-title .footer-slogan {
+    margin: 4px 0 0;
+    padding: 0;
+    border: 0;
+    letter-spacing: 4px;
+  }
+  #footer-info .footer-title .footer-name-row { display: flex; align-items: center; justify-content: center; }
+  #footer-info .footer-dot { display: none; }
+  #footer-info .footer-stats .footer-item { margin: 0 8px; }
+}
 </style>
 
 <footer id="footer" aria-label="Site footer">
@@ -66,38 +104,41 @@
     {{- end -}}
 
     <div class="footer-title">
-      <span class="icon-copyright"></span>
-      {{- if eq (string .Site.Params.footer.since) (now.Format .Site.Params.yearFormat) -}}
-        {{- now.Format .Site.Params.yearFormat -}}
-      {{- else -}}
-        {{- .Site.Params.footer.since -}}&ndash;{{- now.Format .Site.Params.yearFormat -}}
-      {{- end -}}
-      {{- if eq .Site.Params.footer.icon.url false -}}
-        &nbsp;
-      {{- else -}}
-        <span class="footer-info-sep {{ if .Site.Params.footer.icon.rotate }}rotate{{ end }}"></span>
-      {{- end -}}
-      {{ .Site.Title }}<span class="footer-slogan">纸鸢轻飞远</span>
+      <span class="footer-name-row">
+        <span class="icon-copyright"></span>
+        {{- if eq (string .Site.Params.footer.since) (now.Format .Site.Params.yearFormat) -}}
+          {{- now.Format .Site.Params.yearFormat -}}
+        {{- else -}}
+          {{- .Site.Params.footer.since -}}&ndash;{{- now.Format .Site.Params.yearFormat -}}
+        {{- end -}}
+        {{- if eq .Site.Params.footer.icon.url false -}}
+          &nbsp;
+        {{- else -}}
+          <span class="footer-info-sep {{ if .Site.Params.footer.icon.rotate }}rotate{{ end }}"></span>
+        {{- end -}}
+        {{ .Site.Title }}
+      </span>
+      <span class="footer-slogan">{{ $slogan }}</span>
     </div>
 
     <div class="footer-rule"></div>
 
-    <div class="footer-line-text">
-      本博客已稳定运行
-      <span class="footer-num" id="run-days">--</span>天
-      <span class="footer-num" id="run-hours">--</span>小时
-      <span class="footer-num" id="run-minutes">--</span>分钟
+    <div class="footer-line-text footer-run">
+      <span class="footer-item">本博客已稳定运行
+        <span class="footer-num" id="run-days">--</span>天
+        <span class="footer-num" id="run-hours">--</span>小时
+        <span class="footer-num" id="run-minutes">--</span>分钟
+      </span>
     </div>
 
-    <div class="footer-line-text">
-      共发表<span class="footer-num">{{ len $posts }}</span>篇文章
+    <div class="footer-line-text footer-stats">
+      <span class="footer-item">共发表<span class="footer-num">{{ len $posts }}</span>篇文章</span>
       <span class="footer-dot"></span>
-      总计<span class="footer-num">{{ if gt $totalWordCount 1000 }}{{ printf "%.0f" (div $totalWordCount 1000.0) }}k{{ else }}{{ $totalWordCount }}{{ end }}</span>字
-      {{- if .Site.Params.footer.busuanzi }}
-      <span id="busuanzi_container_site_pv" style="display:none">
-        <span class="footer-dot"></span>本站总访问量<span class="footer-num" id="busuanzi_value_site_pv"></span>次
+      <span class="footer-item">总计<span class="footer-num">{{ if gt $totalWordCount 1000 }}{{ printf "%.0f" (div $totalWordCount 1000.0) }}k{{ else }}{{ $totalWordCount }}{{ end }}</span>字</span>
+      <span id="vercount_container_site_pv" style="display:none">
+        <span class="footer-dot"></span>
+        <span class="footer-item">本站总访问量<span class="footer-num" id="vercount_value_site_pv"></span>次</span>
       </span>
-      {{- end }}
     </div>
 
     {{- if .Site.Params.footer.powered -}}
@@ -135,11 +176,11 @@
     {{- if .Site.Params.moe_icp.icpnumber -}}
       <div class="footer-beian">
         <img
-          style="object-fit: contain;margin-right: 2px;"
+          style="object-fit: contain;margin-right: 2px;vertical-align: middle;"
           src="https://icp.gov.moe/images/ico64.png"
           alt=""
-          width="24"
-          height="24"
+          width="20"
+          height="20"
         />
         <a
           target="_blank"
@@ -150,9 +191,23 @@
       </div>
     {{- end -}}
   </div>
+  <script defer src="https://events.vercount.one/js"></script>
   <script>
     (function () {
-      var start = new Date("2023-03-05T00:00:00+08:00").getTime();
+      var pv = document.getElementById("vercount_value_site_pv"),
+          box = document.getElementById("vercount_container_site_pv"),
+          tries = 0;
+      var timer = setInterval(function () {
+        if (pv && /^\d/.test((pv.textContent || "").trim())) {
+          box.style.display = "inline";
+          clearInterval(timer);
+        } else if (++tries > 40) {
+          clearInterval(timer);
+        }
+      }, 500);
+    })();
+    (function () {
+      var start = new Date("{{ $start }}T00:00:00+08:00").getTime();
       var d = document.getElementById("run-days"),
           h = document.getElementById("run-hours"),
           m = document.getElementById("run-minutes");

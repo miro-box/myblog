@@ -15,6 +15,10 @@ menu:
     url: "photo"
     icon:
 
+  - name: anime
+    url: "anime"
+    icon:
+
   - name: friend
     url: "links"
     icon:
@@ -68,9 +72,7 @@ banner: "images/banner.webp"
 banner_srcset:
   enable: true
   srcset:
-    - src: "images/banner-600w.webp"
-      media: "(max-width: 479px)"
-    - src: "images/banner-800w.webp"
+    - src: "images/banner-mobile.png"
       media: "(max-width: 799px)"
     - src: "images/banner.webp"
       media: "(min-width: 800px)"
@@ -113,6 +115,8 @@ copyright:
 #   All website licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></div>
 
 footer:
+  slogan: 纸鸢轻飞远
+  start: "2023-03-05"
   since: 2023 # 2023-current year
   powered: false
   count: true
@@ -240,10 +244,10 @@ icon_font: 4552607_ex15nbittbh
 
 # Custom Font
 custom_font:
-  enable: false
+  enable: true
   article:
-    # - css: https://fontsapi.zeoseven.com/292/main/result.css # font css
-    #   name: LXGW WenKai # font name
+    - css: https://fontsapi.zeoseven.com/292/main/result.css
+      name: LXGW WenKai
   code:
 
 # https://fonts.google.com/
@@ -664,7 +668,66 @@ home_categories:
 injector:
   head_begin: # Inject code snippet right after <head>
   head_end: |-
+    
     <style>
+    .sidebar-menu { margin: 14px 0; }
+    .sidebar-menu .sidebar-menu-link-wrap {
+      position: relative;
+      width: 78%;
+      max-width: 220px;
+      margin: 3px auto;
+      padding: 11px 16px;
+      border: 0;
+      border-radius: 10px;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 12px;
+      background: transparent;
+      transition: background .25s, transform .25s;
+    }
+    .sidebar-menu .sidebar-menu-link-wrap:hover { border: 0; background: var(--red-5); }
+    .sidebar-menu .sidebar-menu-link-wrap.link-active {
+      border: 0;
+      background: var(--red-5);
+      box-shadow: none;
+      opacity: 1;
+    }
+    .sidebar-menu .sidebar-menu-link-wrap.link-active::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 22%; bottom: 22%;
+      width: 3px;
+      border-radius: 3px;
+      background: #c9a45c;
+    }
+    .sidebar-menu .sidebar-menu-link-wrap.link-active .sidebar-menu-link { color: var(--red-0); font-weight: 700; }
+    .sidebar-menu .sidebar-menu-link-wrap.link-active .sidebar-menu-icon { color: var(--red-1); }
+    .sidebar-menu .sidebar-menu-link { font-size: 15px; letter-spacing: 4px; text-align: left; flex: 1; }
+    .sidebar-menu .sidebar-menu-icon.icon {
+      width: 20px; height: 20px; padding: 0; flex: none;
+      transform: none !important;
+    }
+    .sidebar-menu .sidebar-menu-link-wrap:hover .sidebar-menu-icon.icon { transform: scale(1.12) !important; }
+    .main-nav-icon.icon.rotate { transform: none !important; }
+
+    ::selection { background: rgba(201, 164, 92, 0.35); }
+
+    html { scrollbar-color: var(--red-3) transparent; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-thumb { background: var(--red-3); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #c9a45c; }
+
+    .article-entry a { transition: color .2s; }
+    .article-entry a:hover { color: #b8903f; text-decoration: none; border-bottom: 1px solid #c9a45c; }
+
+    .article-entry h2 {
+      padding-bottom: 8px;
+      border-bottom: 1px solid transparent;
+      border-image: linear-gradient(90deg, #c9a45c, transparent 70%) 1;
+    }
+
+    .article-entry blockquote { border-left-color: #c9a45c; }
+    
     #mobile-nav .sidebar-wrap {
       justify-content: flex-start;
       max-height: none;
@@ -678,6 +741,11 @@ injector:
       background-color: currentColor;
       -webkit-mask: url(/images/knot.svg) center / contain no-repeat;
       mask: url(/images/knot.svg) center / contain no-repeat;
+    }
+    a.main-nav-link-wrap[href*="travellings"] .main-nav-icon.icon,
+    .sidebar-menu-link-dummy[href*="travellings"] + .sidebar-menu-icon.icon {
+      -webkit-mask: url(/images/train.svg) center / contain no-repeat;
+      mask: url(/images/train.svg) center / contain no-repeat;
     }
     .main-nav-icon.icon { width: 26px; height: 26px; }
     .sidebar-menu-icon.icon { width: 32px; height: 32px; }
@@ -1352,6 +1420,40 @@ injector:
         }
     }
     .reimu-bg { opacity: 0.85; }
+        #header-nav { border-bottom: 1px solid rgba(201, 164, 92, .35); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+    #main-nav .main-nav-link-wrap {
+      position: relative;
+      padding: 0 16px;
+      align-items: center;
+      opacity: .9;
+    }
+    #main-nav .main-nav-link-wrap::after {
+      content: "";
+      position: absolute;
+      left: 50%; bottom: 14px;
+      width: 0; height: 2px;
+      border-radius: 2px;
+      background: #c9a45c;
+      transform: translateX(-50%);
+      transition: width .3s;
+    }
+    #main-nav .main-nav-link-wrap:hover::after,
+    #main-nav .main-nav-link-wrap.nav-current::after { width: 46%; }
+    #main-nav .main-nav-link-wrap.nav-current { opacity: 1; }
+    #main-nav .main-nav-link {
+      padding: 20px 4px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      opacity: .85;
+    }
+    #main-nav .main-nav-link-wrap:hover .main-nav-link,
+    #main-nav .main-nav-link-wrap.nav-current .main-nav-link { opacity: 1; }
+    #main-nav .main-nav-icon.icon {
+      width: 18px; height: 18px; padding: 0; margin-right: 6px;
+      transform: none !important;
+    }
+    #main-nav .main-nav-link-wrap:hover .main-nav-icon.icon { transform: scale(1.12) !important; }
     </style>
   body_begin: # Inject code snippet right after <body>
   body_end: |-
@@ -1377,6 +1479,17 @@ injector:
       }, 500);
       setTimeout(run, 3000);
       setTimeout(run, 6000);
+    })();
+    </script>
+    <script>
+    (function () {
+      var p = location.pathname.replace(/\/index\.html$/, '').replace(/\/+$/, '') || '/';
+      document.querySelectorAll('.main-nav-link-wrap').forEach(function (a) {
+        var h = a.getAttribute('href') || '';
+        try { h = new URL(h, location.href).pathname; } catch (e) {}
+        h = h.replace(/\/+$/, '') || '/';
+        if (h === p || (h !== '/' && p.indexOf(h + '/') === 0)) a.classList.add('nav-current');
+      });
     })();
     </script>
   sidebar_begin: # Inject code snippet right after <aside>
