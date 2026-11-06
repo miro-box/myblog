@@ -670,6 +670,58 @@ injector:
   head_end: |-
     
     <style>
+    /* 横幅从顶栏下面开始，不被顶栏盖住 */
+    #header { margin-top: 56px; }
+    @media (min-width: 800px) { #header { margin-top: 52px; } }
+    /* 侧栏跟随顶栏：顶栏出现时让位，收起时回到上方 */
+    .sidebar-wrapper-container.sticky {
+      --sb-top: 72px;
+      top: var(--sb-top);
+      max-height: calc(100vh - var(--sb-top) - 20px);
+      transition: top .3s ease, max-height .3s ease;
+    }
+    body:has(#header-nav.header-nav-hidden) .sidebar-wrapper-container.sticky {
+      --sb-top: 20px;
+    }
+
+    /* 目录 */
+    .toc-title {
+      display: flex; align-items: center; gap: 8px;
+      color: var(--red-2); font-size: 15px; letter-spacing: 3px;
+      padding: 8px 0 10px; margin-bottom: 4px;
+      border-bottom: 1px solid rgba(201, 164, 92, .35);
+    }
+    .toc-title::before {
+      content: ""; width: 7px; height: 7px; background: #c9a45c;
+      transform: rotate(45deg); flex: none;
+    }
+    .sidebar-toc-wrapper {
+      scrollbar-width: thin; scrollbar-color: rgba(34, 137, 160, .35) transparent;
+      padding-right: 4px;
+    }
+    .sidebar-toc-wrapper li {
+      position: relative; padding: 1px 0 1px 16px; margin: 7px 0;
+      white-space: normal; font-size: 13.5px; line-height: 1.5;
+    }
+    .sidebar-toc-wrapper li::before {
+      position: absolute; left: 2px; top: .62em; margin: 0;
+      width: 6px; height: 6px; background: #c9a45c;
+      transform: rotate(45deg); box-shadow: none; opacity: .7;
+    }
+    .sidebar-toc-wrapper li:hover::before { width: 6px; height: 6px; border-radius: 0; opacity: 1; }
+    .sidebar-toc-wrapper li > a {
+      display: -webkit-box; -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden;
+      transition: transform .25s, color .25s;
+    }
+    .sidebar-toc-wrapper li:hover > a { transform: translateX(3px); }
+    .sidebar-toc-wrapper .active > a,
+    .sidebar-toc-wrapper .current > a { font-weight: 700; }
+    .sidebar-toc-wrapper .active::before,
+    .sidebar-toc-wrapper .current::before { opacity: 1; box-shadow: 0 0 0 3px rgba(201, 164, 92, .22); }
+    .sidebar-btn-wrapper .sidebar-toc-btn,
+    .sidebar-btn-wrapper .sidebar-common-btn { margin: 12px 10px; border-radius: 12px; }
+    .sidebar-btn-wrapper .current { outline: 2px solid #c9a45c; outline-offset: 2px; }
     .sidebar-menu { margin: 14px 0; }
     .sidebar-menu .sidebar-menu-link-wrap {
       position: relative;
