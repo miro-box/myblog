@@ -9,7 +9,7 @@ categories:
   - "折腾日常"
 tags:
   - "Hugo"
-  - "博客"
+  - "主题定制"
 toc: true
 hidden: false
 comments: true

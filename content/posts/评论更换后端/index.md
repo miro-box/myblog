@@ -10,8 +10,6 @@ slug: "migrate-giscus-to-twikoo-netlify"         # 网址后缀
 categories:                                    # 分类：只选 1 个
     - "折腾日常"                               #   例：折腾手记 / 嵌入式 / 网安 / 生活随笔
 tags:                                          # 标签：可多个
-    - "Twikoo"
-    - "Netlify"
     - "Hugo"
     - "Cloudflare"
     - "博客折腾"

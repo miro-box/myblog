@@ -10,7 +10,6 @@ categories:
 tags:
     - "Linux"
     - "磁盘"
-    - "lsof"
     - "排障"
  
 cover: "/p/df-du-mismatch/cover.webp"

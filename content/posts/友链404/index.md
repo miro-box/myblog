@@ -8,10 +8,8 @@ slug: "friends-links-become-404"
 categories:
     - "生活随笔"
 tags:
-    - "独立博客"
-    - "友链"
     - "Hugo"
-    - "建站"
+    - "博客建站"
 
 cover: "/p/friends-links-become-404/cover.webp"
 

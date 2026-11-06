@@ -9,7 +9,6 @@ categories:
     - "服务器运维"
 tags:
     - "Linux"
-    - "cron"
     - "Shell"
     - "排障"
 

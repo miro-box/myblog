@@ -9,11 +9,8 @@ slug: "gallery-5000-wuthering-waves"
 categories:
     - "折腾日常"
 tags:
-    - "博客"
     - "图库"
-    - "Cloudflare R2"
-    - "鸣潮"
-    - "前端"
+    - "Cloudflare"
 
 cover: "/p/gallery-5000-wuthering-waves/cover.webp"
 

@@ -5,7 +5,9 @@ draft: false
 description: '记录个人独立博客「寻 Mi 处」的完整折腾过程：Hugo Stack 主题配置、本地双字体混排、静态资源与 HTTPS 头像直链、友链小广场搭建及一些浏览器的奇葩小坑。'
 slug: 'blog-building-and-customization-log'
 categories: ['折腾日常', 'Hugo']
-tags: ['Hugo', '博客美化', '前端', 'CSS']
+tags:
+    - 'Hugo'
+    - '博客折腾'
 comments: true
 cover: "/p/blog-building-and-customization-log/cover.webp"
 ---
