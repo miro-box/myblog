@@ -13,14 +13,10 @@ tags:
 
 cover: "/p/friends-links-become-404/cover.webp"
 
-toc: false
+toc: true
 hidden: false
 comments: true
 ---
-
-# 当第一批互换友链的人，都悄悄变成了 404
-
-> ——数年建站，终懂赛博留白
 
 ## 一、始于白嫖，陷于方寸雕琢
 

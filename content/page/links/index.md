@@ -5,6 +5,7 @@ url: "/links/"
 description: ""
 date: 2026-10-30
 comments: true
+copyright: false
 ---
 
 {{< friendsLink >}}

@@ -6,6 +6,7 @@ layout: "anime"
 slug: "anime"
 url: "/anime/"
 comments: false 
+copyright: false
 ---
 
 {{< bangumi >}}
