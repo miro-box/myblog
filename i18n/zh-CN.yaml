@@ -6,3 +6,7 @@
   translation: 归档  ｜  Archives
 - id: travelling
   translation: 开往
+- id: not_found.title
+  translation: 4 0 4 ｜ 纸鸢迷途
+- id: not_found.subtitle
+  translation: 线断了，点这里回到首页

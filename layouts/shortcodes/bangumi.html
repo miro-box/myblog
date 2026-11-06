@@ -140,145 +140,175 @@
 </div>
 
 <style>
+.bangumi-page {
+  /* map the old theme's variables onto Reimu's palette */
+  --bgm-card: var(--color-wrap, #fff);
+  --bgm-text: var(--color-default, #444);
+  --bgm-text-2: var(--grey-9, #888);
+  --bgm-accent: var(--red-1, #2289a0);
+  --bgm-accent-soft: var(--red-5, #def3f7);
+  --bgm-gold: #c9a45c;
+  --bgm-line: var(--color-border, #7bc5d5);
+  --bgm-shadow: var(--shadow-card, 0 2px 8px rgba(0,0,0,.06));
+  --bgm-shadow-hover: var(--shadow-card-hover, 0 8px 24px rgba(0,0,0,.1));
+  margin: 12px 0 24px;
+}
 .bangumi-page [hidden] { display: none !important; }
-.bangumi-page { margin: 12px 0 24px; }
+.bangumi-page img { opacity: 1 !important; margin: 0; max-width: none; border-radius: 0; animation: none !important; }
+.bangumi-page a, .bangumi-page a:hover { border-bottom: 0 !important; text-decoration: none; }
 
-/* 头部卡片 */
+/* hero */
 .bangumi-hero {
-    display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
-    padding: 34px 40px; margin-bottom: 28px;
-    background: var(--card-background); border-radius: 18px; box-shadow: var(--shadow-l2);
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+  padding: 30px 36px; margin-bottom: 24px;
+  background: var(--bgm-card); border-radius: 14px; box-shadow: var(--bgm-shadow);
+  border-left: 4px solid var(--bgm-gold);
 }
-.bangumi-title { font-size: 34px; font-weight: 800; line-height: 1.2; color: var(--card-text-color-main); }
+.bangumi-title { font-size: 28px; font-weight: 800; line-height: 1.25; letter-spacing: 2px; color: var(--bgm-text); }
 .bangumi-title::after {
-    content: ""; display: block; width: 44px; height: 7px; border-radius: 999px;
-    background: var(--accent-color, #ff5a5f); margin: 16px 0 22px;
+  content: ""; display: block; width: 56px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--bgm-gold), var(--bgm-accent)); margin: 12px 0 14px;
 }
-.bangumi-desc { margin: 0 0 18px; font-size: 17px; color: var(--card-text-color-secondary); }
-.bangumi-stats { font-size: 15px; color: var(--card-text-color-secondary); }
-.bangumi-home { color: var(--accent-color, #ff5a5f); font-weight: 700; text-decoration: underline; white-space: nowrap; }
+.bangumi-desc { margin: 0 0 10px; font-size: 15px; color: var(--bgm-text-2); }
+.bangumi-stats { font-size: 13.5px; color: var(--bgm-text-2); }
+.bangumi-home {
+  color: var(--bgm-accent); font-weight: 700; font-size: 14px; white-space: nowrap;
+  padding: 7px 16px; border: 1px solid var(--bgm-line); border-radius: 10px; transition: background .2s, color .2s;
+}
+.bangumi-page a.bangumi-home { border-bottom: 1px solid var(--bgm-line) !important; }
+.bangumi-home:hover { background: var(--bgm-accent); color: #fff !important; }
 
-/* 工具栏 */
-.bangumi-toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 26px; }
-.bangumi-tabs { display: flex; gap: 12px; flex-wrap: wrap; }
+/* toolbar */
+.bangumi-toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+.bangumi-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
 .bangumi-tab {
-    padding: 9px 26px; border-radius: 999px; border: 1px solid transparent; cursor: pointer;
-    background: var(--card-background); box-shadow: var(--shadow-l1);
-    color: var(--card-text-color-secondary); font-size: 16px; font-weight: 700; font-family: inherit;
-    transition: color .2s, border-color .2s;
+  position: relative; padding: 8px 20px; border-radius: 10px; border: 0; cursor: pointer;
+  background: var(--bgm-card); box-shadow: var(--bgm-shadow);
+  color: var(--bgm-text-2); font-size: 15px; font-weight: 700; font-family: inherit; letter-spacing: 2px;
+  transition: color .2s, background .2s;
 }
-.bangumi-tab:hover { color: var(--accent-color, #ff5a5f); }
-.bangumi-tab.is-active { color: var(--accent-color, #ff5a5f); border-color: var(--accent-color, #ff5a5f); }
+.bangumi-tab:hover { color: var(--bgm-accent); }
+.bangumi-tab.is-active { color: var(--bgm-accent); background: var(--bgm-accent-soft); }
+.bangumi-tab.is-active::after {
+  content: ""; position: absolute; left: 30%; right: 30%; bottom: 4px; height: 2px; border-radius: 2px; background: var(--bgm-gold);
+}
 .bangumi-search {
-    flex: 1; min-width: 180px; max-width: 480px; margin-left: auto;
-    padding: 10px 24px; border-radius: 999px; border: 1px solid transparent; outline: none;
-    background: var(--card-background); box-shadow: var(--shadow-l1);
-    color: var(--card-text-color-main); font-size: 16px; font-family: inherit;
+  flex: 1; min-width: 180px; max-width: 420px; margin-left: auto;
+  padding: 9px 18px; border-radius: 10px; border: 1px solid transparent; outline: none;
+  background: var(--bgm-card); box-shadow: var(--bgm-shadow);
+  color: var(--bgm-text); font-size: 15px; font-family: inherit; transition: border-color .2s;
 }
-.bangumi-search:focus { border-color: var(--accent-color, #ff5a5f); }
+.bangumi-search:focus { border-color: var(--bgm-accent); }
 .bangumi-random {
-    padding: 10px 26px; border-radius: 999px; border: 0; cursor: pointer;
-    background: var(--accent-color, #ff5a5f); color: #fff; font-size: 16px; font-weight: 700; font-family: inherit;
-    box-shadow: var(--shadow-l1); transition: transform .2s;
+  padding: 9px 22px; border-radius: 10px; border: 0; cursor: pointer;
+  background: var(--bgm-accent); color: #fff; font-size: 15px; font-weight: 700; font-family: inherit; letter-spacing: 2px;
+  box-shadow: var(--bgm-shadow); transition: transform .2s, background .2s;
 }
-.bangumi-random:hover { transform: translateY(-2px); }
+.bangumi-random:hover { transform: translateY(-2px); background: var(--red-0, #137186); }
 
-/* 随机结果 */
-.bangumi-random-result { margin-bottom: 26px; }
+/* random result */
+.bangumi-random-result { margin-bottom: 24px; }
 .bangumi-random-card {
-    display: flex; gap: 18px; align-items: center; padding: 14px; max-width: 520px;
-    background: var(--card-background); border-radius: 16px; box-shadow: var(--shadow-l2);
-    text-decoration: none; background-image: none; color: var(--card-text-color-main);
+  display: flex; gap: 18px; align-items: center; padding: 14px; max-width: 520px;
+  background: var(--bgm-card); border-radius: 14px; box-shadow: var(--bgm-shadow);
+  color: var(--bgm-text);
 }
-.bangumi-random-card img { width: 90px; border-radius: 10px; margin: 0; aspect-ratio: 2/3; object-fit: cover; }
-.bangumi-random-card .bangumi-name { font-size: 18px; }
-.bangumi-random-tip { color: var(--card-text-color-secondary); font-size: 15px; padding: 8px 4px; }
+.bangumi-random-card img { width: 90px; border-radius: 10px; aspect-ratio: 2/3; object-fit: cover; }
+.bangumi-random-card .bangumi-name { font-size: 17px; }
+.bangumi-random-tip { color: var(--bgm-text-2); font-size: 14px; padding: 8px 4px; }
 
-/* 分组 */
+/* sections */
 .bangumi-page.is-ready .bangumi-panel { display: none; }
 .bangumi-page.is-ready .bangumi-panel.is-active { display: block; }
-.bangumi-section-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 18px; }
-.bangumi-section-title { font-size: 22px; font-weight: 800; color: var(--card-text-color-main); }
-.bangumi-section-count { font-size: 15px; color: var(--card-text-color-secondary); }
+.bangumi-section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.bangumi-section-title { font-size: 20px; font-weight: 800; letter-spacing: 3px; color: var(--bgm-text); }
+.bangumi-section-title::before {
+  content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 10px;
+  background: var(--bgm-gold); transform: rotate(45deg) translateY(-3px);
+}
+.bangumi-section-count { font-size: 14px; color: var(--bgm-text-2); }
 .bangumi-views { display: flex; gap: 8px; margin-bottom: 18px; }
 .bangumi-view {
-    padding: 5px 16px; border-radius: 999px; border: 1px solid var(--card-separator-color, #ddd); cursor: pointer;
-    background: transparent; color: var(--card-text-color-secondary); font-size: 14px; font-family: inherit;
+  padding: 4px 14px; border-radius: 8px; border: 1px solid var(--bgm-line); cursor: pointer;
+  background: transparent; color: var(--bgm-text-2); font-size: 13.5px; font-family: inherit;
 }
-.bangumi-view.is-active { color: var(--accent-color, #ff5a5f); border-color: var(--accent-color, #ff5a5f); }
+.bangumi-view.is-active { color: var(--bgm-accent); border-color: var(--bgm-accent); background: var(--bgm-accent-soft); }
 
-/* 卡片网格 */
-.bangumi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 24px; }
+/* card grid */
+.bangumi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 22px; }
 .bangumi-card {
-    display: block; overflow: hidden; border-radius: 16px; position: relative;
-    background: var(--card-background); box-shadow: var(--shadow-l2);
-    color: var(--card-text-color-main); text-decoration: none; background-image: none;
-    transition: transform .25s, box-shadow .25s;
+  display: block; overflow: hidden; border-radius: 14px; position: relative;
+  background: var(--bgm-card); box-shadow: var(--bgm-shadow);
+  color: var(--bgm-text); transition: transform .25s, box-shadow .25s;
 }
-.bangumi-card:hover { transform: translateY(-5px); }
-.bangumi-cover { position: relative; aspect-ratio: 2 / 3; overflow: hidden; background: rgba(128,128,128,.15); }
-.bangumi-cover img { width: 100%; height: 100%; margin: 0; object-fit: cover; display: block; }
+.bangumi-card:hover { transform: translateY(-5px); box-shadow: var(--bgm-shadow-hover); color: var(--bgm-text) !important; }
+.bangumi-cover { position: relative; aspect-ratio: 2 / 3; overflow: hidden; background: var(--bgm-accent-soft); }
+.bangumi-cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+.bangumi-card:hover .bangumi-cover img { transform: scale(1.05); }
 .bangumi-score {
-    position: absolute; top: 10px; right: 10px; padding: 3px 11px; border-radius: 999px;
-    background: var(--accent-color, #ff5a5f); color: #fff; font-size: 14px; font-weight: 800;
+  position: absolute; top: 8px; right: 8px; padding: 2px 9px; border-radius: 8px;
+  background: var(--bgm-gold); color: #fff; font-size: 13px; font-weight: 800; box-shadow: 0 2px 6px rgba(0,0,0,.25);
 }
 .bangumi-extra {
-    position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px;
-    padding: 16px; color: #fff; opacity: 0; transition: opacity .25s;
-    background: linear-gradient(to top, rgba(0,0,0,.82), rgba(0,0,0,.15) 70%, transparent);
+  position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px;
+  padding: 14px; color: #fff; opacity: 0; transition: opacity .25s;
+  background: linear-gradient(to top, rgba(8, 44, 56, .88), rgba(8, 44, 56, .2) 70%, transparent);
 }
 .bangumi-card:hover .bangumi-extra { opacity: 1; }
-.bangumi-extra-line { font-size: 14px; font-weight: 700; }
+.bangumi-extra-line { font-size: 13px; font-weight: 700; }
 .bangumi-extra-comment {
-    font-size: 13px; line-height: 1.5; opacity: .92;
-    display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+  font-size: 12.5px; line-height: 1.55; opacity: .92;
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
 }
-.bangumi-info { padding: 14px 18px 16px; }
+.bangumi-info { padding: 12px 16px 14px; }
 .bangumi-name {
-    font-size: 17px; font-weight: 800; line-height: 1.4; color: var(--card-text-color-main);
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-size: 15.5px; font-weight: 800; line-height: 1.4; color: var(--bgm-text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.bangumi-meta { display: flex; gap: 12px; margin-top: 6px; font-size: 14px; color: var(--card-text-color-secondary); }
+.bangumi-meta { display: flex; gap: 12px; margin-top: 4px; font-size: 13px; color: var(--bgm-text-2); }
 
-/* Load More */
-.bangumi-more-wrap { text-align: center; margin-top: 28px; }
+/* load more */
+.bangumi-more-wrap { text-align: center; margin-top: 26px; }
 .bangumi-more {
-    padding: 10px 34px; border-radius: 999px; border: 1px solid var(--accent-color, #ff5a5f); cursor: pointer;
-    background: transparent; color: var(--accent-color, #ff5a5f); font-size: 16px; font-weight: 700; font-family: inherit;
+  padding: 9px 32px; border-radius: 10px; border: 1px solid var(--bgm-accent); cursor: pointer;
+  background: transparent; color: var(--bgm-accent); font-size: 15px; font-weight: 700; font-family: inherit; letter-spacing: 2px;
+  transition: background .2s, color .2s;
 }
-.bangumi-more:hover { background: var(--accent-color, #ff5a5f); color: #fff; }
+.bangumi-more:hover { background: var(--bgm-accent); color: #fff; }
 
-/* 弹层 */
+/* modal */
 .bangumi-modal { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; }
-.bangumi-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.55); backdrop-filter: blur(3px); }
+.bangumi-modal-backdrop { position: absolute; inset: 0; background: rgba(8, 44, 56, .55); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
 .bangumi-modal-box {
-    position: relative; width: min(620px, 100%); max-height: 88vh; overflow: auto; padding: 24px;
-    background: var(--card-background); border-radius: 18px; box-shadow: var(--shadow-l2);
+  position: relative; width: min(620px, 100%); max-height: 88vh; overflow: auto; padding: 24px;
+  background: var(--bgm-card); border-radius: 16px; box-shadow: var(--bgm-shadow-hover);
+  border-top: 3px solid var(--bgm-gold);
 }
 .bangumi-modal-close {
-    position: absolute; top: 10px; right: 14px; border: 0; background: none; cursor: pointer;
-    font-size: 28px; line-height: 1; color: var(--card-text-color-secondary);
+  position: absolute; top: 10px; right: 14px; border: 0; background: none; cursor: pointer;
+  font-size: 28px; line-height: 1; color: var(--bgm-text-2);
 }
 .bangumi-modal-main { display: flex; gap: 22px; }
-.bangumi-modal-main img { width: 150px; align-self: flex-start; margin: 0; border-radius: 12px; aspect-ratio: 2/3; object-fit: cover; }
-.bangumi-modal-title { font-size: 21px; font-weight: 800; margin-bottom: 14px; color: var(--card-text-color-main); }
-.bangumi-modal-row { display: flex; gap: 10px; margin-bottom: 8px; font-size: 15px; }
-.bangumi-modal-row b { min-width: 74px; color: var(--card-text-color-secondary); font-weight: 600; }
+.bangumi-modal-main img { width: 150px; align-self: flex-start; border-radius: 10px; aspect-ratio: 2/3; object-fit: cover; }
+.bangumi-modal-title { font-size: 20px; font-weight: 800; margin-bottom: 14px; color: var(--bgm-text); }
+.bangumi-modal-row { display: flex; gap: 10px; margin-bottom: 8px; font-size: 14.5px; color: var(--bgm-text); }
+.bangumi-modal-row b { min-width: 74px; color: var(--bgm-text-2); font-weight: 600; }
 .bangumi-modal-comment {
-    margin-top: 16px; padding: 12px 14px; border-radius: 12px; font-size: 15px; line-height: 1.7;
-    background: rgba(128,128,128,.12); color: var(--card-text-color-main);
+  margin-top: 16px; padding: 12px 14px; border-radius: 10px; font-size: 14.5px; line-height: 1.7;
+  background: var(--bgm-accent-soft); color: var(--bgm-text); border-left: 3px solid var(--bgm-gold);
 }
 .bangumi-modal-link {
-    display: inline-block; margin-top: 16px; padding: 8px 20px; border-radius: 999px; font-weight: 700;
-    background: var(--accent-color, #ff5a5f); color: #fff; text-decoration: none; background-image: none;
+  display: inline-block; margin-top: 16px; padding: 8px 20px; border-radius: 10px; font-weight: 700;
+  background: var(--bgm-accent); color: #fff !important;
 }
 
 @media (max-width: 640px) {
-    .bangumi-hero { flex-direction: column; align-items: flex-start; padding: 24px; }
-    .bangumi-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .bangumi-search { max-width: none; margin-left: 0; flex-basis: 100%; order: 3; }
-    .bangumi-modal-main { flex-direction: column; }
-    .bangumi-modal-main img { width: 120px; }
+  .bangumi-hero { flex-direction: column; align-items: flex-start; padding: 22px; }
+  .bangumi-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .bangumi-search { max-width: none; margin-left: 0; flex-basis: 100%; order: 3; }
+  .bangumi-tab { padding: 7px 14px; }
+  .bangumi-modal-main { flex-direction: column; }
+  .bangumi-modal-main img { width: 120px; }
 }
 </style>
 
