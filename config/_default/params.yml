@@ -670,6 +670,113 @@ injector:
   head_end: |-
     
     <style>
+    /* 选中文字：淡青底，代码里是淡金底 */
+    ::selection { background: rgba(123, 197, 213, .45); color: inherit; text-shadow: none; }
+    .highlight ::selection, code::selection, pre ::selection { background: rgba(201, 164, 92, .38); }
+    html[data-theme="dark"] ::selection { background: rgba(92, 186, 208, .38); }
+    html[data-theme="dark"] .highlight ::selection,
+    html[data-theme="dark"] code::selection { background: rgba(201, 164, 92, .32); }
+
+    /* 滚动条：细条，悬停变金 */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-thumb { background: var(--red-3); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #c9a45c; }
+    /* 深色模式：文字用的青色调亮一档 */
+    html[data-theme="dark"]:root {
+      --color-link: #5cbad0;
+      --red-2: #5cbad0;
+      --color-default: #aeb4bb;
+    }
+    html[data-theme="dark"] .article-category-link,
+    html[data-theme="dark"] .article-tag-list-link,
+    html[data-theme="dark"] .article-comment-link,
+    html[data-theme="dark"] .article-visitor-link,
+    html[data-theme="dark"] .article-date-link,
+    html[data-theme="dark"] .archives-tag-list-link,
+    html[data-theme="dark"] .archives-category-list-link { color: #6cc4d6; }
+    html[data-theme="dark"] .post-title { color: #5cbad0; }
+    /* 归档页 */
+    .archive-year { color: var(--red-2); font-size: 26px; letter-spacing: 2px; }
+    .archive-article::before {
+      width: 6px; height: 6px; background: #c9a45c;
+      margin: 0 14px 0 -24px; transform: rotate(45deg);
+      box-shadow: none; opacity: .7;
+    }
+    .archive-article:hover::before {
+      width: 6px; height: 6px; border-radius: 0; opacity: 1;
+      box-shadow: 0 0 0 4px rgba(201, 164, 92, .22);
+    }
+    .archive-article .dt-published { color: var(--grey-7); font-variant-numeric: tabular-nums; }
+    .archive-article-title { opacity: .9; font-weight: 600; transition: transform .25s, color .25s, opacity .3s; }
+    .archive-article:hover .archive-article-title { transform: translateX(4px); opacity: 1; }
+    /* 侧栏小组件 */
+    .widget-wrap {
+      border-top: 2px solid #c9a45c;
+      box-shadow: 0 6px 22px rgba(34, 137, 160, .10);
+    }
+    .widget-title {
+      display: flex; align-items: center; gap: 8px;
+      color: var(--red-2); font-size: 15px; letter-spacing: 3px;
+    }
+    .widget-title::before {
+      content: ""; width: 7px; height: 7px; background: #c9a45c;
+      transform: rotate(45deg); flex: none;
+    }
+    .widget-link { color: var(--red-3); font-size: 13px; }
+    .widget li {
+      position: relative; margin-top: 9px; padding-left: 18px;
+      font-size: 14px; line-height: 1.55; white-space: normal;
+    }
+    .widget li::before {
+      position: absolute; left: 2px; top: .62em; margin: 0;
+      width: 6px; height: 6px; background: #c9a45c;
+      transform: rotate(45deg); box-shadow: none; opacity: .75;
+    }
+    .widget li:hover::before { width: 6px; height: 6px; border-radius: 0; opacity: 1; }
+    .widget li > a {
+      display: -webkit-box; -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden;
+      transition: transform .25s, color .25s;
+    }
+    .widget li:hover > a { transform: translateX(4px); }
+    .tagcloud a {
+      font-size: 13px !important; margin: 6px 6px 0 0;
+      padding: 2px 11px; border-radius: 999px;
+      border: 1px solid rgba(34, 137, 160, .35);
+      background: rgba(34, 137, 160, .06);
+    }
+    .tagcloud a:hover {
+      color: #fff; background: var(--red-3);
+      border-color: #c9a45c; transform: translateY(-2px);
+    }
+
+    /* 首页卡片：元信息靠左不截断，标题两行 */
+    .post-meta { flex-wrap: wrap; justify-content: flex-start; row-gap: 2px; }
+    .post-meta span { overflow: visible; text-overflow: clip; margin: 0 14px 0 0; font-size: 13px; }
+    .post-title {
+      white-space: normal; font-size: 22px; line-height: 1.45;
+      padding: 0; margin: 14px 0 10px;
+      display: -webkit-box; -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden;
+    }
+    @media (max-width: 600px) { .post-title { font-size: 19px; } }
+
+    /* 前一篇 / 后一篇 */
+    #article-nav { border-radius: 14px; box-shadow: 0 6px 22px rgba(34, 137, 160, .12); }
+    .article-nav-link-wrap { opacity: 1; overflow: hidden; height: 140px; min-height: 140px; }
+    .article-nav-link-wrap::before {
+      content: ""; position: absolute; inset: 0; z-index: 0;
+      background: linear-gradient(180deg, rgba(8, 40, 52, .25), rgba(8, 40, 52, .72));
+    }
+    .article-nav-link-wrap a { z-index: 2; }
+    .article-nav-link-wrap img { filter: brightness(62%) saturate(1.05); transition: transform .5s, filter .3s; }
+    .article-nav-link-wrap:hover img { transform: scale(1.06); filter: brightness(72%) saturate(1.05); }
+    .article-nav-caption, .article-nav-title { position: relative; z-index: 1; }
+    .article-nav-caption { color: #e6c98a; font-size: 13px; letter-spacing: 3px; }
+    .article-nav-title {
+      font-size: 18px; line-height: 1.45; margin-top: 10px;
+      -webkit-line-clamp: 2; line-clamp: 2; text-shadow: 0 1px 8px rgba(0, 0, 0, .8);
+    }
     /* 横幅从顶栏下面开始，不被顶栏盖住 */
     #header { margin-top: 56px; }
     @media (min-width: 800px) { #header { margin-top: 52px; } }
@@ -762,15 +869,10 @@ injector:
     .sidebar-menu .sidebar-menu-link-wrap:hover .sidebar-menu-icon.icon { transform: scale(1.12) !important; }
     .main-nav-icon.icon.rotate { transform: none !important; }
 
-    ::selection { background: rgba(201, 164, 92, 0.35); }
-
-    html { scrollbar-color: var(--red-3) transparent; }
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-thumb { background: var(--red-3); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #c9a45c; }
 
     .article-entry a { transition: color .2s; }
     .article-entry a:hover { color: #b8903f; text-decoration: none; border-bottom: 1px solid #c9a45c; }
+    html[data-theme="dark"] .article-entry a:hover { color: #e0c07a; }
 
     .article-entry h2 {
       padding-bottom: 8px;
@@ -1036,6 +1138,7 @@ injector:
     }
 
     #comments .twikoo .tk-row.actions {
+        position: static; /* 让表情面板改挂到 .tk-submit 上，好把缩进的 3.5rem 收回来 */
         margin-top: 12px;
         margin-bottom: 12px;
     }
@@ -1280,6 +1383,11 @@ injector:
     }
 
     /* ---------- 表情面板（OwO）：细边框，格子跟内容走，文字不折断 ---------- */
+    /* 面板挂到整个提交框上（Twikoo 默认挂在缩进了 3.5rem 的按钮行上，窄屏会少掉一截宽度） */
+    #comments .twikoo .tk-submit {
+        position: relative;
+    }
+
     #comments .twikoo .OwO .OwO-body {
         top: calc(100% + 12px);
         left: 0;
@@ -1315,12 +1423,13 @@ injector:
         flex-wrap: wrap;
         align-content: flex-start;
         justify-content: flex-start;
+        gap: 2px 4px;
     }
 
     /* 关键：颜文字不许在格子中间折断，放不下就整体换行 */
     #comments .twikoo .OwO .OwO-items .OwO-item {
         flex: 0 0 auto;
-        padding: 5px 8px;
+        padding: 4px 7px;
         border-radius: 6px;
         background: transparent;
         box-shadow: none;
@@ -1338,13 +1447,25 @@ injector:
         background: var(--tk-accent-soft);
     }
 
-    /* 图片表情（Emoji / Bilibili 之类）：每行几个格 */
-    #comments .twikoo .OwO .OwO-items-image .OwO-item {
+    /* Twikoo 把「颜文字」也当成图片表情，给了 width:14% 的格子宽度，
+       纯文字格子被压扁后文字会互相压在一起；所以没有 img 的格子把宽度还给内容 */
+    /* 回复框左边是父评论的头像栏，把面板往左挪一列（保守按 1.6rem 头像算），宽度补回来 */
+    #comments .twikoo .tk-comment .tk-submit .OwO .OwO-body {
+        left: -2.6rem;
+        width: min(calc(100% + 2.6rem), 460px);
+    }
+
+    #comments .twikoo .OwO .OwO-items .OwO-item:not(:has(img)) {
+        width: auto;
+    }
+
+    /* 真正的图片表情（Emoji / Bilibili 之类）才用格子宽度：桌面 8 个一行 */
+    #comments .twikoo .OwO .OwO-items .OwO-item:has(img) {
         width: 12.5%;
         padding: 4px 2px;
     }
 
-    #comments .twikoo .OwO .OwO-items-image .OwO-item img,
+    #comments .twikoo .OwO .OwO-items .OwO-item img,
     #comments .twikoo .OwO .OwO-item img.tk-owo-emotion {
         width: 1.9em;
         max-width: 100%;
@@ -1463,11 +1584,9 @@ injector:
 
         #comments .twikoo .OwO .OwO-body {
             top: calc(100% + 8px);
-            width: 100%;
-            max-width: 100%;
         }
 
-        #comments .twikoo .OwO .OwO-items-image .OwO-item {
+        #comments .twikoo .OwO .OwO-items .OwO-item:has(img) {
             width: 20%;
         }
     }
