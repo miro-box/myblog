@@ -246,9 +246,8 @@ icon_font: 4552607_ex15nbittbh
 custom_font:
   enable: true
   article:
-    - css: https://fontsapi.zeoseven.com/292/main/result.css
-      name: LXGW WenKai
-  code:
+    - css: /fonts/wenkai-sub.css
+      name: LXGW WenKai Sub
 
 # https://fonts.google.com/
 # Google Fonts, higher priority than local_font
