@@ -20,6 +20,7 @@ Options
 """
 import argparse
 import hashlib
+import subprocess
 import sys
 import urllib.request
 from pathlib import Path
@@ -101,10 +102,22 @@ def find_font(arg):
                 return p
     print("Source font not found, downloading LXGW WenKai (about 25 MB) ...")
     DEFAULT_SRC.parent.mkdir(parents=True, exist_ok=True)
+    ok = False
     try:
         urllib.request.urlretrieve(DOWNLOAD_URL, DEFAULT_SRC)
+        ok = True
     except Exception as e:  # noqa: BLE001
-        print(f"Download failed: {e}")
+        print(f"Python download failed: {e}")
+        print("Trying curl.exe (uses the system certificates) ...")
+        try:
+            r = subprocess.run(["curl", "-L", "--fail", "-o", str(DEFAULT_SRC), DOWNLOAD_URL])
+            ok = r.returncode == 0 and DEFAULT_SRC.exists() and DEFAULT_SRC.stat().st_size > 1_000_000
+        except OSError:
+            ok = False
+    if not ok:
+        if DEFAULT_SRC.exists():
+            DEFAULT_SRC.unlink()
+        print("Download failed.")
         print("Please download LXGWWenKai-Regular.ttf by hand from")
         print("  https://github.com/lxgw/LxgwWenKai/releases")
         print(f"and put it into: {DEFAULT_SRC.parent}")
@@ -148,7 +161,7 @@ def main():
     opts.name_IDs = [1, 2, 3, 4, 6]
     opts.notdef_outline = True
     opts.drop_tables += ["DSIG"]
-    font = TTFont(str(font_path))
+    font = TTFont(str(font_path), recalcTimestamp=False)
     sub = subset.Subsetter(opts)
     sub.populate(text=text)
     sub.subset(font)
