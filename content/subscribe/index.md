@@ -6,8 +6,6 @@ comments: false
 copyright: false
 ---
 
-不想每次都来看有没有更新，可以用 RSS 订阅，有新文章时阅读器会通知你。
-
 {{< rss-box >}}
 
 ## 怎么用

@@ -6,8 +6,6 @@ comments: false
 copyright: false
 ---
 
-这里写清楚几件事，方便你需要的时候找到我。
-
 ## 文章
 
 文章是我自己写的，采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans) 协议：转载请署名并附上原文链接，不得用于商业用途，修改后的内容也要用同样的协议分享。文章里的命令和配置按我的环境写的，照着做之前请先备份，出了问题我不负责。

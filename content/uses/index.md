@@ -6,8 +6,6 @@ comments: false
 copyright: false
 ---
 
-这个博客是怎么搭起来的，用了什么，方便想自己搭的人参考。
-
 ## 生成与托管
 
 - **生成器**：[Hugo](https://gohugo.io/)（extended 版），写好 Markdown，推送即发布

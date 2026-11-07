@@ -41,4 +41,4 @@ copyright: false
 
 也可以用 RSS 订阅，有新文章时会第一时间收到：[订阅本站](/subscribe/)。
 
-更多：[更新日志](/changelog/) · [站点统计](/stats/) · [本站技术栈](/uses/) · [声明](/declaration/) · [标签](/tags/) · [分类](/categories/)
+更多：[随机一篇](/random/) · [更新日志](/changelog/) · [站点统计](/stats/) · [本站技术栈](/uses/) · [声明](/declaration/) · [标签](/tags/) · [分类](/categories/)
