@@ -120,7 +120,7 @@ footer:
   since: 2023 # 2023-current year
   powered: false
   count: true
-  busuanzi: true
+  busuanzi: false
   icon:
     url: "../images/knot.svg" # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
     rotate: true
