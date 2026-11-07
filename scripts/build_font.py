@@ -176,9 +176,17 @@ def main():
     digest = hashlib.sha1(data).hexdigest()[:8]
     ext = "woff2" if args.flavor == "woff2" else "woff"
     name = f"wenkai-sub.{digest}.{ext}"
-    for old in OUT_DIR.glob("wenkai-sub.*.woff*"):
-        old.unlink()
-    (OUT_DIR / name).write_bytes(data)
+    target = OUT_DIR / name
+    target.write_bytes(data)
+    # Keep the previous build next to the new one: a browser or CDN that still
+    # holds the old CSS keeps working instead of falling back to the system font.
+    olds = sorted(
+        (f for f in OUT_DIR.glob("wenkai-sub.*.woff*") if f != target),
+        key=lambda f: f.stat().st_mtime,
+        reverse=True,
+    )
+    for stale in olds[1:]:
+        stale.unlink()
 
     fmt = "woff2" if args.flavor == "woff2" else "woff"
     css = (
