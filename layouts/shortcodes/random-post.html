@@ -1,0 +1,22 @@
+{{- /* 随机跳到一篇文章。文章列表在每次发布时生成。 */ -}}
+{{- $posts := where site.RegularPages "Type" "in" site.Params.mainSections -}}
+{{- $urls := slice -}}
+{{- range $posts }}{{ $urls = $urls | append .RelPermalink }}{{ end -}}
+<div class="random-post">
+  <p id="rp-msg">正在带你去一篇随机文章……</p>
+  <p class="rp-more"><a href="{{ "archives/" | relURL }}">看看全部文章</a></p>
+  <noscript><p>需要开启 JavaScript 才能随机跳转，也可以直接去<a href="{{ "archives/" | relURL }}">归档</a>里挑一篇。</p></noscript>
+</div>
+<script>
+  (function () {
+    var posts = {{ $urls }};
+    var msg = document.getElementById('rp-msg');
+    if (!posts || !posts.length) { if (msg) msg.textContent = '还没有文章。'; return; }
+    var ref = '';
+    try { ref = new URL(document.referrer).pathname; } catch (e) {}
+    var pool = posts.filter(function (p) { return p !== ref; });
+    if (!pool.length) pool = posts;
+    var url = pool[Math.floor(Math.random() * pool.length)];
+    location.replace(url);
+  })();
+</script>
