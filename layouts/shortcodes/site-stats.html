@@ -1,0 +1,92 @@
+{{- /* 站点统计：文章数、字数、运行天数、年度分布、热门标签与分类。每次构建自动计算。 */ -}}
+{{- $mainSections := site.Params.mainSections -}}
+{{- $posts := where site.RegularPages "Type" "in" $mainSections -}}
+{{- $words := 0 -}}
+{{- range $posts -}}
+  {{- $words = add $words (strings.RuneCount .Plain) -}}
+{{- end -}}
+{{- $days := 0 -}}
+{{- with site.Params.footer.start -}}
+  {{- $start := time.AsTime . -}}
+  {{- $days = div (sub now.Unix $start.Unix) 86400 -}}
+{{- end -}}
+{{- $tagCount := 0 -}}
+{{- with site.Taxonomies.tags }}{{ $tagCount = len . }}{{ end -}}
+{{- $catCount := 0 -}}
+{{- with site.Taxonomies.categories }}{{ $catCount = len . }}{{ end -}}
+{{- $byYear := $posts.GroupByDate "2006" -}}
+{{- $maxYear := 1 -}}
+{{- range $byYear }}{{ if gt (len .Pages) $maxYear }}{{ $maxYear = len .Pages }}{{ end }}{{ end -}}
+
+<div class="site-stats">
+  <div class="ss-cards">
+    <div class="ss-card"><b>{{ len $posts }}</b><span>篇文章</span></div>
+    <div class="ss-card"><b>{{ if ge $words 10000 }}{{ div $words 10000 }}.{{ div (mod $words 10000) 1000 }}万{{ else }}{{ $words }}{{ end }}</b><span>字（含代码）</span></div>
+    <div class="ss-card"><b>{{ $days }}</b><span>天，建站至今</span></div>
+    <div class="ss-card"><b>{{ $tagCount }} / {{ $catCount }}</b><span>标签 / 分类</span></div>
+  </div>
+
+  {{- if $byYear }}
+  <h3>每年写了多少</h3>
+  <div class="ss-years">
+    {{- range $byYear }}
+    <div class="ss-row">
+      <span class="ss-key">{{ .Key }}</span>
+      <span class="ss-bar"><i style="width: {{ div (mul (len .Pages) 100) $maxYear }}%"></i></span>
+      <span class="ss-num">{{ len .Pages }}</span>
+    </div>
+    {{- end }}
+  </div>
+  {{- end }}
+
+  {{- with site.Taxonomies.tags }}
+  <h3>常用标签</h3>
+  <div class="ss-pills">
+    {{- range first 12 .ByCount }}
+    <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}<em>{{ .Count }}</em></a>
+    {{- end }}
+  </div>
+  {{- end }}
+
+  {{- with site.Taxonomies.categories }}
+  <h3>分类</h3>
+  <div class="ss-pills">
+    {{- range first 12 .ByCount }}
+    <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}<em>{{ .Count }}</em></a>
+    {{- end }}
+  </div>
+  {{- end }}
+
+  {{- with $posts.ByDate.Reverse }}
+  <p class="ss-foot">最近一次更新：{{ (index . 0).Date.Format "2006-01-02" }}　·　本页数据在每次发布时自动生成。</p>
+  {{- end }}
+</div>
+
+<style>
+  .site-stats { margin: 8px 0 0; }
+  .site-stats h3 { margin: 30px 0 12px; }
+  .site-stats .ss-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
+  .site-stats .ss-card {
+    padding: 18px 12px; text-align: center; border-radius: 12px;
+    background: rgba(34, 137, 160, .08); border: 1px solid rgba(34, 137, 160, .22);
+    border-top: 2px solid #c9a45c;
+  }
+  .site-stats .ss-card b { display: block; font-size: 1.7rem; line-height: 1.2; color: #2289a0; }
+  .site-stats .ss-card span { display: block; margin-top: 6px; font-size: .85rem; opacity: .75; }
+  .site-stats .ss-row { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+  .site-stats .ss-key { width: 3.2em; flex: none; opacity: .8; }
+  .site-stats .ss-bar { flex: 1; height: 10px; border-radius: 6px; background: rgba(34, 137, 160, .12); overflow: hidden; }
+  .site-stats .ss-bar i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, #2289a0, #c9a45c); }
+  .site-stats .ss-num { width: 2.5em; flex: none; text-align: right; opacity: .8; }
+  .site-stats .ss-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .site-stats .ss-pills a {
+    display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px;
+    background: rgba(34, 137, 160, .1); border: 1px solid rgba(34, 137, 160, .25); text-decoration: none;
+  }
+  .site-stats .ss-pills a:hover { border-color: #c9a45c; }
+  .site-stats .ss-pills em { font-style: normal; font-size: .8rem; opacity: .7; }
+  .site-stats .ss-foot { margin-top: 28px; font-size: .85rem; opacity: .65; }
+  html[data-theme="dark"] .site-stats .ss-card { background: rgba(92, 186, 208, .08); border-color: rgba(92, 186, 208, .25); border-top-color: #c9a45c; }
+  html[data-theme="dark"] .site-stats .ss-card b { color: #5cbad0; }
+  html[data-theme="dark"] .site-stats .ss-pills a { background: rgba(92, 186, 208, .1); border-color: rgba(92, 186, 208, .28); }
+</style>

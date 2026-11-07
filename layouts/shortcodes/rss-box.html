@@ -1,0 +1,48 @@
+{{- $url := absURL "index.xml" -}}
+{{- with site.Home.OutputFormats.Get "rss" }}{{ $url = .Permalink }}{{ end -}}
+<div class="rss-box">
+  <div class="rb-label">RSS 订阅地址</div>
+  <div class="rb-row">
+    <input class="rb-input" type="text" readonly value="{{ $url }}" aria-label="RSS 订阅地址">
+    <button class="rb-btn" type="button" data-url="{{ $url }}">复制</button>
+    <a class="rb-link" href="{{ $url }}" target="_blank" rel="noopener">打开看看</a>
+  </div>
+</div>
+
+<style>
+  .rss-box { margin: 16px 0 8px; padding: 16px; border-radius: 12px; border: 1px solid rgba(34, 137, 160, .25);
+    background: rgba(34, 137, 160, .07); border-top: 2px solid #c9a45c; }
+  .rss-box .rb-label { font-size: .85rem; opacity: .75; margin-bottom: 8px; }
+  .rss-box .rb-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .rss-box .rb-input { flex: 1 1 260px; min-width: 0; padding: 8px 12px; border-radius: 8px; font: inherit; font-size: .95rem;
+    border: 1px solid rgba(34, 137, 160, .35); background: rgba(255, 255, 255, .6); color: inherit; }
+  .rss-box .rb-btn { padding: 8px 18px; border: 0; border-radius: 8px; cursor: pointer; font: inherit; color: #fff; background: #2289a0; }
+  .rss-box .rb-btn:hover { background: #c9a45c; }
+  .rss-box .rb-link { padding: 8px 6px; text-decoration: none; }
+  html[data-theme="dark"] .rss-box { background: rgba(92, 186, 208, .07); border-color: rgba(92, 186, 208, .28); border-top-color: #c9a45c; }
+  html[data-theme="dark"] .rss-box .rb-input { background: rgba(255, 255, 255, .05); border-color: rgba(92, 186, 208, .35); }
+  html[data-theme="dark"] .rss-box .rb-btn { background: #2f8fa6; }
+</style>
+<script>
+  (function () {
+    document.querySelectorAll('.rss-box .rb-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var url = btn.getAttribute('data-url');
+        var done = function () {
+          btn.textContent = '已复制';
+          setTimeout(function () { btn.textContent = '复制'; }, 1600);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(done, function () { fallback(url, done); });
+        } else { fallback(url, done); }
+      });
+    });
+    function fallback(text, done) {
+      var t = document.createElement('textarea');
+      t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); done(); } catch (e) {}
+      document.body.removeChild(t);
+    }
+  })();
+</script>

@@ -39,4 +39,6 @@ copyright: false
 
 如果你对这里的内容有兴趣，想交流或者只是打个招呼，可以去 [GitHub](https://github.com/miro-box) 看看我的项目，或者发邮件到 `hi@mibase.top`。
 
-也可以用 RSS 订阅，有新文章时会第一时间收到：[订阅本站](/index.xml)。
+也可以用 RSS 订阅，有新文章时会第一时间收到：[订阅本站](/subscribe/)。
+
+更多：[更新日志](/changelog/) · [站点统计](/stats/) · [本站技术栈](/uses/) · [声明](/declaration/) · [标签](/tags/) · [分类](/categories/)
